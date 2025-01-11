@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@MapperScan(basePackages = "com.ruha.mapper")
+@MapperScan("com.ruha.mapper")
 class MemberMapperTest {
 
     @Autowired

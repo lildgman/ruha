@@ -14,6 +14,7 @@ spring:
       format_sql: true
   mybatis:
     mapper-locations: classpath:mapper/**/*.xml
+    type-aliases-package: com.ruha.entity
 
 logging.level:
   org.hibernate.SQL: debug
