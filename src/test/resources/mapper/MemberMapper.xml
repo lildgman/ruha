@@ -5,13 +5,13 @@
 <mapper namespace="com.ruha.mapper.MemberMapper">
 
     <!-- 회원 등록 -->
-    <insert id="insertMember" parameterType="com.ruha.entity.Member">
+    <insert id="insertMember" parameterType="com.ruha.entity.InsertMemberDto">
         INSERT INTO MEMBER (email, password, name, created, updated)
         VALUES (#{email}, #{password}, #{name}, NOW(), NOW());
     </insert>
 
     <!-- 전체 조회 -->
-    <select id="findAll" resultType="com.ruha.entity.Member">
+    <select id="findAll" resultType="com.ruha.dto.InsertMemberDto">
         SELECT * FROM member
     </select>
 
