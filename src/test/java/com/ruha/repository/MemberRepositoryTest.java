@@ -1,6 +1,8 @@
 package com.ruha.repository;
 
+import com.ruha.dto.MemberRequest;
 import com.ruha.entity.Member;
+import com.ruha.entity.RoleType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,8 @@ class MemberRepositoryTest {
     void createMember() {
 
         // given
-        Member member = Member.builder()
-                .email("test@example.com")
-                .password("1234")
-                .name("test")
-                .build();
+        MemberRequest request = new MemberRequest("test@example.com", "1234", "test");
+        Member member = Member.toEntity(request);
         // when
         Member saved = memberRepository.save(member);
 
@@ -40,18 +39,17 @@ class MemberRepositoryTest {
     void findMember() {
 
         // given
-        Member member = Member.builder()
-                .email("test@example.com")
-                .password("1234")
-                .name("test")
-                .build();
+        MemberRequest request = new MemberRequest("test@example.com", "1234", "test");
+        Member member = Member.toEntity(request);
 
         // when
         Member saved = memberRepository.save(member);
-        Member findMember = memberRepository.findById(saved.getId()).orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
+        Member findMember = memberRepository.findById(saved.getId())
+                .orElseThrow(() -> new RuntimeException("회원이 존재하지 않습니다."));
 
         // then
         assertThat(findMember.getId()).isEqualTo(saved.getId());
+        assertThat(findMember.getRoleType()).isEqualTo(RoleType.NORMAL);
     }
 
 

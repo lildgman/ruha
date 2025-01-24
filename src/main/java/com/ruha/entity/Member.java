@@ -1,5 +1,6 @@
 package com.ruha.entity;
 
+import com.ruha.dto.MemberRequest;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
@@ -26,6 +27,9 @@ public class Member {
     @Column(nullable = false)
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
     @Column(nullable = false)
     private LocalDateTime created;
 
@@ -36,14 +40,23 @@ public class Member {
         this.email = email;
         this.password = password;
         this.name = name;
+    }
 
+    public static Member toEntity(MemberRequest memberRequest) {
+        return Member.builder()
+                .email(memberRequest.getEmail())
+                .password(memberRequest.getPassword())
+                .name(memberRequest.getName())
+                .build();
     }
 
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
+
         this.created = now;
         this.updated = now;
+        this.roleType = RoleType.NORMAL;
     }
 
     @PreUpdate
