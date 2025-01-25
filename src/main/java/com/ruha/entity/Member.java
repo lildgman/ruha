@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,6 +36,12 @@ public class Member {
 
     @Column(nullable = false)
     private LocalDateTime updated;
+
+    @OneToMany(mappedBy = "follower")
+    private List<Follow> followings;
+
+    @OneToMany(mappedBy = "following")
+    private List<Follow> followers;
 
     public Member(String email, String password, String name) {
         this.email = email;
