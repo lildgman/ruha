@@ -1,9 +1,8 @@
 package com.ruha.entity;
 
-import com.ruha.dto.MemberRequest;
+import com.ruha.dto.CreateMemberRequest;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -49,11 +48,11 @@ public class Member {
         this.name = name;
     }
 
-    public static Member toEntity(MemberRequest memberRequest) {
+    public static Member toEntity(CreateMemberRequest createMemberRequest) {
         return Member.builder()
-                .email(memberRequest.getEmail())
-                .password(memberRequest.getPassword())
-                .name(memberRequest.getName())
+                .email(createMemberRequest.getEmail())
+                .password(createMemberRequest.getPassword())
+                .name(createMemberRequest.getName())
                 .build();
     }
 

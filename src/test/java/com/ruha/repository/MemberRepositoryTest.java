@@ -1,16 +1,12 @@
 package com.ruha.repository;
 
-import com.ruha.dto.MemberRequest;
+import com.ruha.dto.CreateMemberRequest;
 import com.ruha.entity.Member;
 import com.ruha.entity.RoleType;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
-
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +21,7 @@ class MemberRepositoryTest {
     void createMember() {
 
         // given
-        MemberRequest request = new MemberRequest("test@example.com", "1234", "test");
+        CreateMemberRequest request = new CreateMemberRequest("test@example.com", "1234", "test");
         Member member = Member.toEntity(request);
         // when
         Member saved = memberRepository.save(member);
@@ -39,7 +35,7 @@ class MemberRepositoryTest {
     void findMember() {
 
         // given
-        MemberRequest request = new MemberRequest("test@example.com", "1234", "test");
+        CreateMemberRequest request = new CreateMemberRequest("test@example.com", "1234", "test");
         Member member = Member.toEntity(request);
 
         // when
