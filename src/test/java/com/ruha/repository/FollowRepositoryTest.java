@@ -26,12 +26,15 @@ class FollowRepositoryTest {
     void 팔로우() {
         // given
         CreateMemberRequest request1 = new CreateMemberRequest("test1@example.com", "1234", "test");
-        Member follower = Member.toEntity(request1);
+        Member member1 = Member.toEntity(request1);
 
         CreateMemberRequest request2 = new CreateMemberRequest("test2@example.com", "1234", "test");
-        Member following = Member.toEntity(request2);
+        Member member2 = Member.toEntity(request2);
 
-        memberRepository.saveAll(List.of(follower, following));
+        memberRepository.saveAll(List.of(member1, member2));
+
+        Member follower = memberRepository.findById(member1.getId()).get();
+        Member following = memberRepository.findById(member2.getId()).get();
 
         // when
         Follow follow = Follow.toEntity(new CreateFollowRequest(follower, following));

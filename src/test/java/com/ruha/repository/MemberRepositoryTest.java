@@ -46,7 +46,9 @@ class MemberRepositoryTest {
         // then
         assertThat(findMember.getId()).isEqualTo(saved.getId());
         assertThat(findMember.getRoleType()).isEqualTo(RoleType.NORMAL);
+
     }
+
 
 
 }
