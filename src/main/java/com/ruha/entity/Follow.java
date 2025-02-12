@@ -25,7 +25,6 @@ public class Follow {
     @JoinColumn(name = "following_id")
     private Member following;
 
-    @Column(nullable = false)
     private LocalDateTime followedAt;
 
     @PrePersist

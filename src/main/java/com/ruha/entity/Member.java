@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,35 +19,27 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(nullable = false)
     private String password;
-
-    @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
-    @Column(nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 
-    @OneToMany(mappedBy = "follower")
-    private List<Follow> followings;
+    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Follow> followings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "following")
-    private List<Follow> followers;
+    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Follow> followers = new ArrayList<>();
 
-    public Member(String email, String password, String name) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-    }
 
     public static Member toEntity(CreateMemberRequest createMemberRequest) {
         return Member.builder()
@@ -54,6 +47,20 @@ public class Member {
                 .password(createMemberRequest.getPassword())
                 .name(createMemberRequest.getName())
                 .build();
+    }
+
+    public void follow(Member member) {
+        Follow follow = Follow.builder()
+                .follower(this)
+                .following(member)
+                .build();
+        this.getFollowings().add(follow);
+        member.getFollowers().add(follow);
+    }
+
+    public void unfollow(Member member) {
+        this.getFollowings().removeIf(follow -> follow.getFollowing().equals(member));
+        member.getFollowers().removeIf(follow -> follow.getFollower().equals(this));
     }
 
     @PrePersist

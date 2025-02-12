@@ -5,15 +5,19 @@ import com.ruha.dto.CreateMemberRequest;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
+
 @SpringBootTest
-@ActiveProfiles("test")
+@Transactional
 class FollowRepositoryTest {
 
     @Autowired
@@ -22,27 +26,38 @@ class FollowRepositoryTest {
     @Autowired
     private FollowRepository followRepository;
 
+    private Member memberA;
+    private Member memberB;
+
+    @BeforeEach
+    void memberSetUp() {
+        CreateMemberRequest request = new CreateMemberRequest("test1@example.com", "1234", "test1");
+        memberA = Member.toEntity(request);
+
+        request = new CreateMemberRequest("test2@example.com", "1234", "test2");
+        memberB = Member.toEntity(request);
+
+        memberRepository.save(memberA);
+        memberRepository.save(memberB);
+    }
+
     @Test
     void 팔로우() {
         // given
-        CreateMemberRequest request1 = new CreateMemberRequest("test1@example.com", "1234", "test");
-        Member member1 = Member.toEntity(request1);
+        Follow follow = Follow.builder()
+                .follower(memberA)
+                .following(memberB)
+                .build();
 
-        CreateMemberRequest request2 = new CreateMemberRequest("test2@example.com", "1234", "test");
-        Member member2 = Member.toEntity(request2);
-
-        memberRepository.saveAll(List.of(member1, member2));
-
-        Member follower = memberRepository.findById(member1.getId()).get();
-        Member following = memberRepository.findById(member2.getId()).get();
-
-        // when
-        Follow follow = Follow.toEntity(new CreateFollowRequest(follower, following));
         followRepository.save(follow);
 
+        // when
+        Follow foundFollow = followRepository.findById(follow.getId()).get();
+
         // then
-        Assertions.assertThat(follow.getFollower()).isEqualTo(follower);
-        Assertions.assertThat(follow.getFollowing()).isEqualTo(following);
+        assertThat(foundFollow.getFollower()).isEqualTo(memberA);
+        assertThat(foundFollow.getFollowing()).isEqualTo(memberB);
     }
+
 
 }

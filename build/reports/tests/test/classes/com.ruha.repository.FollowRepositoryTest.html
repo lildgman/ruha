@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.421s</div>
+<div class="counter">0.430s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">팔로우()</td>
-<td class="success">0.421s</td>
+<td class="success">0.430s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,8 +87,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>11:20:04.894 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.repository.FollowRepositoryTest]: FollowRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-11:20:04.944 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.FollowRepositoryTest
+<pre>18:04:28.902 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.repository.FollowRepositoryTest]: FollowRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:04:28.958 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.FollowRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -98,108 +98,242 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.9)
 
-2025-01-27T11:20:05.138+09:00  INFO 46894 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Starting FollowRepositoryTest using Java 17.0.8 with PID 46894 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
-2025-01-27T11:20:05.139+09:00  INFO 46894 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : The following 1 profile is active: &quot;test&quot;
-2025-01-27T11:20:05.428+09:00  INFO 46894 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-01-27T11:20:05.455+09:00  INFO 46894 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 2 JPA repository interfaces.
-2025-01-27T11:20:05.663+09:00  INFO 46894 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-01-27T11:20:05.689+09:00  INFO 46894 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
-2025-01-27T11:20:05.705+09:00  INFO 46894 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-01-27T11:20:05.813+09:00  INFO 46894 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-01-27T11:20:05.825+09:00  INFO 46894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-01-27T11:20:05.868+09:00  INFO 46894 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:tcp://localhost/~/h2/ruha_test user=SA
-2025-01-27T11:20:05.868+09:00  INFO 46894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-01-27T11:20:06.318+09:00  INFO 46894 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-01-27T11:20:06.324+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists follow cascade 
-2025-01-27T11:20:06.327+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    drop table if exists member cascade 
-2025-01-27T11:20:06.328+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    drop sequence if exists follow_seq
-2025-01-27T11:20:06.331+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    create sequence follow_seq start with 1 increment by 50
-2025-01-27T11:20:06.334+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:29.160+09:00  INFO 1478 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Starting FollowRepositoryTest using Java 17.0.8 with PID 1478 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
+2025-02-12T18:04:29.161+09:00  INFO 1478 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-02-12T18:04:29.488+09:00  INFO 1478 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-12T18:04:29.520+09:00  INFO 1478 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 2 JPA repository interfaces.
+2025-02-12T18:04:29.806+09:00  INFO 1478 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-12T18:04:29.836+09:00  INFO 1478 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-02-12T18:04:29.859+09:00  INFO 1478 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-12T18:04:29.966+09:00  INFO 1478 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-12T18:04:29.983+09:00  INFO 1478 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-02-12T18:04:30.072+09:00  INFO 1478 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=SA
+2025-02-12T18:04:30.073+09:00  INFO 1478 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-02-12T18:04:30.086+09:00  WARN 1478 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-02-12T18:04:30.253+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070253 | took 3ms | statement | connection 1| url jdbc:h2:mem:test
+select * from INFORMATION_SCHEMA.SEQUENCES
+select * from INFORMATION_SCHEMA.SEQUENCES;
+2025-02-12T18:04:30.648+09:00  INFO 1478 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-02-12T18:04:30.658+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070658 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+select * from INFORMATION_SCHEMA.SEQUENCES
+select * from INFORMATION_SCHEMA.SEQUENCES;
+2025-02-12T18:04:30.665+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     create table follow (
-        followed_at timestamp(6) not null,
+        id bigint not null,
+        followed_at timestamp(6),
         follower_id bigint,
         following_id bigint,
+        primary key (id)
+    )
+2025-02-12T18:04:30.669+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070669 | took 3ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table follow (
         id bigint not null,
+        followed_at timestamp(6),
+        follower_id bigint,
+        following_id bigint,
         primary key (id)
     )
-2025-01-27T11:20:06.336+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+
+    create table follow (
+        id bigint not null,
+        followed_at timestamp(6),
+        follower_id bigint,
+        following_id bigint,
+        primary key (id)
+    );
+2025-02-12T18:04:30.671+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     create table member (
-        created timestamp(6) not null,
         id bigint generated by default as identity,
-        updated timestamp(6) not null,
-        email varchar(255) not null unique,
-        name varchar(255) not null,
-        password varchar(255) not null,
+        created timestamp(6),
+        email varchar(255),
+        name varchar(255),
+        password varchar(255),
         role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
+        updated timestamp(6),
         primary key (id)
     )
-2025-01-27T11:20:06.339+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:30.674+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070674 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table member (
+        id bigint generated by default as identity,
+        created timestamp(6),
+        email varchar(255),
+        name varchar(255),
+        password varchar(255),
+        role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
+        updated timestamp(6),
+        primary key (id)
+    )
+
+    create table member (
+        id bigint generated by default as identity,
+        created timestamp(6),
+        email varchar(255),
+        name varchar(255),
+        password varchar(255),
+        role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
+        updated timestamp(6),
+        primary key (id)
+    );
+2025-02-12T18:04:30.675+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo_item (
+        id bigint not null,
+        content varchar(255),
+        created timestamp(6),
+        importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean,
+        updated timestamp(6),
+        primary key (id)
+    )
+2025-02-12T18:04:30.676+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070676 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table todo_item (
+        id bigint not null,
+        content varchar(255),
+        created timestamp(6),
+        importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean,
+        updated timestamp(6),
+        primary key (id)
+    )
+
+    create table todo_item (
+        id bigint not null,
+        content varchar(255),
+        created timestamp(6),
+        importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean,
+        updated timestamp(6),
+        primary key (id)
+    );
+2025-02-12T18:04:30.676+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo_list (
+        id bigint not null,
+        description varchar(255),
+        title varchar(255),
+        primary key (id)
+    )
+2025-02-12T18:04:30.677+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070677 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table todo_list (
+        id bigint not null,
+        description varchar(255),
+        title varchar(255),
+        primary key (id)
+    )
+
+    create table todo_list (
+        id bigint not null,
+        description varchar(255),
+        title varchar(255),
+        primary key (id)
+    );
+2025-02-12T18:04:30.678+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists member 
+       drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t
+2025-02-12T18:04:30.678+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070678 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists member 
+       drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t
+
+    alter table if exists member 
+       drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t;
+2025-02-12T18:04:30.679+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
+2025-02-12T18:04:30.680+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070680 | took 1ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
+
+    alter table if exists member 
+       add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email);
+2025-02-12T18:04:30.682+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    create sequence follow_seq start with 1 increment by 50
+2025-02-12T18:04:30.683+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070683 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create sequence follow_seq start with 1 increment by 50
+
+    create sequence follow_seq start with 1 increment by 50;
+2025-02-12T18:04:30.683+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    create sequence todo_item_seq start with 1 increment by 50
+2025-02-12T18:04:30.683+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070683 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create sequence todo_item_seq start with 1 increment by 50
+
+    create sequence todo_item_seq start with 1 increment by 50;
+2025-02-12T18:04:30.683+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
+    create sequence todo_list_seq start with 1 increment by 50
+2025-02-12T18:04:30.683+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070683 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create sequence todo_list_seq start with 1 increment by 50
+
+    create sequence todo_list_seq start with 1 increment by 50;
+2025-02-12T18:04:30.684+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists follow 
        add constraint FKtps7gpodlrhxlji90u6r3mlng 
        foreign key (follower_id) 
        references member
-2025-01-27T11:20:06.342+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:30.686+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070686 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member;
+2025-02-12T18:04:30.686+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists follow 
        add constraint FKkcoemc64xrm83cdmhyaphcuiu 
        foreign key (following_id) 
        references member
-2025-01-27T11:20:06.345+09:00  INFO 46894 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-01-27T11:20:06.420+09:00  WARN 46894 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-01-27T11:20:06.736+09:00  INFO 46894 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Started FollowRepositoryTest in 1.726 seconds (process running for 2.202)
-2025-01-27T11:20:07.081+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:30.687+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351070687 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member;
+2025-02-12T18:04:30.688+09:00  INFO 1478 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-12T18:04:30.772+09:00  WARN 1478 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-02-12T18:04:31.113+09:00  INFO 1478 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Started FollowRepositoryTest in 2.084 seconds (process running for 2.636)
+2025-02-12T18:04:31.496+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (created, email, name, password, role_type, updated, id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-01-27T11:20:07.093+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:31.503+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351071503 | took 1ms | statement | connection 3| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-12T18:04:31.487+0900','test1@example.com','test1','1234','NORMAL','2025-02-12T18:04:31.487+0900',default);
+2025-02-12T18:04:31.508+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
         (created, email, name, password, role_type, updated, id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-01-27T11:20:07.124+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    select
-        m1_0.id,
-        m1_0.created,
-        m1_0.email,
-        m1_0.name,
-        m1_0.password,
-        m1_0.role_type,
-        m1_0.updated 
-    from
-        member m1_0 
-    where
-        m1_0.id=?
-2025-01-27T11:20:07.134+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    select
-        m1_0.id,
-        m1_0.created,
-        m1_0.email,
-        m1_0.name,
-        m1_0.password,
-        m1_0.role_type,
-        m1_0.updated 
-    from
-        member m1_0 
-    where
-        m1_0.id=?
-2025-01-27T11:20:07.139+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
+2025-02-12T18:04:31.508+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351071508 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-12T18:04:31.507+0900','test2@example.com','test2','1234','NORMAL','2025-02-12T18:04:31.507+0900',default);
+2025-02-12T18:04:31.510+09:00 DEBUG 1478 --- [    Test worker] org.hibernate.SQL                        : 
     select
         next value for follow_seq
-2025-01-27T11:20:07.143+09:00 DEBUG 46894 --- [    Test worker] org.hibernate.SQL                        : 
-    insert 
-    into
-        follow
-        (followed_at, follower_id, following_id, id) 
-    values
-        (?, ?, ?, ?)
+2025-02-12T18:04:31.512+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351071512 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+select next value for follow_seq
+select next value for follow_seq;
+2025-02-12T18:04:31.548+09:00  INFO 1478 --- [    Test worker] p6spy                                    : #1739351071548 | took 0ms | rollback | connection 3| url jdbc:h2:mem:test
+
+;
 </pre>
 </span>
 </div>
@@ -211,7 +345,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 2025. 1. 27. 오전 11:20:07</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2025. 2. 12. 오후 6:04:31</p>
 </div>
 </div>
 </body>

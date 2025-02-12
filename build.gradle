@@ -44,6 +44,8 @@ dependencies {
 
 	testImplementation group: 'com.h2database', name: 'h2', version: '2.1.214'
 
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.2'
+
 }
 
 clean {
