@@ -32,10 +32,4 @@ public class Follow {
         this.followedAt = LocalDateTime.now();
     }
 
-    public static Follow toEntity(CreateFollowRequest request) {
-        return Follow.builder()
-                .follower(request.getFollower())
-                .following(request.getFollowing())
-                .build();
-    }
 }

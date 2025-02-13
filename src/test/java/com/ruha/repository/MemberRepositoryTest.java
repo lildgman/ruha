@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
@@ -20,14 +21,19 @@ class MemberRepositoryTest {
     private MemberRepository memberRepository;
 
     private Member member;
+
     @BeforeEach
     void memberSetUp() {
         CreateMemberRequest request = new CreateMemberRequest("test@example.com", "1234", "test");
-        member = Member.toEntity(request);
+        member = Member.builder()
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .name(request.getName())
+                .build();
     }
 
     @Test
-    void createMember() {
+    void 회원가입() {
 
         // given
 
@@ -40,18 +46,48 @@ class MemberRepositoryTest {
     }
 
     @Test
-    void findMember() {
+    void 회원조회() {
 
         // given
+        Member savedMember = memberRepository.save(member);
 
         // when
-        Member saved = memberRepository.save(member);
-        Member findMember = memberRepository.findById(saved.getId())
-                .orElseThrow(() -> new MemberNotFoundException("계정이 존재하지 않습니다."));
+        Member findMember = memberRepository.findById(savedMember.getId())
+                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다."));
 
         // then
-        assertThat(findMember.getId()).isEqualTo(saved.getId());
-        assertThat(findMember.getRoleType()).isEqualTo(RoleType.NORMAL);
+        assertThat(findMember.getId()).isEqualTo(savedMember.getId());
+
+    }
+
+    @Test
+    void 회원탈퇴() {
+        // given
+        Member savedMember = memberRepository.save(member);
+
+        // when
+        memberRepository.delete(savedMember);
+
+        // then
+        assertThat(memberRepository.existsById(savedMember.getId())).isFalse();
+        assertThatThrownBy(() -> memberRepository.findById(savedMember.getId())
+                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다.")))
+                .isInstanceOf(MemberNotFoundException.class)
+                .hasMessage("회원이 존재하지 않습니다.");
+    }
+
+    @Test
+    void 회원수정() {
+        // given
+        Member savedMember = memberRepository.save(member);
+
+        // when
+        savedMember.updateName("updateTest");
+
+        // then
+        Member updatedMember = memberRepository.findById(savedMember.getId())
+                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다."));
+        assertThat(updatedMember.getName()).isEqualTo("updateTest");
 
     }
 

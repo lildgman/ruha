@@ -23,6 +23,7 @@ public class Member {
     private String email;
 
     private String password;
+
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -35,18 +36,25 @@ public class Member {
     private LocalDateTime updated;
 
     @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Follow> followings = new ArrayList<>();
 
     @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Follow> followers = new ArrayList<>();
 
+    @PrePersist
+    public void prePersist() {
+        LocalDateTime now = LocalDateTime.now();
 
-    public static Member toEntity(CreateMemberRequest createMemberRequest) {
-        return Member.builder()
-                .email(createMemberRequest.getEmail())
-                .password(createMemberRequest.getPassword())
-                .name(createMemberRequest.getName())
-                .build();
+        this.created = now;
+        this.updated = now;
+        this.roleType = RoleType.NORMAL;
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        this.updated = LocalDateTime.now();
     }
 
     public void follow(Member member) {
@@ -63,17 +71,9 @@ public class Member {
         member.getFollowers().removeIf(follow -> follow.getFollower().equals(this));
     }
 
-    @PrePersist
-    public void prePersist() {
-        LocalDateTime now = LocalDateTime.now();
-
-        this.created = now;
-        this.updated = now;
-        this.roleType = RoleType.NORMAL;
+    public void updateName(String newName) {
+        this.name = newName;
     }
 
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = LocalDateTime.now();
-    }
+
 }

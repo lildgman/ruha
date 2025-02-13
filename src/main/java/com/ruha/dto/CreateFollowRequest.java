@@ -6,11 +6,7 @@ import lombok.Data;
 @Data
 public class CreateFollowRequest {
 
-    private Member follower;
-    private Member following;
+    private Long followerId;
+    private Long followingId;
 
-    public CreateFollowRequest(Member follower, Member following) {
-        this.follower = follower;
-        this.following = following;
-    }
 }
