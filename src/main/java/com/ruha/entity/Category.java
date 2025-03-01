@@ -21,9 +21,6 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
-    @OneToOne(mappedBy = "category", fetch = FetchType.LAZY)
-    private TodoList todoList;
-
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
