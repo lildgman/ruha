@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class TodoItem {
 
@@ -31,6 +31,7 @@ public class TodoItem {
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
+        this.importance = Importance.MIDDLE;
         this.created = now;
         this.updated = now;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
 public class Member {
 
@@ -43,6 +43,9 @@ public class Member {
     @Builder.Default
     private List<Follow> followers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member")
+    private List<TodoList> todoLists = new ArrayList<>();
+
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
@@ -57,6 +60,7 @@ public class Member {
         this.updated = LocalDateTime.now();
     }
 
+    // 연관관계 매핑 메서드
     public void follow(Member member) {
         Follow follow = Follow.builder()
                 .follower(this)
