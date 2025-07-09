@@ -28,6 +28,10 @@ public class TodoItem {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "todoList_id")
+    private TodoList todoList;
+
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();

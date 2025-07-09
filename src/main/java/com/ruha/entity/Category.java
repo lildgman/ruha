@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,8 +23,12 @@ public class Category {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TodoList> todoLists = new ArrayList<>();
+
     @PrePersist
     public void prePersist() {
+
         LocalDateTime now = LocalDateTime.now();
 
         this.created = now;
