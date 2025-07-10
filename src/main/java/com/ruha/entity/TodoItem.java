@@ -14,17 +14,23 @@ public class TodoItem {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long todoItemId;
 
+    @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
     private Boolean isCompleted;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Importance importance;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 

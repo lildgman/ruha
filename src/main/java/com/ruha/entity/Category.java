@@ -16,14 +16,17 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long categoryId;
 
+    @Column(nullable = false)
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private LocalDateTime created;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<TodoList> todoLists = new ArrayList<>();
 
     @PrePersist

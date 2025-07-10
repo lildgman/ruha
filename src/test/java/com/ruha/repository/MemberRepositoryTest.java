@@ -3,6 +3,7 @@ package com.ruha.repository;
 import com.ruha.dto.CreateMemberRequest;
 import com.ruha.entity.Member;
 import com.ruha.entity.RoleType;
+import com.ruha.exception.MemberErrorCode;
 import com.ruha.exception.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,11 +53,11 @@ class MemberRepositoryTest {
         Member savedMember = memberRepository.save(member);
 
         // when
-        Member findMember = memberRepository.findById(savedMember.getId())
-                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다."));
+        Member findMember = memberRepository.findById(savedMember.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
 
         // then
-        assertThat(findMember.getId()).isEqualTo(savedMember.getId());
+        assertThat(findMember.getMemberId()).isEqualTo(savedMember.getMemberId());
 
     }
 
@@ -69,9 +70,9 @@ class MemberRepositoryTest {
         memberRepository.delete(savedMember);
 
         // then
-        assertThat(memberRepository.existsById(savedMember.getId())).isFalse();
-        assertThatThrownBy(() -> memberRepository.findById(savedMember.getId())
-                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다.")))
+        assertThat(memberRepository.existsById(savedMember.getMemberId())).isFalse();
+        assertThatThrownBy(() -> memberRepository.findById(savedMember.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND)))
                 .isInstanceOf(MemberNotFoundException.class)
                 .hasMessage("회원이 존재하지 않습니다.");
     }
@@ -85,8 +86,8 @@ class MemberRepositoryTest {
         savedMember.updateName("updateTest");
 
         // then
-        Member updatedMember = memberRepository.findById(savedMember.getId())
-                .orElseThrow(() -> new MemberNotFoundException("회원이 존재하지 않습니다."));
+        Member updatedMember = memberRepository.findById(savedMember.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
         assertThat(updatedMember.getName()).isEqualTo("updateTest");
 
     }

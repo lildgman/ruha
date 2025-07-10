@@ -11,11 +11,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "UniqueFollowerAndFollowing",columnNames = {"follower_id", "following_id"})
+})
 public class Follow {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private Long followId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "follower_id")
@@ -25,6 +28,8 @@ public class Follow {
     @JoinColumn(name = "following_id")
     private Member following;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private LocalDateTime followedAt;
 
     @PrePersist

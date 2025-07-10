@@ -4,8 +4,11 @@ import com.ruha.dto.CreateMemberRequest;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
 import com.ruha.exception.FollowNotFoundException;
+import com.ruha.exception.MemberErrorCode;
 import com.ruha.exception.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,11 +51,11 @@ class FollowRepositoryTest {
         memberRepository.save(memberA);
         memberRepository.save(memberB);
 
-        follower = memberRepository.findById(memberA.getId())
-                .orElseThrow(() -> new MemberNotFoundException("팔로우하는 회원을 찾을 수 없습니다."));
+        follower = memberRepository.findById(memberA.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
 
-        following = memberRepository.findById(memberB.getId())
-                .orElseThrow(() -> new MemberNotFoundException("팔로잉할 회원을 찾을 수 없습니다."));
+        following = memberRepository.findById(memberB.getMemberId())
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
     }
 
     @Test
@@ -66,7 +69,7 @@ class FollowRepositoryTest {
         followRepository.save(follow);
 
         // when
-        Follow foundFollow = followRepository.findById(follow.getId())
+        Follow foundFollow = followRepository.findById(follow.getFollowId())
                 .orElseThrow(() -> new FollowNotFoundException("해당 팔로우 관계가 존재하지 않습니다."));
 
         // then
@@ -111,4 +114,5 @@ class FollowRepositoryTest {
         assertThat(foundFollow).isEmpty();
 
     }
+
 }

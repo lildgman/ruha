@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.574s</div>
+<div class="counter">0.464s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">언팔로우()</td>
-<td class="success">0.024s</td>
+<td class="success">0.014s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">팔로우()</td>
-<td class="success">0.013s</td>
+<td class="success">0.008s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">팔로우_조회()</td>
-<td class="success">0.537s</td>
+<td class="success">0.442s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,8 +97,8 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>17:27:19.168 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.repository.FollowRepositoryTest]: FollowRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-17:27:19.224 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.FollowRepositoryTest
+<pre>16:23:30.661 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.repository.FollowRepositoryTest]: FollowRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:23:30.718 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.FollowRepositoryTest
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -108,184 +108,231 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.2.9)
 
-2025-02-13T17:27:19.436+09:00  INFO 18139 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Starting FollowRepositoryTest using Java 17.0.8 with PID 18139 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
-2025-02-13T17:27:19.437+09:00  INFO 18139 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
-2025-02-13T17:27:19.794+09:00  INFO 18139 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-02-13T17:27:19.826+09:00  INFO 18139 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 27 ms. Found 2 JPA repository interfaces.
-2025-02-13T17:27:20.115+09:00  INFO 18139 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-02-13T17:27:20.145+09:00  INFO 18139 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
-2025-02-13T17:27:20.166+09:00  INFO 18139 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-02-13T17:27:20.272+09:00  INFO 18139 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-02-13T17:27:20.288+09:00  INFO 18139 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-02-13T17:27:20.383+09:00  INFO 18139 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=SA
-2025-02-13T17:27:20.384+09:00  INFO 18139 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-02-13T17:27:20.397+09:00  WARN 18139 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-02-13T17:27:20.520+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240520 | took 3ms | statement | connection 1| url jdbc:h2:mem:test
+2025-07-10T16:23:30.909+09:00  INFO 17808 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Starting FollowRepositoryTest using Java 17.0.8 with PID 17808 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
+2025-07-10T16:23:30.910+09:00  INFO 17808 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-07-10T16:23:31.208+09:00  INFO 17808 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-10T16:23:31.235+09:00  INFO 17808 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 2 JPA repository interfaces.
+2025-07-10T16:23:31.477+09:00  INFO 17808 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-10T16:23:31.509+09:00  INFO 17808 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-07-10T16:23:31.528+09:00  INFO 17808 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-10T16:23:31.629+09:00  INFO 17808 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-10T16:23:31.643+09:00  INFO 17808 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-10T16:23:31.729+09:00  INFO 17808 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=SA
+2025-07-10T16:23:31.729+09:00  INFO 17808 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-10T16:23:31.742+09:00  WARN 17808 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-10T16:23:31.870+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132211870 | took 3ms | statement | connection 1| url jdbc:h2:mem:test
 select * from INFORMATION_SCHEMA.SEQUENCES
 select * from INFORMATION_SCHEMA.SEQUENCES;
-2025-02-13T17:27:20.856+09:00  INFO 18139 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-02-13T17:27:20.868+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240868 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.235+09:00  INFO 17808 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-10T16:23:32.245+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212245 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 select * from INFORMATION_SCHEMA.SEQUENCES
 select * from INFORMATION_SCHEMA.SEQUENCES;
-2025-02-13T17:27:20.875+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
-    create table follow (
-        id bigint not null,
-        followed_at timestamp(6),
-        follower_id bigint,
-        following_id bigint,
-        primary key (id)
+2025-07-10T16:23:32.249+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    create table category (
+        category_id bigint not null,
+        created timestamp(6),
+        name varchar(255),
+        primary key (category_id)
     )
-2025-02-13T17:27:20.879+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240879 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.251+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212251 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
 
-    create table follow (
-        id bigint not null,
-        followed_at timestamp(6),
-        follower_id bigint,
-        following_id bigint,
-        primary key (id)
+    create table category (
+        category_id bigint not null,
+        created timestamp(6),
+        name varchar(255),
+        primary key (category_id)
     )
 
-    create table follow (
-        id bigint not null,
-        followed_at timestamp(6),
-        follower_id bigint,
-        following_id bigint,
-        primary key (id)
+    create table category (
+        category_id bigint not null,
+        created timestamp(6),
+        name varchar(255),
+        primary key (category_id)
     );
-2025-02-13T17:27:20.881+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.252+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    create table follow (
+        follow_id bigint not null,
+        followed_at timestamp(6),
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    )
+2025-07-10T16:23:32.253+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212253 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table follow (
+        follow_id bigint not null,
+        followed_at timestamp(6),
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    )
+
+    create table follow (
+        follow_id bigint not null,
+        followed_at timestamp(6),
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    );
+2025-07-10T16:23:32.254+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create table member (
-        id bigint generated by default as identity,
+        member_id bigint generated by default as identity,
         created timestamp(6),
         email varchar(255),
         name varchar(255),
         password varchar(255),
         role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
         updated timestamp(6),
-        primary key (id)
+        primary key (member_id)
     )
-2025-02-13T17:27:20.885+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240885 | took 4ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.258+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212258 | took 3ms | statement | connection 2| url jdbc:h2:mem:test
 
     create table member (
-        id bigint generated by default as identity,
+        member_id bigint generated by default as identity,
         created timestamp(6),
         email varchar(255),
         name varchar(255),
         password varchar(255),
         role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
         updated timestamp(6),
-        primary key (id)
+        primary key (member_id)
     )
 
     create table member (
-        id bigint generated by default as identity,
+        member_id bigint generated by default as identity,
         created timestamp(6),
         email varchar(255),
         name varchar(255),
         password varchar(255),
         role_type varchar(255) check (role_type in ('ADMIN','NORMAL')),
         updated timestamp(6),
-        primary key (id)
+        primary key (member_id)
     );
-2025-02-13T17:27:20.886+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.259+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create table todo_item (
-        id bigint not null,
+        todo_item_id bigint not null,
         content varchar(255),
         created timestamp(6),
         importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
         is_completed boolean,
         updated timestamp(6),
-        primary key (id)
+        todo_list_id bigint,
+        primary key (todo_item_id)
     )
-2025-02-13T17:27:20.887+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240887 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.259+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212259 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     create table todo_item (
-        id bigint not null,
+        todo_item_id bigint not null,
         content varchar(255),
         created timestamp(6),
         importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
         is_completed boolean,
         updated timestamp(6),
-        primary key (id)
+        todo_list_id bigint,
+        primary key (todo_item_id)
     )
 
     create table todo_item (
-        id bigint not null,
+        todo_item_id bigint not null,
         content varchar(255),
         created timestamp(6),
         importance varchar(255) check (importance in ('HIGH','MIDDLE','LOW')),
         is_completed boolean,
         updated timestamp(6),
-        primary key (id)
+        todo_list_id bigint,
+        primary key (todo_item_id)
     );
-2025-02-13T17:27:20.888+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.260+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create table todo_list (
-        id bigint not null,
+        todo_list_id bigint not null,
+        created timestamp(6),
         description varchar(255),
+        is_public boolean not null,
         title varchar(255),
-        primary key (id)
+        updated timestamp(6),
+        category_id bigint,
+        member_id bigint,
+        primary key (todo_list_id)
     )
-2025-02-13T17:27:20.889+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240889 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.261+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212261 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     create table todo_list (
-        id bigint not null,
+        todo_list_id bigint not null,
+        created timestamp(6),
         description varchar(255),
+        is_public boolean not null,
         title varchar(255),
-        primary key (id)
+        updated timestamp(6),
+        category_id bigint,
+        member_id bigint,
+        primary key (todo_list_id)
     )
 
     create table todo_list (
-        id bigint not null,
+        todo_list_id bigint not null,
+        created timestamp(6),
         description varchar(255),
+        is_public boolean not null,
         title varchar(255),
-        primary key (id)
+        updated timestamp(6),
+        category_id bigint,
+        member_id bigint,
+        primary key (todo_list_id)
     );
-2025-02-13T17:27:20.890+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.263+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists member 
        drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t
-2025-02-13T17:27:20.890+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240890 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.263+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212263 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     alter table if exists member 
        drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t
 
     alter table if exists member 
        drop constraint if exists UK_mbmcqelty0fbrvxp1q58dn57t;
-2025-02-13T17:27:20.890+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.264+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists member 
        add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
-2025-02-13T17:27:20.891+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240891 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.265+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212265 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     alter table if exists member 
        add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email)
 
     alter table if exists member 
        add constraint UK_mbmcqelty0fbrvxp1q58dn57t unique (email);
-2025-02-13T17:27:20.896+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.267+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    create sequence category_seq start with 1 increment by 50
+2025-07-10T16:23:32.268+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212268 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create sequence category_seq start with 1 increment by 50
+
+    create sequence category_seq start with 1 increment by 50;
+2025-07-10T16:23:32.268+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create sequence follow_seq start with 1 increment by 50
-2025-02-13T17:27:20.896+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240896 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.268+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212268 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     create sequence follow_seq start with 1 increment by 50
 
     create sequence follow_seq start with 1 increment by 50;
-2025-02-13T17:27:20.897+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.268+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create sequence todo_item_seq start with 1 increment by 50
-2025-02-13T17:27:20.897+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240897 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.268+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212268 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     create sequence todo_item_seq start with 1 increment by 50
 
     create sequence todo_item_seq start with 1 increment by 50;
-2025-02-13T17:27:20.897+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.269+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     create sequence todo_list_seq start with 1 increment by 50
-2025-02-13T17:27:20.898+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240898 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.269+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212269 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     create sequence todo_list_seq start with 1 increment by 50
 
     create sequence todo_list_seq start with 1 increment by 50;
-2025-02-13T17:27:20.898+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.269+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists follow 
        add constraint FKtps7gpodlrhxlji90u6r3mlng 
        foreign key (follower_id) 
        references member
-2025-02-13T17:27:20.901+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240901 | took 3ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.272+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212272 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
 
     alter table if exists follow 
        add constraint FKtps7gpodlrhxlji90u6r3mlng 
@@ -296,12 +343,12 @@ select * from INFORMATION_SCHEMA.SEQUENCES;
        add constraint FKtps7gpodlrhxlji90u6r3mlng 
        foreign key (follower_id) 
        references member;
-2025-02-13T17:27:20.902+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.273+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     alter table if exists follow 
        add constraint FKkcoemc64xrm83cdmhyaphcuiu 
        foreign key (following_id) 
        references member
-2025-02-13T17:27:20.904+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435240904 | took 1ms | statement | connection 2| url jdbc:h2:mem:test
+2025-07-10T16:23:32.274+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212274 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
 
     alter table if exists follow 
        add constraint FKkcoemc64xrm83cdmhyaphcuiu 
@@ -312,48 +359,96 @@ select * from INFORMATION_SCHEMA.SEQUENCES;
        add constraint FKkcoemc64xrm83cdmhyaphcuiu 
        foreign key (following_id) 
        references member;
-2025-02-13T17:27:20.906+09:00  INFO 18139 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-02-13T17:27:21.019+09:00  WARN 18139 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-02-13T17:27:21.450+09:00  INFO 18139 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Started FollowRepositoryTest in 2.158 seconds (process running for 2.68)
-2025-02-13T17:27:21.862+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:32.275+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_item 
+       add constraint FKteq2m3pydjyfajp6msycpeac3 
+       foreign key (todo_list_id) 
+       references todo_list
+2025-07-10T16:23:32.275+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212275 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo_item 
+       add constraint FKteq2m3pydjyfajp6msycpeac3 
+       foreign key (todo_list_id) 
+       references todo_list
+
+    alter table if exists todo_item 
+       add constraint FKteq2m3pydjyfajp6msycpeac3 
+       foreign key (todo_list_id) 
+       references todo_list;
+2025-07-10T16:23:32.276+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_list 
+       add constraint FKmdy0schae7i3oan3nrjapbqul 
+       foreign key (category_id) 
+       references category
+2025-07-10T16:23:32.278+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212278 | took 1ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo_list 
+       add constraint FKmdy0schae7i3oan3nrjapbqul 
+       foreign key (category_id) 
+       references category
+
+    alter table if exists todo_list 
+       add constraint FKmdy0schae7i3oan3nrjapbqul 
+       foreign key (category_id) 
+       references category;
+2025-07-10T16:23:32.278+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_list 
+       add constraint FKph20e6k3bsy42swcbrxycll4 
+       foreign key (member_id) 
+       references member
+2025-07-10T16:23:32.281+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132212281 | took 2ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo_list 
+       add constraint FKph20e6k3bsy42swcbrxycll4 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists todo_list 
+       add constraint FKph20e6k3bsy42swcbrxycll4 
+       foreign key (member_id) 
+       references member;
+2025-07-10T16:23:32.282+09:00  INFO 17808 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-10T16:23:32.356+09:00  WARN 17808 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-10T16:23:32.680+09:00  INFO 17808 --- [    Test worker] c.ruha.repository.FollowRepositoryTest   : Started FollowRepositoryTest in 1.893 seconds (process running for 2.388)
+2025-07-10T16:23:33.007+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:21.869+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241869 | took 2ms | statement | connection 3| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:21.847+0900','test1@example.com','test1','1234','NORMAL','2025-02-13T17:27:21.847+0900',default);
-2025-02-13T17:27:21.878+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.011+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213011 | took 1ms | statement | connection 3| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:32.993+0900','test1@example.com','test1','1234','NORMAL','2025-07-10T16:23:32.993+0900',default);
+2025-07-10T16:23:33.016+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:21.879+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241879 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:21.877+0900','test2@example.com','test2','1234','NORMAL','2025-02-13T17:27:21.877+0900',default);
-2025-02-13T17:27:21.893+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.017+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213017 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:33.016+0900','test2@example.com','test2','1234','NORMAL','2025-07-10T16:23:33.016+0900',default);
+2025-07-10T16:23:33.025+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     select
         next value for follow_seq
-2025-02-13T17:27:21.894+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241894 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+2025-07-10T16:23:33.027+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213027 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
 select next value for follow_seq
 select next value for follow_seq;
-2025-02-13T17:27:21.952+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.081+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         follow
-        (followed_at, follower_id, following_id, id) 
+        (followed_at, follower_id, following_id, follow_id) 
     values
         (?, ?, ?, ?)
-2025-02-13T17:27:21.953+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241953 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
-insert into follow (followed_at,follower_id,following_id,id) values (?,?,?,?)
-insert into follow (followed_at,follower_id,following_id,id) values ('2025-02-13T17:27:21.894+0900',1,2,1);
-2025-02-13T17:27:21.966+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.082+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213082 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+insert into follow (followed_at,follower_id,following_id,follow_id) values (?,?,?,?)
+insert into follow (followed_at,follower_id,following_id,follow_id) values ('2025-07-10T16:23:33.027+0900',1,2,1);
+2025-07-10T16:23:33.095+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     select
-        f1_0.id,
+        f1_0.follow_id,
         f1_0.followed_at,
         f1_0.follower_id,
         f1_0.following_id 
@@ -362,83 +457,83 @@ insert into follow (followed_at,follower_id,following_id,id) values ('2025-02-13
     where
         f1_0.follower_id=? 
         and f1_0.following_id=?
-2025-02-13T17:27:21.967+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241967 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
-select f1_0.id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
-select f1_0.id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=1 and f1_0.following_id=2;
-2025-02-13T17:27:21.993+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435241993 | took 0ms | rollback | connection 3| url jdbc:h2:mem:test
+2025-07-10T16:23:33.095+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213095 | took 0ms | statement | connection 3| url jdbc:h2:mem:test
+select f1_0.follow_id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=1 and f1_0.following_id=2;
+2025-07-10T16:23:33.132+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213132 | took 0ms | rollback | connection 3| url jdbc:h2:mem:test
 
 ;
-2025-02-13T17:27:22.002+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.138+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:22.007+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242007 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:22.002+0900','test1@example.com','test1','1234','NORMAL','2025-02-13T17:27:22.002+0900',default);
-2025-02-13T17:27:22.008+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.139+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213139 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:33.137+0900','test1@example.com','test1','1234','NORMAL','2025-07-10T16:23:33.137+0900',default);
+2025-07-10T16:23:33.140+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:22.009+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242009 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:22.008+0900','test2@example.com','test2','1234','NORMAL','2025-02-13T17:27:22.008+0900',default);
-2025-02-13T17:27:22.010+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.141+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213141 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:33.140+0900','test2@example.com','test2','1234','NORMAL','2025-07-10T16:23:33.140+0900',default);
+2025-07-10T16:23:33.142+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     select
         next value for follow_seq
-2025-02-13T17:27:22.010+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242010 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
+2025-07-10T16:23:33.142+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213142 | took 0ms | statement | connection 4| url jdbc:h2:mem:test
 select next value for follow_seq
 select next value for follow_seq;
-2025-02-13T17:27:22.011+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242011 | took 0ms | rollback | connection 4| url jdbc:h2:mem:test
+2025-07-10T16:23:33.144+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213144 | took 0ms | rollback | connection 4| url jdbc:h2:mem:test
 
 ;
-2025-02-13T17:27:22.015+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.147+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:22.016+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242016 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:22.014+0900','test1@example.com','test1','1234','NORMAL','2025-02-13T17:27:22.014+0900',default);
-2025-02-13T17:27:22.017+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.148+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213148 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:33.147+0900','test1@example.com','test1','1234','NORMAL','2025-07-10T16:23:33.147+0900',default);
+2025-07-10T16:23:33.149+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         member
-        (created, email, name, password, role_type, updated, id) 
+        (created, email, name, password, role_type, updated, member_id) 
     values
         (?, ?, ?, ?, ?, ?, default)
-2025-02-13T17:27:22.017+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242017 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
-insert into member (created,email,name,password,role_type,updated,id) values (?,?,?,?,?,?,default)
-insert into member (created,email,name,password,role_type,updated,id) values ('2025-02-13T17:27:22.016+0900','test2@example.com','test2','1234','NORMAL','2025-02-13T17:27:22.016+0900',default);
-2025-02-13T17:27:22.023+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.150+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213150 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
+insert into member (created,email,name,password,role_type,updated,member_id) values (?,?,?,?,?,?,default)
+insert into member (created,email,name,password,role_type,updated,member_id) values ('2025-07-10T16:23:33.148+0900','test2@example.com','test2','1234','NORMAL','2025-07-10T16:23:33.148+0900',default);
+2025-07-10T16:23:33.153+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     insert 
     into
         follow
-        (followed_at, follower_id, following_id, id) 
+        (followed_at, follower_id, following_id, follow_id) 
     values
         (?, ?, ?, ?)
-2025-02-13T17:27:22.024+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242024 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
-insert into follow (followed_at,follower_id,following_id,id) values (?,?,?,?)
-insert into follow (followed_at,follower_id,following_id,id) values ('2025-02-13T17:27:22.018+0900',5,6,3);
-2025-02-13T17:27:22.026+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+2025-07-10T16:23:33.154+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213154 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
+insert into follow (followed_at,follower_id,following_id,follow_id) values (?,?,?,?)
+insert into follow (followed_at,follower_id,following_id,follow_id) values ('2025-07-10T16:23:33.150+0900',5,6,3);
+2025-07-10T16:23:33.155+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     delete 
     from
         follow 
     where
-        id=?
-2025-02-13T17:27:22.027+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242027 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
-delete from follow where id=?
-delete from follow where id=3;
-2025-02-13T17:27:22.030+09:00 DEBUG 18139 --- [    Test worker] org.hibernate.SQL                        : 
+        follow_id=?
+2025-07-10T16:23:33.156+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213156 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
+delete from follow where follow_id=?
+delete from follow where follow_id=3;
+2025-07-10T16:23:33.157+09:00 DEBUG 17808 --- [    Test worker] org.hibernate.SQL                        : 
     select
-        f1_0.id,
+        f1_0.follow_id,
         f1_0.followed_at,
         f1_0.follower_id,
         f1_0.following_id 
@@ -447,10 +542,10 @@ delete from follow where id=3;
     where
         f1_0.follower_id=? 
         and f1_0.following_id=?
-2025-02-13T17:27:22.033+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242033 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
-select f1_0.id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
-select f1_0.id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=5 and f1_0.following_id=6;
-2025-02-13T17:27:22.036+09:00  INFO 18139 --- [    Test worker] p6spy                                    : #1739435242036 | took 0ms | rollback | connection 5| url jdbc:h2:mem:test
+2025-07-10T16:23:33.158+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213158 | took 0ms | statement | connection 5| url jdbc:h2:mem:test
+select f1_0.follow_id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=5 and f1_0.following_id=6;
+2025-07-10T16:23:33.159+09:00  INFO 17808 --- [    Test worker] p6spy                                    : #1752132213159 | took 0ms | rollback | connection 5| url jdbc:h2:mem:test
 
 ;
 </pre>
@@ -464,7 +559,7 @@ select f1_0.id,f1_0.followed_at,f1_0.follower_id,f1_0.following_id from follow f
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.8</a> at 2025. 2. 13. 오후 5:27:22</p>
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2025. 7. 10. 오후 4:23:33</p>
 </div>
 </div>
 </body>

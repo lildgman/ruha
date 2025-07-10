@@ -1,6 +1,7 @@
 package com.ruha.entity;
 
-import com.ruha.dto.CreateMemberRequest;
+import com.ruha.exception.DuplicateFollowException;
+import com.ruha.exception.FollowErrorCode;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,21 +18,26 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberId;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String name;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private RoleType roleType;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 
@@ -44,6 +50,7 @@ public class Member {
     private List<Follow> followers = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<TodoList> todoLists = new ArrayList<>();
 
     @PrePersist
@@ -62,6 +69,11 @@ public class Member {
 
     // 연관관계 매핑 메서드
     public void follow(Member member) {
+
+        if (this.getMemberId() == member.getMemberId()) {
+            throw new DuplicateFollowException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
+        }
+
         Follow follow = Follow.builder()
                 .follower(this)
                 .following(member)

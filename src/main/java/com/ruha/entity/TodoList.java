@@ -16,17 +16,22 @@ public class TodoList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long todoListId;
 
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private Boolean isPublic;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created;
 
+    @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 
@@ -39,6 +44,7 @@ public class TodoList {
     private Category category;
 
     @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
     private List<TodoItem> todoItems = new ArrayList<>();
 
     @PrePersist
