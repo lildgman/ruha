@@ -70,7 +70,7 @@ public class Member {
     // 연관관계 매핑 메서드
     public void follow(Member member) {
 
-        if (this.getMemberId() == member.getMemberId()) {
+        if (this.getMemberId().equals(member.getMemberId())) {
             throw new DuplicateFollowException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
         }
 

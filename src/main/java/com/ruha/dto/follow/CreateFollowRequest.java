@@ -1,6 +1,5 @@
-package com.ruha.dto;
+package com.ruha.dto.follow;
 
-import com.ruha.entity.Member;
 import lombok.Data;
 
 @Data

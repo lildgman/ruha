@@ -1,4 +1,4 @@
-package com.ruha.dto;
+package com.ruha.dto.member;
 
 import lombok.Data;
 

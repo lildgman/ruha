@@ -1,6 +1,5 @@
 package com.ruha.entity;
 
-import com.ruha.dto.CreateFollowRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

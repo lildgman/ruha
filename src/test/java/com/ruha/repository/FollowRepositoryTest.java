@@ -1,14 +1,12 @@
 package com.ruha.repository;
 
-import com.ruha.dto.CreateMemberRequest;
+import com.ruha.dto.member.CreateMemberRequest;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
 import com.ruha.exception.FollowNotFoundException;
 import com.ruha.exception.MemberErrorCode;
 import com.ruha.exception.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

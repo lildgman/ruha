@@ -1,8 +1,7 @@
 package com.ruha.repository;
 
-import com.ruha.dto.CreateMemberRequest;
+import com.ruha.dto.member.CreateMemberRequest;
 import com.ruha.entity.Member;
-import com.ruha.entity.RoleType;
 import com.ruha.exception.MemberErrorCode;
 import com.ruha.exception.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;

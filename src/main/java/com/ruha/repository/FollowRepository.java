@@ -10,6 +10,10 @@ import java.util.Optional;
 @Repository
 public interface FollowRepository extends JpaRepository<Follow, Long> {
 
+    // 두 회원 간 팔로우 관계 조회
     Optional<Follow> findByFollowerAndFollowing(Member follower, Member following);
+
+    // 두 회원 간 팔로우 관계 여부 확인
+    boolean existsByFollowerAndFollowing(Member follower, Member following);
 
 }
