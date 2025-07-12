@@ -51,7 +51,7 @@ public class Member {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
-    private List<TodoList> todoLists = new ArrayList<>();
+    private List<Todo> todos = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

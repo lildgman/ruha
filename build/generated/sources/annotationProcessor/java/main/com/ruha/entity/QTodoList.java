@@ -14,7 +14,7 @@ import com.querydsl.core.types.dsl.PathInits;
  * QTodoList is a Querydsl query type for TodoList
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QTodoList extends EntityPathBase<TodoList> {
+public class QTodoList extends EntityPathBase<Todo> {
 
     private static final long serialVersionUID = 1218928298L;
 
@@ -41,10 +41,10 @@ public class QTodoList extends EntityPathBase<TodoList> {
     public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
 
     public QTodoList(String variable) {
-        this(TodoList.class, forVariable(variable), INITS);
+        this(Todo.class, forVariable(variable), INITS);
     }
 
-    public QTodoList(Path<? extends TodoList> path) {
+    public QTodoList(Path<? extends Todo> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
@@ -53,10 +53,10 @@ public class QTodoList extends EntityPathBase<TodoList> {
     }
 
     public QTodoList(PathMetadata metadata, PathInits inits) {
-        this(TodoList.class, metadata, inits);
+        this(Todo.class, metadata, inits);
     }
 
-    public QTodoList(Class<? extends TodoList> type, PathMetadata metadata, PathInits inits) {
+    public QTodoList(Class<? extends Todo> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.category = inits.isInitialized("category") ? new QCategory(forProperty("category")) : null;
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;

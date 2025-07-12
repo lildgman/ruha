@@ -1,5 +1,8 @@
 package com.ruha.entity;
 
+import lombok.Getter;
+
+@Getter
 public enum RoleType {
 
     ADMIN('A'),
@@ -9,10 +12,6 @@ public enum RoleType {
 
     RoleType(char role) {
         this.role = role;
-    }
-
-    public char getRole() {
-        return role;
     }
 
 }

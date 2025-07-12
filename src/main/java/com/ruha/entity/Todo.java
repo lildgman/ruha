@@ -12,17 +12,24 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class TodoList {
+public class Todo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long todoListId;
+    private Long todoId;
 
     @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
+    private Boolean isCompleted;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Importance importance;
 
     @Column(nullable = false)
     private Boolean isPublic;
@@ -36,21 +43,22 @@ public class TodoList {
     private LocalDateTime updated;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_id", nullable = false)
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "todoList", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
-    private List<TodoItem> todoItems = new ArrayList<>();
+    private List<TodoImage> todoImages = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
 
+        this.isCompleted = false;
         this.created = now;
         this.updated = now;
     }

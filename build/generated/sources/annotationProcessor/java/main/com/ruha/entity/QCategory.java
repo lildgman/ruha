@@ -26,7 +26,7 @@ public class QCategory extends EntityPathBase<Category> {
 
     public final StringPath name = createString("name");
 
-    public final ListPath<TodoList, QTodoList> todoLists = this.<TodoList, QTodoList>createList("todoLists", TodoList.class, QTodoList.class, PathInits.DIRECT2);
+    public final ListPath<Todo, QTodoList> todoLists = this.<Todo, QTodoList>createList("todoLists", Todo.class, QTodoList.class, PathInits.DIRECT2);
 
     public QCategory(String variable) {
         super(Category.class, forVariable(variable));
