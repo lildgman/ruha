@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Follow {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long followId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,6 +34,16 @@ public class Follow {
     @PrePersist
     public void prePersist() {
         this.followedAt = LocalDateTime.now();
+    }
+
+    public void setFollowRelation() {
+        this.follower.getFollowings().add(this);
+        this.following.getFollowers().add(this);
+    }
+
+    public void removeFollowRelation() {
+        this.follower.getFollowings().remove(this);
+        this.following.getFollowers().remove(this);
     }
 
 }

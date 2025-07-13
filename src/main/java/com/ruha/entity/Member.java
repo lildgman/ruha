@@ -2,6 +2,7 @@ package com.ruha.entity;
 
 import com.ruha.exception.DuplicateFollowException;
 import com.ruha.exception.FollowErrorCode;
+import com.ruha.exception.SelfFollowNotAllowedException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -71,20 +72,28 @@ public class Member {
     public void follow(Member member) {
 
         if (this.getMemberId().equals(member.getMemberId())) {
-            throw new DuplicateFollowException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
+            throw new SelfFollowNotAllowedException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
+        }
+
+        boolean alreadyFollowing = this.followings.stream()
+                .anyMatch(follow -> follow.getFollowing().getMemberId().equals(member.getMemberId()));
+
+        if (alreadyFollowing) {
+            throw new DuplicateFollowException(FollowErrorCode.DUPLICATE_FOLLOW);
         }
 
         Follow follow = Follow.builder()
                 .follower(this)
                 .following(member)
                 .build();
-        this.getFollowings().add(follow);
-        member.getFollowers().add(follow);
+
+        this.followings.add(follow);
+        member.followers.add(follow);
     }
 
     public void unfollow(Member member) {
-        this.getFollowings().removeIf(follow -> follow.getFollowing().equals(member));
-        member.getFollowers().removeIf(follow -> follow.getFollower().equals(this));
+        this.followings.removeIf(follow -> follow.getFollowing().getMemberId().equals(member.getMemberId()));
+        member.followers.removeIf(follow -> follow.getFollower().getMemberId().equals(this.memberId));
     }
 
     public void updateName(String newName) {

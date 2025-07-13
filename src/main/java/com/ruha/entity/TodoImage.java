@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class TodoImage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long todoImageId;
 
     @Column(nullable = false)
