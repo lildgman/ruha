@@ -35,15 +35,4 @@ public class Follow {
     public void prePersist() {
         this.followedAt = LocalDateTime.now();
     }
-
-    public void setFollowRelation() {
-        this.follower.getFollowings().add(this);
-        this.following.getFollowers().add(this);
-    }
-
-    public void removeFollowRelation() {
-        this.follower.getFollowings().remove(this);
-        this.following.getFollowers().remove(this);
-    }
-
 }

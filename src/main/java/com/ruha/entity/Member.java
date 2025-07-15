@@ -69,6 +69,8 @@ public class Member {
     }
 
     // 연관관계 매핑 메서드
+    // 서비스 레이어로 옮겨야함
+    // 비즈니스 코드
     public void follow(Member member) {
 
         if (this.getMemberId().equals(member.getMemberId())) {
