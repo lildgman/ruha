@@ -1,6 +1,5 @@
 package com.ruha.repository;
 
-import com.ruha.dto.member.CreateMemberRequest;
 import com.ruha.entity.Member;
 import com.ruha.exception.MemberErrorCode;
 import com.ruha.exception.MemberNotFoundException;
@@ -24,11 +23,10 @@ class MemberRepositoryTest {
 
     @BeforeEach
     void memberSetUp() {
-        CreateMemberRequest request = new CreateMemberRequest("test@example.com", "1234", "test");
         member = Member.builder()
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .name(request.getName())
+                .email("test@example.com")
+                .password("1234")
+                .name("test")
                 .build();
     }
 

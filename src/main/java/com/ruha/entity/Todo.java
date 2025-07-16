@@ -68,4 +68,17 @@ public class Todo {
         this.updated = LocalDateTime.now();
     }
 
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    //== 연관관계 편의 메소드 ==//
+    public void addTodoImage(TodoImage todoImage) {
+        this.todoImages.add(todoImage);
+        todoImage.updateTodo(this);
+    }
+
+    public void updateMember(Member member) {
+        this.member = member;
+    }
 }

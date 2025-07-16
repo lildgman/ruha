@@ -33,4 +33,8 @@ public class TodoImage {
     public void prePersist() {
         this.created = LocalDateTime.now();
     }
+
+    public void updateTodo(Todo todo) {
+        this.todo = todo;
+    }
 }

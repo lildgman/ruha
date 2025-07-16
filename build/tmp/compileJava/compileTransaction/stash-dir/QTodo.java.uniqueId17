@@ -11,16 +11,16 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QTodoList is a Querydsl query type for TodoList
+ * QTodo is a Querydsl query type for Todo
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QTodoList extends EntityPathBase<TodoList> {
+public class QTodo extends EntityPathBase<Todo> {
 
-    private static final long serialVersionUID = 1218928298L;
+    private static final long serialVersionUID = 1118113772L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QTodoList todoList = new QTodoList("todoList");
+    public static final QTodo todo = new QTodo("todo");
 
     public final QCategory category;
 
@@ -28,35 +28,39 @@ public class QTodoList extends EntityPathBase<TodoList> {
 
     public final StringPath description = createString("description");
 
+    public final EnumPath<Importance> importance = createEnum("importance", Importance.class);
+
+    public final BooleanPath isCompleted = createBoolean("isCompleted");
+
     public final BooleanPath isPublic = createBoolean("isPublic");
 
     public final QMember member;
 
     public final StringPath title = createString("title");
 
-    public final ListPath<TodoItem, QTodoItem> todoItems = this.<TodoItem, QTodoItem>createList("todoItems", TodoItem.class, QTodoItem.class, PathInits.DIRECT2);
+    public final NumberPath<Long> todoId = createNumber("todoId", Long.class);
 
-    public final NumberPath<Long> todoListId = createNumber("todoListId", Long.class);
+    public final ListPath<TodoImage, QTodoImage> todoImages = this.<TodoImage, QTodoImage>createList("todoImages", TodoImage.class, QTodoImage.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
 
-    public QTodoList(String variable) {
-        this(TodoList.class, forVariable(variable), INITS);
+    public QTodo(String variable) {
+        this(Todo.class, forVariable(variable), INITS);
     }
 
-    public QTodoList(Path<? extends TodoList> path) {
+    public QTodo(Path<? extends Todo> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTodoList(PathMetadata metadata) {
+    public QTodo(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTodoList(PathMetadata metadata, PathInits inits) {
-        this(TodoList.class, metadata, inits);
+    public QTodo(PathMetadata metadata, PathInits inits) {
+        this(Todo.class, metadata, inits);
     }
 
-    public QTodoList(Class<? extends TodoList> type, PathMetadata metadata, PathInits inits) {
+    public QTodo(Class<? extends Todo> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.category = inits.isInitialized("category") ? new QCategory(forProperty("category")) : null;
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;

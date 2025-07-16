@@ -1,6 +1,5 @@
 package com.ruha.repository;
 
-import com.ruha.dto.member.CreateMemberRequest;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
 import com.ruha.exception.FollowNotFoundException;
@@ -32,18 +31,16 @@ class FollowRepositoryTest {
 
     @BeforeEach
     void memberSetUp() {
-        CreateMemberRequest request = new CreateMemberRequest("test1@example.com", "1234", "test1");
         Member memberA = Member.builder()
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .name(request.getName())
+                .email("test1@example.com")
+                .password("1234")
+                .name("test1")
                 .build();
 
-        request = new CreateMemberRequest("test2@example.com", "1234", "test2");
         Member memberB = Member.builder()
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .name(request.getName())
+                .email("test2@example.com")
+                .password("1234")
+                .name("test2")
                 .build();
 
         memberRepository.save(memberA);
@@ -71,6 +68,7 @@ class FollowRepositoryTest {
                 .orElseThrow(() -> new FollowNotFoundException("해당 팔로우 관계가 존재하지 않습니다."));
 
         // then
+        assertThat(foundFollow.getFollowId()).isEqualTo(follow.getFollowId());
         assertThat(foundFollow.getFollower()).isEqualTo(follower);
         assertThat(foundFollow.getFollowing()).isEqualTo(following);
     }

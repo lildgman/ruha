@@ -68,7 +68,6 @@ public class Member {
         this.updated = LocalDateTime.now();
     }
 
-    // 연관관계 매핑 메서드
     // 서비스 레이어로 옮겨야함
     // 비즈니스 코드
     public void follow(Member member) {
@@ -102,5 +101,10 @@ public class Member {
         this.name = newName;
     }
 
+    //== 연관관계 편의 메소드 ==//
+    public void addTodo(Todo todo) {
+        this.todos.add(todo);
+        todo.updateMember(this);
+    }
 
 }

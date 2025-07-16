@@ -36,7 +36,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final EnumPath<RoleType> roleType = createEnum("roleType", RoleType.class);
 
-    public final ListPath<TodoList, QTodoList> todoLists = this.<TodoList, QTodoList>createList("todoLists", TodoList.class, QTodoList.class, PathInits.DIRECT2);
+    public final ListPath<Todo, QTodo> todos = this.<Todo, QTodo>createList("todos", Todo.class, QTodo.class, PathInits.DIRECT2);
 
     public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
 
