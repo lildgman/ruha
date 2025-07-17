@@ -54,6 +54,10 @@ public class Todo {
     @Builder.Default
     private List<TodoImage> todoImages = new ArrayList<>();
 
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<TodoComment> todoComments = new ArrayList<>();
+
+
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now();
@@ -68,14 +72,19 @@ public class Todo {
         this.updated = LocalDateTime.now();
     }
 
-    public void updateTitle(String title) {
-        this.title = title;
-    }
-
     //== 연관관계 편의 메소드 ==//
     public void addTodoImage(TodoImage todoImage) {
         this.todoImages.add(todoImage);
         todoImage.updateTodo(this);
+    }
+
+    public void addTodoComment(TodoComment todoComment) {
+        this.todoComments.add(todoComment);
+        todoComment.updateTodo(this);
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
     }
 
     public void updateMember(Member member) {

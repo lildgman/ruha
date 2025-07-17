@@ -1,8 +1,8 @@
 package com.ruha.entity;
 
-import com.ruha.exception.DuplicateFollowException;
-import com.ruha.exception.FollowErrorCode;
-import com.ruha.exception.SelfFollowNotAllowedException;
+import com.ruha.exception.follow.DuplicateFollowException;
+import com.ruha.exception.follow.FollowErrorCode;
+import com.ruha.exception.follow.SelfFollowNotAllowedException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -68,8 +68,6 @@ public class Member {
         this.updated = LocalDateTime.now();
     }
 
-    // 서비스 레이어로 옮겨야함
-    // 비즈니스 코드
     public void follow(Member member) {
 
         if (this.getMemberId().equals(member.getMemberId())) {

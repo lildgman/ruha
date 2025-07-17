@@ -1,4 +1,4 @@
-package com.ruha.exception;
+package com.ruha.exception.member;
 
 import lombok.Getter;
 

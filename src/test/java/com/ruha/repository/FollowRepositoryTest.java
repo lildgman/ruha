@@ -2,9 +2,9 @@ package com.ruha.repository;
 
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
-import com.ruha.exception.FollowNotFoundException;
-import com.ruha.exception.MemberErrorCode;
-import com.ruha.exception.MemberNotFoundException;
+import com.ruha.exception.follow.FollowNotFoundException;
+import com.ruha.exception.member.MemberErrorCode;
+import com.ruha.exception.member.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

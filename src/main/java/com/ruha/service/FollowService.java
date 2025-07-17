@@ -1,7 +1,11 @@
 package com.ruha.service;
 
 import com.ruha.entity.Member;
-import com.ruha.exception.*;
+import com.ruha.exception.follow.DuplicateFollowException;
+import com.ruha.exception.follow.FollowErrorCode;
+import com.ruha.exception.follow.SelfFollowNotAllowedException;
+import com.ruha.exception.member.MemberErrorCode;
+import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.repository.FollowRepository;
 import com.ruha.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

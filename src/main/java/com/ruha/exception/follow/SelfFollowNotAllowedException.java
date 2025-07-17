@@ -1,23 +1,23 @@
-package com.ruha.exception;
+package com.ruha.exception.follow;
 
 import lombok.Getter;
 
 @Getter
-public class DuplicateFollowException extends RuntimeException{
+public class SelfFollowNotAllowedException extends RuntimeException{
 
     private final FollowErrorCode followErrorCode;
 
-    public DuplicateFollowException() {
+    public SelfFollowNotAllowedException() {
         super(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED.getMessage());
         this.followErrorCode = FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED;
     }
 
-    public DuplicateFollowException(String message) {
+    public SelfFollowNotAllowedException(String message) {
         super(message);
         this.followErrorCode = FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED;
     }
 
-    public DuplicateFollowException(FollowErrorCode followErrorCode) {
+    public SelfFollowNotAllowedException(FollowErrorCode followErrorCode) {
         super(followErrorCode.getMessage());
         this.followErrorCode = followErrorCode;
     }
