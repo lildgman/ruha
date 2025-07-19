@@ -1,8 +1,5 @@
 package com.ruha.entity;
 
-import com.ruha.exception.follow.DuplicateFollowException;
-import com.ruha.exception.follow.FollowErrorCode;
-import com.ruha.exception.follow.SelfFollowNotAllowedException;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,17 +39,10 @@ public class Member {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime updated;
 
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<Follow> followings = new ArrayList<>();
-
-    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true , fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<Follow> followers = new ArrayList<>();
-
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Todo> todos = new ArrayList<>();
+
 
     @PrePersist
     public void prePersist() {
@@ -66,33 +56,6 @@ public class Member {
     @PreUpdate
     public void preUpdate() {
         this.updated = LocalDateTime.now();
-    }
-
-    public void follow(Member member) {
-
-        if (this.getMemberId().equals(member.getMemberId())) {
-            throw new SelfFollowNotAllowedException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
-        }
-
-        boolean alreadyFollowing = this.followings.stream()
-                .anyMatch(follow -> follow.getFollowing().getMemberId().equals(member.getMemberId()));
-
-        if (alreadyFollowing) {
-            throw new DuplicateFollowException(FollowErrorCode.DUPLICATE_FOLLOW);
-        }
-
-        Follow follow = Follow.builder()
-                .follower(this)
-                .following(member)
-                .build();
-
-        this.followings.add(follow);
-        member.followers.add(follow);
-    }
-
-    public void unfollow(Member member) {
-        this.followings.removeIf(follow -> follow.getFollowing().getMemberId().equals(member.getMemberId()));
-        member.followers.removeIf(follow -> follow.getFollower().getMemberId().equals(this.memberId));
     }
 
     public void updateName(String newName) {

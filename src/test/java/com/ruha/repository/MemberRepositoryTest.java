@@ -4,15 +4,16 @@ import com.ruha.entity.Member;
 import com.ruha.exception.member.MemberErrorCode;
 import com.ruha.exception.member.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-@SpringBootTest
+@DataJpaTest
 @Transactional
 class MemberRepositoryTest {
 
@@ -31,6 +32,7 @@ class MemberRepositoryTest {
     }
 
     @Test
+    @DisplayName("회원가입")
     void 회원가입() {
 
         // given
@@ -44,6 +46,26 @@ class MemberRepositoryTest {
     }
 
     @Test
+    @DisplayName("회원가입 - 실패 (중복된 이메일)")
+    void 회원가입_실패_중복이메일() {
+        // given
+        memberRepository.save(member); // 먼저 기준이 될 회원을 저장
+
+        Member duplicateMember = Member.builder()
+                .email("test@example.com") // 동일한 이메일
+                .password("5678")
+                .name("duplicate")
+                .build();
+
+        // when & then
+        // 동일한 이메일로 저장 시도 시, 데이터베이스의 unique 제약 조건 위반으로 예외가 발생해야 함
+        // JPA는 DB 예외를 DataIntegrityViolationException으로 변환하여 던져줌
+        assertThatThrownBy(() -> memberRepository.saveAndFlush(duplicateMember))
+                .isInstanceOf(org.springframework.dao.DataIntegrityViolationException.class);
+    }
+
+    @Test
+    @DisplayName("회원조회")
     void 회원조회() {
 
         // given
@@ -59,6 +81,7 @@ class MemberRepositoryTest {
     }
 
     @Test
+    @DisplayName("회원탈퇴")
     void 회원탈퇴() {
         // given
         Member savedMember = memberRepository.save(member);

@@ -1,0 +1,60 @@
+package com.ruha.entity;
+
+import static com.querydsl.core.types.PathMetadataFactory.*;
+
+import com.querydsl.core.types.dsl.*;
+
+import com.querydsl.core.types.PathMetadata;
+import javax.annotation.processing.Generated;
+import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
+
+
+/**
+ * QTodoComment is a Querydsl query type for TodoComment
+ */
+@Generated("com.querydsl.codegen.DefaultEntitySerializer")
+public class QTodoComment extends EntityPathBase<TodoComment> {
+
+    private static final long serialVersionUID = -87034669L;
+
+    private static final PathInits INITS = PathInits.DIRECT2;
+
+    public static final QTodoComment todoComment = new QTodoComment("todoComment");
+
+    public final StringPath content = createString("content");
+
+    public final DateTimePath<java.time.LocalDateTime> created = createDateTime("created", java.time.LocalDateTime.class);
+
+    public final QMember member;
+
+    public final QTodo todo;
+
+    public final NumberPath<Long> todoCommentId = createNumber("todoCommentId", Long.class);
+
+    public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
+
+    public QTodoComment(String variable) {
+        this(TodoComment.class, forVariable(variable), INITS);
+    }
+
+    public QTodoComment(Path<? extends TodoComment> path) {
+        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+    }
+
+    public QTodoComment(PathMetadata metadata) {
+        this(metadata, PathInits.getFor(metadata, INITS));
+    }
+
+    public QTodoComment(PathMetadata metadata, PathInits inits) {
+        this(TodoComment.class, metadata, inits);
+    }
+
+    public QTodoComment(Class<? extends TodoComment> type, PathMetadata metadata, PathInits inits) {
+        super(type, metadata, inits);
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.todo = inits.isInitialized("todo") ? new QTodo(forProperty("todo"), inits.get("todo")) : null;
+    }
+
+}
+

@@ -38,6 +38,8 @@ public class QTodo extends EntityPathBase<Todo> {
 
     public final StringPath title = createString("title");
 
+    public final ListPath<TodoComment, QTodoComment> todoComments = this.<TodoComment, QTodoComment>createList("todoComments", TodoComment.class, QTodoComment.class, PathInits.DIRECT2);
+
     public final NumberPath<Long> todoId = createNumber("todoId", Long.class);
 
     public final ListPath<TodoImage, QTodoImage> todoImages = this.<TodoImage, QTodoImage>createList("todoImages", TodoImage.class, QTodoImage.class, PathInits.DIRECT2);

@@ -6,17 +6,19 @@ import com.ruha.exception.follow.FollowNotFoundException;
 import com.ruha.exception.member.MemberErrorCode;
 import com.ruha.exception.member.MemberNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 
-@SpringBootTest
+@DataJpaTest
 @Transactional
 class FollowRepositoryTest {
 
@@ -54,6 +56,7 @@ class FollowRepositoryTest {
     }
 
     @Test
+    @DisplayName("팔로우 - 성공")
     void 팔로우() {
         // given
         Follow follow = Follow.builder()
@@ -74,6 +77,7 @@ class FollowRepositoryTest {
     }
 
     @Test
+    @DisplayName("팔로우 조회 - 성공")
     void 팔로우_조회() {
         // given
         Follow follow = Follow.builder()
@@ -93,6 +97,36 @@ class FollowRepositoryTest {
     }
 
     @Test
+    @DisplayName("팔로우 조회 - 실패, 존재하지 않는 회원")
+    void 팔로우_조회_존재하지_않는_회원() {
+
+        // given
+        Member member = Member.builder()
+                .memberId(999L)
+                .build();
+
+        // when
+        Optional<Follow> foundFollow = followRepository.findByFollowerAndFollowing(follower, member);
+
+        // then
+        assertThat(foundFollow).isEmpty();
+    }
+
+    @Test
+    @DisplayName("팔로우 조회 - 실패, 존재하지 않는 관계")
+    void 팔로우_조회_실패() {
+
+        // given
+
+        // when
+        Optional<Follow> foundFollow = followRepository.findByFollowerAndFollowing(follower, following);
+
+        // then
+        assertThat(foundFollow).isEmpty();
+    }
+
+    @Test
+    @DisplayName("언팔로우 - 성공")
     void 언팔로우() {
         // given
         Follow follow = Follow.builder()
@@ -111,4 +145,80 @@ class FollowRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("팔로잉 목록 조회")
+    void 팔로잉_목록_조회() {
+
+        // given
+        Member following2 = Member.builder()
+                .email("test3@example.com")
+                .password("1234")
+                .name("test3")
+                .build();
+
+        memberRepository.save(following2);
+
+        Follow follow1 = Follow.builder()
+                .follower(follower)
+                .following(following)
+                .build();
+
+        Follow follow2 = Follow.builder()
+                .follower(follower)
+                .following(following2)
+                .build();
+
+        followRepository.save(follow1);
+        followRepository.save(follow2);
+
+        // when
+        List<Follow> followings = followRepository.findByFollower(follower);
+
+        // then
+        assertThat(followings).hasSize(2);
+        assertThat(followings).extracting(Follow::getFollowing).containsExactlyInAnyOrder(following, following2);
+
+    }
+
+
+    @Test
+    @DisplayName("팔로워 목록 조회")
+    void 팔로워_목록_조회() {
+        // given
+        Member following2 = Member.builder().email("test4@example.com").password("1234").name("test4").build();
+        memberRepository.save(following2); //
+
+        Follow follow1 = Follow.builder().follower(follower).following(following).build();
+        Follow follow2 = Follow.builder().follower(following2).following(following).build();
+        followRepository.save(follow1);
+        followRepository.save(follow2);
+
+        // when
+        List<Follow> followers = followRepository.findByFollowing(following);
+
+        // then
+        assertThat(followers).hasSize(2);
+        assertThat(followers).extracting(Follow::getFollower).containsExactlyInAnyOrder(follower, following2);
+    }
+
+    @Test
+    @DisplayName("팔로잉 목록 조회 - 결과 없음")
+    void findByFollower_결과_없음() {
+        // when
+        List<Follow> followings = followRepository.findByFollower(follower);
+
+        // then
+        assertThat(followings).isEmpty();
+    }
+
+    @Test
+    @DisplayName("팔로워 목록 조회 - 결과 없음")
+    void findByFollowing_결과_없음() {
+
+        // when
+        List<Follow> followers = followRepository.findByFollowing(following);
+
+        // then
+        assertThat(followers).isEmpty();
+    }
 }
