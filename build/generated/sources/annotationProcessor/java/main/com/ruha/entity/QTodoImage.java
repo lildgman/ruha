@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -18,8 +17,6 @@ public class QTodoImage extends EntityPathBase<TodoImage> {
 
     private static final long serialVersionUID = -870597425L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QTodoImage todoImage = new QTodoImage("todoImage");
 
     public final DateTimePath<java.time.LocalDateTime> created = createDateTime("created", java.time.LocalDateTime.class);
@@ -28,29 +25,18 @@ public class QTodoImage extends EntityPathBase<TodoImage> {
 
     public final StringPath filePath = createString("filePath");
 
-    public final QTodo todo;
-
     public final NumberPath<Long> todoImageId = createNumber("todoImageId", Long.class);
 
     public QTodoImage(String variable) {
-        this(TodoImage.class, forVariable(variable), INITS);
+        super(TodoImage.class, forVariable(variable));
     }
 
     public QTodoImage(Path<? extends TodoImage> path) {
-        this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
+        super(path.getType(), path.getMetadata());
     }
 
     public QTodoImage(PathMetadata metadata) {
-        this(metadata, PathInits.getFor(metadata, INITS));
-    }
-
-    public QTodoImage(PathMetadata metadata, PathInits inits) {
-        this(TodoImage.class, metadata, inits);
-    }
-
-    public QTodoImage(Class<? extends TodoImage> type, PathMetadata metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.todo = inits.isInitialized("todo") ? new QTodo(forProperty("todo"), inits.get("todo")) : null;
+        super(TodoImage.class, metadata);
     }
 
 }

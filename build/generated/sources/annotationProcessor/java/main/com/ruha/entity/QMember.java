@@ -20,7 +20,10 @@ public class QMember extends EntityPathBase<Member> {
 
     public static final QMember member = new QMember("member1");
 
-    public final DateTimePath<java.time.LocalDateTime> created = createDateTime("created", java.time.LocalDateTime.class);
+    public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final StringPath email = createString("email");
 
@@ -32,9 +35,12 @@ public class QMember extends EntityPathBase<Member> {
 
     public final EnumPath<RoleType> roleType = createEnum("roleType", RoleType.class);
 
+    public final ListPath<TodoComment, QTodoComment> todoComments = this.<TodoComment, QTodoComment>createList("todoComments", TodoComment.class, QTodoComment.class, PathInits.DIRECT2);
+
     public final ListPath<Todo, QTodo> todos = this.<Todo, QTodo>createList("todos", Todo.class, QTodo.class, PathInits.DIRECT2);
 
-    public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QMember(String variable) {
         super(Member.class, forVariable(variable));

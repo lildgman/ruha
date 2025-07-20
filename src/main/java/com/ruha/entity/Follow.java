@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(uniqueConstraints = {
         @UniqueConstraint(name = "UniqueFollowerAndFollowing",columnNames = {"follower_id", "following_id"})
 })
-public class Follow {
+public class Follow extends BaseCreatedAtEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,4 @@ public class Follow {
     @JoinColumn(name = "following_id")
     private Member following;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private LocalDateTime followedAt;
-
-    @PrePersist
-    public void prePersist() {
-        this.followedAt = LocalDateTime.now();
-    }
 }

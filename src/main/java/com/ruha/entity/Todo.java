@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class Todo {
+public class Todo extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,14 +34,6 @@ public class Todo {
     @Column(nullable = false)
     private Boolean isPublic;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updated;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id", nullable = false)
     private Member member;
@@ -50,38 +42,39 @@ public class Todo {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "todo_id")
     @Builder.Default
     private List<TodoImage> todoImages = new ArrayList<>();
 
-    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "todo_id")
     @Builder.Default
     private List<TodoComment> todoComments = new ArrayList<>();
 
 
     @PrePersist
     public void prePersist() {
-        LocalDateTime now = LocalDateTime.now();
-
         this.isCompleted = false;
-        this.created = now;
-        this.updated = now;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = LocalDateTime.now();
     }
 
     //== 연관관계 편의 메소드 ==//
     public void addTodoImage(TodoImage todoImage) {
         this.todoImages.add(todoImage);
-        todoImage.updateTodo(this);
+    }
+
+    public void removeTodoImage(TodoImage todoImage) {
+        this.todoImages.remove(todoImage);
     }
 
     public void addTodoComment(TodoComment todoComment) {
         this.todoComments.add(todoComment);
         todoComment.updateTodo(this);
+    }
+
+    public void removeTodoComment(TodoComment todoComment) {
+        this.todoComments.remove(todoComment);
+        todoComment.updateTodo(null);
     }
 
     public void updateTitle(String title) {

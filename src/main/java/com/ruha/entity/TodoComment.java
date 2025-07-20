@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class TodoComment {
+public class TodoComment extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,32 +27,11 @@ public class TodoComment {
     @JoinColumn(name = "todo_id", nullable = false)
     private Todo todo;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updated;
-
-    @PrePersist
-    public void prePersist() {
-        LocalDateTime now = LocalDateTime.now();
-        this.created = now;
-        this.updated = now;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = LocalDateTime.now();
-    }
-
-    //== 연관관계 편의 메소드 ==//
-    public void updateTodo(Todo todo) {
-        this.todo = todo;
-    }
-
     public void updateContent(String content) {
         this.content = content;
+    }
+
+    public void updateTodo(Todo todo) {
+        this.todo = todo;
     }
 }

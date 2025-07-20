@@ -25,16 +25,9 @@ public class TodoImage {
     @Column(nullable = false)
     private LocalDateTime created;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "todo_id", nullable = false)
-    private Todo todo;
-
     @PrePersist
     public void prePersist() {
         this.created = LocalDateTime.now();
     }
 
-    public void updateTodo(Todo todo) {
-        this.todo = todo;
-    }
 }

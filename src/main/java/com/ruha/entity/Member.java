@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,31 +31,17 @@ public class Member {
     @Column(nullable = false)
     private RoleType roleType;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime created;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime updated;
-
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Todo> todos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<TodoComment> todoComments = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {
-        LocalDateTime now = LocalDateTime.now();
-
-        this.created = now;
-        this.updated = now;
         this.roleType = RoleType.NORMAL;
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updated = LocalDateTime.now();
     }
 
     public void updateName(String newName) {
@@ -66,6 +52,11 @@ public class Member {
     public void addTodo(Todo todo) {
         this.todos.add(todo);
         todo.updateMember(this);
+    }
+
+    public void removeTodo(Todo todo) {
+        this.todos.remove(todo);
+        todo.updateMember(null);
     }
 
 }

@@ -22,9 +22,12 @@ public class QTodoComment extends EntityPathBase<TodoComment> {
 
     public static final QTodoComment todoComment = new QTodoComment("todoComment");
 
+    public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
+
     public final StringPath content = createString("content");
 
-    public final DateTimePath<java.time.LocalDateTime> created = createDateTime("created", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final QMember member;
 
@@ -32,7 +35,8 @@ public class QTodoComment extends EntityPathBase<TodoComment> {
 
     public final NumberPath<Long> todoCommentId = createNumber("todoCommentId", Long.class);
 
-    public final DateTimePath<java.time.LocalDateTime> updated = createDateTime("updated", java.time.LocalDateTime.class);
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public QTodoComment(String variable) {
         this(TodoComment.class, forVariable(variable), INITS);
