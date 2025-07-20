@@ -34,13 +34,13 @@ class FollowRepositoryTest {
     @BeforeEach
     void memberSetUp() {
         Member memberA = Member.builder()
-                .email("test1@example.com")
+                .nickname("test1@example.com")
                 .password("1234")
                 .name("test1")
                 .build();
 
         Member memberB = Member.builder()
-                .email("test2@example.com")
+                .nickname("test2@example.com")
                 .password("1234")
                 .name("test2")
                 .build();
@@ -151,7 +151,7 @@ class FollowRepositoryTest {
 
         // given
         Member following2 = Member.builder()
-                .email("test3@example.com")
+                .nickname("test3@example.com")
                 .password("1234")
                 .name("test3")
                 .build();
@@ -185,7 +185,7 @@ class FollowRepositoryTest {
     @DisplayName("팔로워 목록 조회")
     void 팔로워_목록_조회() {
         // given
-        Member following2 = Member.builder().email("test4@example.com").password("1234").name("test4").build();
+        Member following2 = Member.builder().nickname("test4@example.com").password("1234").name("test4").build();
         memberRepository.save(following2); //
 
         Follow follow1 = Follow.builder().follower(follower).following(following).build();

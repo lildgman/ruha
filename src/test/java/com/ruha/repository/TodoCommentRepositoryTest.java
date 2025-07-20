@@ -9,7 +9,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -39,13 +38,13 @@ class TodoCommentRepositoryTest {
     @BeforeEach
     void setUp() {
         member1 = Member.builder()
-                .email("user1@example.com")
+                .nickname("user1@example.com")
                 .password("1234")
                 .name("user1")
                 .build();
 
         member2 = Member.builder()
-                .email("user2@example.com")
+                .nickname("user2@example.com")
                 .password("1234")
                 .name("user2")
                 .build();

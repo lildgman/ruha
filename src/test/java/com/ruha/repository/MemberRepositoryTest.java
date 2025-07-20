@@ -25,7 +25,7 @@ class MemberRepositoryTest {
     @BeforeEach
     void memberSetUp() {
         member = Member.builder()
-                .email("test@example.com")
+                .nickname("test@example.com")
                 .password("1234")
                 .name("test")
                 .build();
@@ -41,7 +41,7 @@ class MemberRepositoryTest {
         Member saved = memberRepository.save(member);
 
         //then
-        assertThat(saved.getEmail()).isEqualTo("test@example.com");
+        assertThat(saved.getNickname()).isEqualTo("test@example.com");
         assertThat(saved.getPassword()).isEqualTo("1234");
     }
 
@@ -52,7 +52,7 @@ class MemberRepositoryTest {
         memberRepository.save(member); // 먼저 기준이 될 회원을 저장
 
         Member duplicateMember = Member.builder()
-                .email("test@example.com") // 동일한 이메일
+                .nickname("test@example.com") // 동일한 이메일
                 .password("5678")
                 .name("duplicate")
                 .build();

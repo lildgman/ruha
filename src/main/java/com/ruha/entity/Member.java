@@ -3,7 +3,6 @@ package com.ruha.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Member extends BaseTimeEntity {
     private Long memberId;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String nickname;
 
     @Column(nullable = false)
     private String password;
