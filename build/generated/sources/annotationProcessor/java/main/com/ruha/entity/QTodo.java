@@ -26,6 +26,8 @@ public class QTodo extends EntityPathBase<Todo> {
 
     public final QCategory category;
 
+    public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
@@ -40,8 +42,6 @@ public class QTodo extends EntityPathBase<Todo> {
     public final QMember member;
 
     public final StringPath title = createString("title");
-
-    public final ListPath<TodoComment, QTodoComment> todoComments = this.<TodoComment, QTodoComment>createList("todoComments", TodoComment.class, QTodoComment.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> todoId = createNumber("todoId", Long.class);
 

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.ruha.service.MemberServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-07-20T18:08:21" hostname="ODGui-MacBookAir.local" time="0.87">
-  <properties/>
-  <testcase name="닉네임 중복 시 예외 발생" classname="com.ruha.service.MemberServiceTest" time="0.822"/>
-  <testcase name="회원가입 - 성공" classname="com.ruha.service.MemberServiceTest" time="0.046"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

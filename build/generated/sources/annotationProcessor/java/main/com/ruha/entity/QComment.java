@@ -11,18 +11,20 @@ import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
- * QTodoComment is a Querydsl query type for TodoComment
+ * QComment is a Querydsl query type for Comment
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QTodoComment extends EntityPathBase<TodoComment> {
+public class QComment extends EntityPathBase<Comment> {
 
-    private static final long serialVersionUID = -87034669L;
+    private static final long serialVersionUID = 61693177L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QTodoComment todoComment = new QTodoComment("todoComment");
+    public static final QComment comment = new QComment("comment");
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
+
+    public final NumberPath<Long> commentId = createNumber("commentId", Long.class);
 
     public final StringPath content = createString("content");
 
@@ -33,28 +35,26 @@ public class QTodoComment extends EntityPathBase<TodoComment> {
 
     public final QTodo todo;
 
-    public final NumberPath<Long> todoCommentId = createNumber("todoCommentId", Long.class);
-
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
-    public QTodoComment(String variable) {
-        this(TodoComment.class, forVariable(variable), INITS);
+    public QComment(String variable) {
+        this(Comment.class, forVariable(variable), INITS);
     }
 
-    public QTodoComment(Path<? extends TodoComment> path) {
+    public QComment(Path<? extends Comment> path) {
         this(path.getType(), path.getMetadata(), PathInits.getFor(path.getMetadata(), INITS));
     }
 
-    public QTodoComment(PathMetadata metadata) {
+    public QComment(PathMetadata metadata) {
         this(metadata, PathInits.getFor(metadata, INITS));
     }
 
-    public QTodoComment(PathMetadata metadata, PathInits inits) {
-        this(TodoComment.class, metadata, inits);
+    public QComment(PathMetadata metadata, PathInits inits) {
+        this(Comment.class, metadata, inits);
     }
 
-    public QTodoComment(Class<? extends TodoComment> type, PathMetadata metadata, PathInits inits) {
+    public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
         this.todo = inits.isInitialized("todo") ? new QTodo(forProperty("todo"), inits.get("todo")) : null;

@@ -36,7 +36,7 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
-    private List<TodoComment> todoComments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     @PrePersist
     public void prePersist() {

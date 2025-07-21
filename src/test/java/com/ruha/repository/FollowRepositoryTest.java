@@ -2,6 +2,7 @@ package com.ruha.repository;
 
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
+import com.ruha.exception.follow.FollowErrorCode;
 import com.ruha.exception.follow.FollowNotFoundException;
 import com.ruha.exception.member.MemberErrorCode;
 import com.ruha.exception.member.MemberNotFoundException;
@@ -68,7 +69,7 @@ class FollowRepositoryTest {
 
         // when
         Follow foundFollow = followRepository.findById(follow.getFollowId())
-                .orElseThrow(() -> new FollowNotFoundException("해당 팔로우 관계가 존재하지 않습니다."));
+                .orElseThrow(() -> new FollowNotFoundException(FollowErrorCode.FOLLOW_NOT_FOUND));
 
         // then
         assertThat(foundFollow.getFollowId()).isEqualTo(follow.getFollowId());
@@ -89,7 +90,7 @@ class FollowRepositoryTest {
 
         // when
         Follow foundFollow = followRepository.findByFollowerAndFollowing(follower, following)
-                .orElseThrow(() -> new FollowNotFoundException("두 회원간의 팔로우 관계가 존재하지 않습니다."));
+                .orElseThrow(() -> new FollowNotFoundException(FollowErrorCode.FOLLOW_NOT_FOUND));
 
         // then
         assertThat(foundFollow.getFollower()).isEqualTo(follower);

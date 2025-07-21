@@ -22,6 +22,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final QBaseTimeEntity _super = new QBaseTimeEntity(this);
 
+    public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
@@ -34,8 +36,6 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath password = createString("password");
 
     public final EnumPath<RoleType> roleType = createEnum("roleType", RoleType.class);
-
-    public final ListPath<TodoComment, QTodoComment> todoComments = this.<TodoComment, QTodoComment>createList("todoComments", TodoComment.class, QTodoComment.class, PathInits.DIRECT2);
 
     public final ListPath<Todo, QTodo> todos = this.<Todo, QTodo>createList("todos", Todo.class, QTodo.class, PathInits.DIRECT2);
 

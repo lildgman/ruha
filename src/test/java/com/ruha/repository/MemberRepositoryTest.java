@@ -77,6 +77,7 @@ class MemberRepositoryTest {
 
         // then
         assertThat(findMember.getMemberId()).isEqualTo(savedMember.getMemberId());
+        assertThat(findMember.getNickname()).isEqualTo(savedMember.getNickname());
 
     }
 
@@ -98,6 +99,7 @@ class MemberRepositoryTest {
     }
 
     @Test
+    @DisplayName("회원수정")
     void 회원수정() {
         // given
         Member savedMember = memberRepository.save(member);

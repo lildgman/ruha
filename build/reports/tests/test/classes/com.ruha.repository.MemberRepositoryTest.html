@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - MemberRepositoryTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>MemberRepositoryTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.ruha.repository.html">com.ruha.repository</a> &gt; MemberRepositoryTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.391s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">회원조회</td>
+<td class="success">회원조회()</td>
+<td class="success">0.391s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>15:41:52.773 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.repository.MemberRepositoryTest]: MemberRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+15:41:52.843 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.MemberRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.9)
+
+2025-07-21T15:41:53.045+09:00  INFO 15114 --- [    Test worker] c.ruha.repository.MemberRepositoryTest   : Starting MemberRepositoryTest using Java 17.0.8 with PID 15114 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
+2025-07-21T15:41:53.046+09:00  INFO 15114 --- [    Test worker] c.ruha.repository.MemberRepositoryTest   : No active profile set, falling back to 1 default profile: &quot;default&quot;
+2025-07-21T15:41:53.243+09:00  INFO 15114 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-21T15:41:53.276+09:00  INFO 15114 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 6 JPA repository interfaces.
+2025-07-21T15:41:53.304+09:00  INFO 15114 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2025-07-21T15:41:53.387+09:00  INFO 15114 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-07-21T15:41:53.626+09:00  INFO 15114 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-21T15:41:53.654+09:00  INFO 15114 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-07-21T15:41:53.670+09:00  INFO 15114 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-21T15:41:53.858+09:00  INFO 15114 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-21T15:41:53.898+09:00  WARN 15114 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-21T15:41:54.506+09:00  INFO 15114 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-21T15:41:54.526+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114526 | took 2ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+select * from INFORMATION_SCHEMA.SEQUENCES
+select * from INFORMATION_SCHEMA.SEQUENCES;
+2025-07-21T15:41:54.530+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+Hibernate: 
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+2025-07-21T15:41:54.535+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114535 | took 4ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    );
+2025-07-21T15:41:54.536+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        primary key (comment_id)
+    )
+Hibernate: 
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        primary key (comment_id)
+    )
+2025-07-21T15:41:54.537+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114537 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        primary key (comment_id)
+    )
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        primary key (comment_id)
+    );
+2025-07-21T15:41:54.537+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table follow (
+        follow_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    )
+Hibernate: 
+    create table follow (
+        follow_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    )
+2025-07-21T15:41:54.538+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114538 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table follow (
+        follow_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    )
+
+    create table follow (
+        follow_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id)
+    );
+2025-07-21T15:41:54.539+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table member (
+        member_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        name varchar(255) not null,
+        nickname varchar(255) not null,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+Hibernate: 
+    create table member (
+        member_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        name varchar(255) not null,
+        nickname varchar(255) not null,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+2025-07-21T15:41:54.540+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114540 | took 1ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table member (
+        member_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        name varchar(255) not null,
+        nickname varchar(255) not null,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+
+    create table member (
+        member_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        name varchar(255) not null,
+        nickname varchar(255) not null,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    );
+2025-07-21T15:41:54.541+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo (
+        todo_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean not null,
+        is_public boolean not null,
+        title varchar(255) not null,
+        category_id bigint not null,
+        member_id bigint not null,
+        primary key (todo_id)
+    )
+Hibernate: 
+    create table todo (
+        todo_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean not null,
+        is_public boolean not null,
+        title varchar(255) not null,
+        category_id bigint not null,
+        member_id bigint not null,
+        primary key (todo_id)
+    )
+2025-07-21T15:41:54.543+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114543 | took 1ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table todo (
+        todo_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean not null,
+        is_public boolean not null,
+        title varchar(255) not null,
+        category_id bigint not null,
+        member_id bigint not null,
+        primary key (todo_id)
+    )
+
+    create table todo (
+        todo_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        is_completed boolean not null,
+        is_public boolean not null,
+        title varchar(255) not null,
+        category_id bigint not null,
+        member_id bigint not null,
+        primary key (todo_id)
+    );
+2025-07-21T15:41:54.544+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo_image (
+        todo_image_id bigint generated by default as identity,
+        created timestamp(6) not null,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        todo_id bigint,
+        primary key (todo_image_id)
+    )
+Hibernate: 
+    create table todo_image (
+        todo_image_id bigint generated by default as identity,
+        created timestamp(6) not null,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        todo_id bigint,
+        primary key (todo_image_id)
+    )
+2025-07-21T15:41:54.545+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114545 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    create table todo_image (
+        todo_image_id bigint generated by default as identity,
+        created timestamp(6) not null,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        todo_id bigint,
+        primary key (todo_image_id)
+    )
+
+    create table todo_image (
+        todo_image_id bigint generated by default as identity,
+        created timestamp(6) not null,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        todo_id bigint,
+        primary key (todo_image_id)
+    );
+2025-07-21T15:41:54.545+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       drop constraint if exists UniqueFollowerAndFollowing
+Hibernate: 
+    alter table if exists follow 
+       drop constraint if exists UniqueFollowerAndFollowing
+2025-07-21T15:41:54.546+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114546 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists follow 
+       drop constraint if exists UniqueFollowerAndFollowing
+
+    alter table if exists follow 
+       drop constraint if exists UniqueFollowerAndFollowing;
+2025-07-21T15:41:54.548+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+Hibernate: 
+    alter table if exists follow 
+       add constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+2025-07-21T15:41:54.550+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114549 | took 1ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists follow 
+       add constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+
+    alter table if exists follow 
+       add constraint UniqueFollowerAndFollowing unique (follower_id, following_id);
+2025-07-21T15:41:54.550+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists member 
+       drop constraint if exists UK_hh9kg6jti4n1eoiertn2k6qsc
+Hibernate: 
+    alter table if exists member 
+       drop constraint if exists UK_hh9kg6jti4n1eoiertn2k6qsc
+2025-07-21T15:41:54.551+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114551 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists member 
+       drop constraint if exists UK_hh9kg6jti4n1eoiertn2k6qsc
+
+    alter table if exists member 
+       drop constraint if exists UK_hh9kg6jti4n1eoiertn2k6qsc;
+2025-07-21T15:41:54.551+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists member 
+       add constraint UK_hh9kg6jti4n1eoiertn2k6qsc unique (nickname)
+Hibernate: 
+    alter table if exists member 
+       add constraint UK_hh9kg6jti4n1eoiertn2k6qsc unique (nickname)
+2025-07-21T15:41:54.552+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114551 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists member 
+       add constraint UK_hh9kg6jti4n1eoiertn2k6qsc unique (nickname)
+
+    alter table if exists member 
+       add constraint UK_hh9kg6jti4n1eoiertn2k6qsc unique (nickname);
+2025-07-21T15:41:54.552+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+2025-07-21T15:41:54.555+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114555 | took 2ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member;
+2025-07-21T15:41:54.555+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+Hibernate: 
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+2025-07-21T15:41:54.556+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114556 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo;
+2025-07-21T15:41:54.557+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+Hibernate: 
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+2025-07-21T15:41:54.558+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114558 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member;
+2025-07-21T15:41:54.558+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+Hibernate: 
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+2025-07-21T15:41:54.559+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114559 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member;
+2025-07-21T15:41:54.559+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+Hibernate: 
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+2025-07-21T15:41:54.560+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114560 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category;
+2025-07-21T15:41:54.560+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+2025-07-21T15:41:54.561+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114561 | took 0ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member;
+2025-07-21T15:41:54.561+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+Hibernate: 
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+2025-07-21T15:41:54.563+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080114563 | took 1ms | statement | connection 1| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo;
+2025-07-21T15:41:54.564+09:00  INFO 15114 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-21T15:41:54.801+09:00  INFO 15114 --- [    Test worker] c.ruha.repository.MemberRepositoryTest   : Started MemberRepositoryTest in 1.916 seconds (process running for 2.462)
+2025-07-21T15:41:55.142+09:00 DEBUG 15114 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-07-21T15:41:55.147+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080115147 | took 1ms | statement | connection 2| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+insert into member (created_at,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,default)
+insert into member (created_at,name,nickname,password,role_type,updated_at,member_id) values ('2025-07-21T15:41:55.128+0900','test','test@example.com','1234','NORMAL','2025-07-21T15:41:55.128+0900',default);
+2025-07-21T15:41:55.193+09:00  INFO 15114 --- [    Test worker] p6spy                                    : #1753080115193 | took 0ms | rollback | connection 2| url jdbc:h2:mem:c761a98c-54bb-4425-941e-c049f00721a4
+
+;
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.8</a> at 2025. 7. 21. 오후 3:41:55</p>
+</div>
+</div>
+</body>
+</html>

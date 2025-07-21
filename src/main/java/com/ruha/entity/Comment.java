@@ -3,18 +3,16 @@ package com.ruha.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class TodoComment extends BaseTimeEntity{
+public class Comment extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long todoCommentId;
+    private Long commentId;
 
     @Column(nullable = false)
     private String content;

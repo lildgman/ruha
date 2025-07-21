@@ -3,7 +3,6 @@ package com.ruha.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +49,7 @@ public class Todo extends BaseTimeEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "todo_id")
     @Builder.Default
-    private List<TodoComment> todoComments = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
 
     @PrePersist
@@ -67,14 +66,14 @@ public class Todo extends BaseTimeEntity {
         this.todoImages.remove(todoImage);
     }
 
-    public void addTodoComment(TodoComment todoComment) {
-        this.todoComments.add(todoComment);
-        todoComment.updateTodo(this);
+    public void addTodoComment(Comment comment) {
+        this.comments.add(comment);
+        comment.updateTodo(this);
     }
 
-    public void removeTodoComment(TodoComment todoComment) {
-        this.todoComments.remove(todoComment);
-        todoComment.updateTodo(null);
+    public void removeTodoComment(Comment comment) {
+        this.comments.remove(comment);
+        comment.updateTodo(null);
     }
 
     public void updateTitle(String title) {
