@@ -11,6 +11,7 @@ import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
 import com.ruha.repository.MemberRepository;
+import com.ruha.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,16 @@ public class MemberService {
 
         String token = jwtProvider.createToken(member.getMemberId());
         return new TokenResponse(token);
+    }
+
+    public MemberResponse getCurrentMemberInfo() {
+        Long memberId = SecurityUtil.getLoginMemberId()
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+
+        return MemberResponse.from(member);
     }
 
 }

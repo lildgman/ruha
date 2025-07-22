@@ -10,12 +10,14 @@ import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
 import com.ruha.repository.MemberRepository;
+import com.ruha.util.SecurityUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockedStatic;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -162,6 +164,71 @@ class MemberServiceTest {
                     () -> memberService.login(request));
 
             verify(jwtProvider, never()).createToken(anyLong());
+        }
+    }
+
+    @Nested
+    @DisplayName("내 정보 조회")
+    class GetMyInfo {
+
+        @Test
+        @DisplayName("성공")
+        void success() {
+            // given
+            Long currentMemberId = 1L;
+            Member member = Member.builder()
+                    .memberId(currentMemberId)
+                    .nickname("user")
+                    .name("테스터")
+                    .build();
+
+            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
+                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.of(currentMemberId));
+                when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+
+                // when
+                MemberResponse response = memberService.getCurrentMemberInfo();
+
+                // then
+                assertThat(response.getMemberId()).isEqualTo(currentMemberId);
+                assertThat(response.getNickname()).isEqualTo("user");
+                assertThat(response.getName()).isEqualTo("테스터");
+
+                verify(memberRepository, times(1)).findById(currentMemberId);
+            }
+        }
+
+        @Test
+        @DisplayName("실패 - 인증되지 않은 사용자")
+        void fail_unauthenticated() {
+            // given
+            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
+                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.empty());
+
+                // when & then
+                assertThrows(MemberNotFoundException.class,
+                        () -> memberService.getCurrentMemberInfo());
+
+                verify(memberRepository, never()).findById(anyLong());
+            }
+        }
+
+        @Test
+        @DisplayName("실패 - DB에 해당 유저 없음")
+        void fail_member_not_found_in_db() {
+            // given
+            Long currentMemberId = 1L;
+
+            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
+                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.of(currentMemberId));
+                when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+
+                // when & then
+                assertThrows(MemberNotFoundException.class,
+                        () -> memberService.getCurrentMemberInfo());
+
+                verify(memberRepository, times(1)).findById(currentMemberId);
+            }
         }
     }
 }
