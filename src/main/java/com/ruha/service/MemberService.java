@@ -10,7 +10,10 @@ import com.ruha.exception.member.MemberErrorCode;
 import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
+import com.ruha.repository.CommentRepository;
+import com.ruha.repository.FollowRepository;
 import com.ruha.repository.MemberRepository;
+import com.ruha.repository.TodoRepository;
 import com.ruha.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +28,9 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final FollowRepository followRepository;
+    private final CommentRepository commentRepository;
+    private final TodoRepository todoRepository;
 
     @Transactional
     public MemberResponse createMember(CreateMemberRequest request) {
@@ -41,7 +47,7 @@ public class MemberService {
 
         Member savedMember = memberRepository.save(member);
 
-        return MemberResponse.from(savedMember);
+        return MemberResponse.of(savedMember, 0, 0, 0, 0, 0);
 
     }
 
@@ -64,7 +70,13 @@ public class MemberService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
 
-        return MemberResponse.from(member);
+        long followerCount = followRepository.countByFollowing(member);
+        long followingCount = followRepository.countByFollower(member);
+        long commentCount = commentRepository.countByMember(member);
+        long totalTodoCount = todoRepository.countByMember(member);
+        long completedTodoCount = todoRepository.countByMemberAndIsCompleted(member, true);
+
+        return MemberResponse.of(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
     }
 
 }

@@ -9,7 +9,10 @@ import com.ruha.exception.member.DuplicateNicknameException;
 import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
+import com.ruha.repository.CommentRepository;
+import com.ruha.repository.FollowRepository;
 import com.ruha.repository.MemberRepository;
+import com.ruha.repository.TodoRepository;
 import com.ruha.util.SecurityUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -24,15 +27,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class MemberServiceTest {
 
-    // 테스트하고 싶은 클래스
-    // @Mock으로 만든 가짜 객체들이 자동으로 주입
     @InjectMocks
     private MemberService memberService;
 
@@ -44,6 +45,16 @@ class MemberServiceTest {
 
     @Mock
     private JwtProvider jwtProvider;
+
+    @Mock
+    private FollowRepository followRepository;
+
+    @Mock
+    private CommentRepository commentRepository;
+
+    @Mock
+    private TodoRepository todoRepository;
+
 
     @Nested
     @DisplayName("회원가입")
@@ -185,6 +196,11 @@ class MemberServiceTest {
             try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
                 securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.of(currentMemberId));
                 when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+                when(followRepository.countByFollowing(member)).thenReturn(5L);
+                when(followRepository.countByFollower(member)).thenReturn(10L);
+                when(commentRepository.countByMember(member)).thenReturn(3L);
+                when(todoRepository.countByMember(member)).thenReturn(20L);
+                when(todoRepository.countByMemberAndIsCompleted(member, true)).thenReturn(10L);
 
                 // when
                 MemberResponse response = memberService.getCurrentMemberInfo();
@@ -193,8 +209,19 @@ class MemberServiceTest {
                 assertThat(response.getMemberId()).isEqualTo(currentMemberId);
                 assertThat(response.getNickname()).isEqualTo("user");
                 assertThat(response.getName()).isEqualTo("테스터");
+                assertThat(response.getFollowerCount()).isEqualTo(5L);
+                assertThat(response.getFollowingCount()).isEqualTo(10L);
+                assertThat(response.getCommentCount()).isEqualTo(3L);
+                assertThat(response.getTotalTodoCount()).isEqualTo(20L);
+                assertThat(response.getCompletedTodoCount()).isEqualTo(10L);
+                assertThat(response.getTodoCompletionRate()).isEqualTo(0.5);
 
                 verify(memberRepository, times(1)).findById(currentMemberId);
+                verify(followRepository, times(1)).countByFollowing(member);
+                verify(followRepository, times(1)).countByFollower(member);
+                verify(commentRepository, times(1)).countByMember(member);
+                verify(todoRepository, times(1)).countByMember(member);
+                verify(todoRepository, times(1)).countByMemberAndIsCompleted(member, true);
             }
         }
 
