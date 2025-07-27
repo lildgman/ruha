@@ -1,25 +1,10 @@
 package com.ruha.exception.comment;
 
-import com.ruha.exception.todo.TodoErrorCode;
-import lombok.Getter;
+import com.ruha.exception.CustomException;
 
-@Getter
-public class CommentNotFoundException extends RuntimeException {
-
-    private final CommentErrorCode code;
+public class CommentNotFoundException extends CustomException {
 
     public CommentNotFoundException() {
-        super(CommentErrorCode.COMMENT_NOT_FOUND.getMessage());
-        this.code = CommentErrorCode.COMMENT_NOT_FOUND;
-    }
-
-    public CommentNotFoundException(String message) {
-        super(message);
-        this.code = CommentErrorCode.COMMENT_NOT_FOUND;
-    }
-
-    public CommentNotFoundException(CommentErrorCode code) {
-        super(code.getMessage());
-        this.code = code;
+        super(CommentErrorCode.COMMENT_NOT_FOUND);
     }
 }

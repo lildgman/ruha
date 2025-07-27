@@ -1,14 +1,10 @@
 package com.ruha.exception.member;
 
-import lombok.Getter;
+import com.ruha.exception.CustomException;
 
-@Getter
-public class PasswordMismatchException extends RuntimeException {
+public class PasswordMismatchException extends CustomException {
 
-    private final MemberErrorCode errorCode;
-
-    public PasswordMismatchException(MemberErrorCode errorCode) {
-        super(errorCode.getMessage());
-        this.errorCode = errorCode;
+    public PasswordMismatchException() {
+        super(MemberErrorCode.PASSWORD_MISMATCH);
     }
 }

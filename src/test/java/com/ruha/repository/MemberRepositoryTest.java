@@ -73,7 +73,7 @@ class MemberRepositoryTest {
 
         // when
         Member findMember = memberRepository.findById(savedMember.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
 
         // then
         assertThat(findMember.getMemberId()).isEqualTo(savedMember.getMemberId());
@@ -93,7 +93,7 @@ class MemberRepositoryTest {
         // then
         assertThat(memberRepository.existsById(savedMember.getMemberId())).isFalse();
         assertThatThrownBy(() -> memberRepository.findById(savedMember.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND)))
+                .orElseThrow(MemberNotFoundException::new))
                 .isInstanceOf(MemberNotFoundException.class)
                 .hasMessage("회원이 존재하지 않습니다.");
     }
@@ -109,7 +109,7 @@ class MemberRepositoryTest {
 
         // then
         Member updatedMember = memberRepository.findById(savedMember.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
         assertThat(updatedMember.getName()).isEqualTo("updateTest");
 
     }

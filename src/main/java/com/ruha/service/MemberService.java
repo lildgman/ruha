@@ -36,7 +36,7 @@ public class MemberService {
     public MemberResponse createMember(CreateMemberRequest request) {
 
         if (memberRepository.existsByNickname(request.getNickname())) {
-            throw new DuplicateNicknameException("이미 사용 중인 닉네임입니다.");
+            throw new DuplicateNicknameException();
         }
 
         Member member = Member.builder()
@@ -53,10 +53,10 @@ public class MemberService {
 
     public TokenResponse login(LoginRequest request) {
         Member member = memberRepository.findByNickname(request.getNickname())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
 
         if (!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
-            throw new PasswordMismatchException(MemberErrorCode.PASSWORD_MISMATCH);
+            throw new PasswordMismatchException();
         }
 
         String token = jwtProvider.createToken(member.getMemberId());
@@ -65,10 +65,10 @@ public class MemberService {
 
     public MemberResponse getCurrentMemberInfo() {
         Long memberId = SecurityUtil.getLoginMemberId()
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
 
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
 
         long followerCount = followRepository.countByFollowing(member);
         long followingCount = followRepository.countByFollower(member);
@@ -78,5 +78,7 @@ public class MemberService {
 
         return MemberResponse.of(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
     }
+
+
 
 }

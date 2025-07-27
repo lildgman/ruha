@@ -1,24 +1,10 @@
 package com.ruha.exception.member;
 
-import lombok.Getter;
+import com.ruha.exception.CustomException;
 
-@Getter
-public class MemberNotFoundException extends RuntimeException {
-
-    private final MemberErrorCode memberErrorCode;
+public class MemberNotFoundException extends CustomException {
 
     public MemberNotFoundException() {
-        super(MemberErrorCode.MEMBER_NOT_FOUND.getMessage());
-        this.memberErrorCode = MemberErrorCode.MEMBER_NOT_FOUND;
-    }
-
-    public MemberNotFoundException(String message) {
-        super(message);
-        this.memberErrorCode = MemberErrorCode.MEMBER_NOT_FOUND;
-    }
-
-    public MemberNotFoundException(MemberErrorCode memberErrorCode) {
-        super(memberErrorCode.getMessage());
-        this.memberErrorCode = memberErrorCode;
+        super(MemberErrorCode.MEMBER_NOT_FOUND);
     }
 }

@@ -72,7 +72,7 @@ class TodoRepositoryTest {
 
         // then
         Todo foundTodo = todoRepository.findById(todo.getTodoId())
-                .orElseThrow(() -> new TodoNotFoundException(TodoErrorCode.TODO_NOT_FOUND));
+                .orElseThrow(TodoNotFoundException::new);
 
         assertThat(foundTodo.getTodoId()).isEqualTo(todo.getTodoId());
         assertThat(foundTodo.getTitle()).isEqualTo("테스트");
@@ -94,7 +94,7 @@ class TodoRepositoryTest {
 
         // then
         Todo foundTodo = todoRepository.findById(todo.getTodoId())
-                .orElseThrow(() -> new TodoNotFoundException(TodoErrorCode.TODO_NOT_FOUND));
+                .orElseThrow(TodoNotFoundException::new);
 
         assertThat(foundTodo.getTodoImages()).hasSize(2);
         assertThat(foundTodo.getTodoImages().get(0).getFileName()).isEqualTo("image1.jpg");
@@ -110,7 +110,7 @@ class TodoRepositoryTest {
 
         // when
         Todo foundTodo = todoRepository.findById(savedTodo.getTodoId())
-                .orElseThrow(() -> new TodoNotFoundException(TodoErrorCode.TODO_NOT_FOUND));
+                .orElseThrow(TodoNotFoundException::new);
 
         // then
         assertThat(foundTodo.getTodoId()).isEqualTo(savedTodo.getTodoId());
@@ -127,7 +127,7 @@ class TodoRepositoryTest {
 
         // then
         Todo foundTodo = todoRepository.findById(savedTodo.getTodoId())
-                .orElseThrow(() -> new TodoNotFoundException(TodoErrorCode.TODO_NOT_FOUND));
+                .orElseThrow(TodoNotFoundException::new);
         assertThat(foundTodo.getTitle()).isEqualTo("수정된 타이틀");
     }
 

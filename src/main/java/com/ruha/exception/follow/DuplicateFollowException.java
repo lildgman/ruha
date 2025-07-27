@@ -1,25 +1,10 @@
 package com.ruha.exception.follow;
 
-import lombok.Getter;
+import com.ruha.exception.CustomException;
 
-@Getter
-public class DuplicateFollowException extends RuntimeException{
-
-    private final FollowErrorCode followErrorCode;
+public class DuplicateFollowException extends CustomException {
 
     public DuplicateFollowException() {
-        super(FollowErrorCode.DUPLICATE_FOLLOW.getMessage());
-        this.followErrorCode = FollowErrorCode.DUPLICATE_FOLLOW;
+        super(FollowErrorCode.DUPLICATE_FOLLOW);
     }
-
-    public DuplicateFollowException(String message) {
-        super(message);
-        this.followErrorCode = FollowErrorCode.DUPLICATE_FOLLOW;
-    }
-
-    public DuplicateFollowException(FollowErrorCode followErrorCode) {
-        super(followErrorCode.getMessage());
-        this.followErrorCode = followErrorCode;
-    }
-
 }

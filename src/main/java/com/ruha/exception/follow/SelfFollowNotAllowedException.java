@@ -1,25 +1,10 @@
 package com.ruha.exception.follow;
 
-import lombok.Getter;
+import com.ruha.exception.CustomException;
 
-@Getter
-public class SelfFollowNotAllowedException extends RuntimeException{
-
-    private final FollowErrorCode followErrorCode;
+public class SelfFollowNotAllowedException extends CustomException {
 
     public SelfFollowNotAllowedException() {
-        super(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED.getMessage());
-        this.followErrorCode = FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED;
+        super(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
     }
-
-    public SelfFollowNotAllowedException(String message) {
-        super(message);
-        this.followErrorCode = FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED;
-    }
-
-    public SelfFollowNotAllowedException(FollowErrorCode followErrorCode) {
-        super(followErrorCode.getMessage());
-        this.followErrorCode = followErrorCode;
-    }
-
 }

@@ -50,10 +50,10 @@ class FollowRepositoryTest {
         memberRepository.save(memberB);
 
         follower = memberRepository.findById(memberA.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
 
         following = memberRepository.findById(memberB.getMemberId())
-                .orElseThrow(() -> new MemberNotFoundException(MemberErrorCode.MEMBER_NOT_FOUND));
+                .orElseThrow(MemberNotFoundException::new);
     }
 
     @Test
@@ -69,7 +69,7 @@ class FollowRepositoryTest {
 
         // when
         Follow foundFollow = followRepository.findById(follow.getFollowId())
-                .orElseThrow(() -> new FollowNotFoundException(FollowErrorCode.FOLLOW_NOT_FOUND));
+                .orElseThrow(FollowNotFoundException::new);
 
         // then
         assertThat(foundFollow.getFollowId()).isEqualTo(follow.getFollowId());
@@ -90,7 +90,7 @@ class FollowRepositoryTest {
 
         // when
         Follow foundFollow = followRepository.findByFollowerAndFollowing(follower, following)
-                .orElseThrow(() -> new FollowNotFoundException(FollowErrorCode.FOLLOW_NOT_FOUND));
+                .orElseThrow(FollowNotFoundException::new);
 
         // then
         assertThat(foundFollow.getFollower()).isEqualTo(follower);

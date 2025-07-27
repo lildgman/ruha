@@ -101,7 +101,7 @@ class CommentRepositoryTest {
 
         // when
         Comment foundComment = commentRepository.findById(savedComment.getCommentId())
-                .orElseThrow(() -> new CommentNotFoundException(CommentErrorCode.COMMENT_NOT_FOUND));
+                .orElseThrow(CommentNotFoundException::new);
 
         // then
         assertThat(foundComment).isEqualTo(savedComment);
@@ -119,7 +119,7 @@ class CommentRepositoryTest {
 
         // then
         Comment updatedComment = commentRepository.findById(savedComment.getCommentId())
-                .orElseThrow(() -> new CommentNotFoundException(CommentErrorCode.COMMENT_NOT_FOUND));
+                .orElseThrow(CommentNotFoundException::new);
         assertThat(updatedComment.getContent()).isEqualTo("수정된 댓글입니다.");
     }
 
