@@ -1,6 +1,8 @@
 package com.ruha.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -17,13 +19,18 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberId;
 
-    @Column(unique = true, nullable = false, length = 10)
+    @NotBlank
+    @Size(min = 4, max = 15)
+    @Column(unique = true, nullable = false, length = 15)
     private String nickname;
 
+    @NotBlank
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 12)
+    @Column(nullable = false, length = 12)
     private String name;
 
     @Enumerated(EnumType.STRING)
@@ -59,3 +66,4 @@ public class Member extends BaseTimeEntity {
     }
 
 }
+

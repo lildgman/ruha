@@ -6,7 +6,6 @@ import com.ruha.dto.member.MemberResponse;
 import com.ruha.dto.member.TokenResponse;
 import com.ruha.entity.Member;
 import com.ruha.exception.member.DuplicateNicknameException;
-import com.ruha.exception.member.MemberErrorCode;
 import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
@@ -19,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @Transactional(readOnly = true)
