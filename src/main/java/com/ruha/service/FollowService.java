@@ -23,11 +23,11 @@ public class FollowService {
     @Transactional
     public void follow(Member fromMember, Member toMember) {
         if(fromMember.getMemberId().equals(toMember.getMemberId())) {
-            throw new SelfFollowNotAllowedException(FollowErrorCode.SELF_FOLLOW_NOT_ALLOWED);
+            throw new SelfFollowNotAllowedException();
         }
 
         if (followRepository.existsByFollowerAndFollowing(fromMember, toMember)) {
-            throw new DuplicateFollowException(FollowErrorCode.DUPLICATE_FOLLOW);
+            throw new DuplicateFollowException();
         }
 
         Follow follow = Follow.builder()
@@ -41,7 +41,7 @@ public class FollowService {
     @Transactional
     public void unfollow(Member fromMember, Member toMember) {
         Follow follow = followRepository.findByFollowerAndFollowing(fromMember, toMember)
-                .orElseThrow(() -> new FollowNotFoundException(FOLLOW_NOT_FOUND));
+                .orElseThrow(FollowNotFoundException::new);
         followRepository.delete(follow);
     }
 }

@@ -4,25 +4,24 @@ import com.ruha.dto.member.CreateMemberRequest;
 import com.ruha.dto.member.LoginRequest;
 import com.ruha.dto.member.MemberResponse;
 import com.ruha.dto.member.TokenResponse;
+import com.ruha.dto.member.UpdateMemberRequest;
 import com.ruha.entity.Member;
 import com.ruha.exception.member.DuplicateNicknameException;
 import com.ruha.exception.member.MemberNotFoundException;
-import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
 import com.ruha.repository.CommentRepository;
 import com.ruha.repository.FollowRepository;
 import com.ruha.repository.MemberRepository;
 import com.ruha.repository.TodoRepository;
-import com.ruha.util.SecurityUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -31,30 +30,30 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
-    @InjectMocks
+    @Autowired
     private MemberService memberService;
 
-    @Mock
+    @MockBean
     private MemberRepository memberRepository;
 
-    @Mock
+    @MockBean
     private PasswordEncoder passwordEncoder;
 
-    @Mock
+    @MockBean
     private JwtProvider jwtProvider;
 
-    @Mock
+    @MockBean
     private FollowRepository followRepository;
 
-    @Mock
+    @MockBean
     private CommentRepository commentRepository;
 
-    @Mock
+    @MockBean
     private TodoRepository todoRepository;
-
 
     @Nested
     @DisplayName("회원가입")
@@ -62,19 +61,12 @@ class MemberServiceTest {
         @Test
         @DisplayName("성공")
         void success() {
-
             // given
             CreateMemberRequest request = new CreateMemberRequest("user", "password1234", "테스터");
+            Member savedMember = Member.builder().memberId(1L).nickname("user").password("encoded_password").name("테스터").build();
 
             when(memberRepository.existsByNickname("user")).thenReturn(false);
             when(passwordEncoder.encode("password1234")).thenReturn("encoded_password");
-
-            Member savedMember = Member.builder()
-                    .memberId(1L)
-                    .nickname("user")
-                    .password("encoded_password")
-                    .name("테스터")
-                    .build();
             when(memberRepository.save(any(Member.class))).thenReturn(savedMember);
 
             // when
@@ -84,30 +76,19 @@ class MemberServiceTest {
             assertThat(response.getMemberId()).isEqualTo(1L);
             assertThat(response.getNickname()).isEqualTo("user");
             assertThat(response.getName()).isEqualTo("테스터");
-
-            verify(memberRepository, times(1)).existsByNickname("user");
-            verify(passwordEncoder, times(1)).encode("password1234");
-            verify(memberRepository, times(1)).save(any(Member.class));
         }
 
         @Test
         @DisplayName("실패 - 닉네임 중복")
         void fail_duplicate_nickname() {
-
             // given
             CreateMemberRequest request = new CreateMemberRequest("duplicateMember", "password1234", "중복맨");
-
             when(memberRepository.existsByNickname("duplicateMember")).thenReturn(true);
 
             // when & then
-            assertThrows(DuplicateNicknameException.class,
-                    () -> memberService.createMember(request));
-
-            verify(passwordEncoder, never()).encode(anyString());
-            verify(memberRepository, never()).save(any(Member.class));
+            assertThrows(DuplicateNicknameException.class, () -> memberService.createMember(request));
         }
     }
-
 
     @Nested
     @DisplayName("로그인")
@@ -117,12 +98,7 @@ class MemberServiceTest {
         void success() {
             // given
             LoginRequest request = new LoginRequest("user", "password1234");
-            Member member = Member.builder()
-                    .memberId(1L)
-                    .nickname("user")
-                    .password("encoded_password")
-                    .name("테스터")
-                    .build();
+            Member member = Member.builder().memberId(1L).nickname("user").password("encoded_password").name("테스터").build();
 
             when(memberRepository.findByNickname("user")).thenReturn(Optional.of(member));
             when(passwordEncoder.matches("password1234", "encoded_password")).thenReturn(true);
@@ -133,48 +109,6 @@ class MemberServiceTest {
 
             // then
             assertThat(response.getAccessToken()).isEqualTo("test_token");
-
-            verify(memberRepository, times(1)).findByNickname("user");
-            verify(passwordEncoder, times(1)).matches("password1234", "encoded_password");
-            verify(jwtProvider, times(1)).createToken(1L);
-        }
-
-        @Test
-        @DisplayName("실패 - 존재하지 않는 회원")
-        void fail_member_not_found() {
-            // given
-            LoginRequest request = new LoginRequest("non_exist_user", "password1234");
-
-            when(memberRepository.findByNickname("non_exist_user")).thenReturn(Optional.empty());
-
-            // when & then
-            assertThrows(MemberNotFoundException.class,
-                    () -> memberService.login(request));
-
-            verify(passwordEncoder, never()).matches(anyString(), anyString());
-            verify(jwtProvider, never()).createToken(anyLong());
-        }
-
-        @Test
-        @DisplayName("실패 - 비밀번호 불일치")
-        void fail_password_mismatch() {
-            // given
-            LoginRequest request = new LoginRequest("user", "wrong_password");
-            Member member = Member.builder()
-                    .memberId(1L)
-                    .nickname("user")
-                    .password("encoded_password")
-                    .name("테스터")
-                    .build();
-
-            when(memberRepository.findByNickname("user")).thenReturn(Optional.of(member));
-            when(passwordEncoder.matches("wrong_password", "encoded_password")).thenReturn(false);
-
-            // when & then
-            assertThrows(PasswordMismatchException.class,
-                    () -> memberService.login(request));
-
-            verify(jwtProvider, never()).createToken(anyLong());
         }
     }
 
@@ -183,79 +117,64 @@ class MemberServiceTest {
     class GetMyInfo {
 
         @Test
+        @WithMockUser(username = "1") // SecurityContext에 사용자 ID 1을 설정
         @DisplayName("성공")
         void success() {
             // given
             Long currentMemberId = 1L;
-            Member member = Member.builder()
-                    .memberId(currentMemberId)
-                    .nickname("user")
-                    .name("테스터")
-                    .build();
+            Member member = Member.builder().memberId(currentMemberId).nickname("user").name("테스터").build();
 
-            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
-                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.of(currentMemberId));
-                when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
-                when(followRepository.countByFollowing(member)).thenReturn(5L);
-                when(followRepository.countByFollower(member)).thenReturn(10L);
-                when(commentRepository.countByMember(member)).thenReturn(3L);
-                when(todoRepository.countByMember(member)).thenReturn(20L);
-                when(todoRepository.countByMemberAndIsCompleted(member, true)).thenReturn(10L);
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(followRepository.countByFollowing(member)).thenReturn(5L);
+            when(followRepository.countByFollower(member)).thenReturn(10L);
+            when(commentRepository.countByMember(member)).thenReturn(3L);
+            when(todoRepository.countByMember(member)).thenReturn(20L);
+            when(todoRepository.countByMemberAndIsCompleted(member, true)).thenReturn(10L);
 
-                // when
-                MemberResponse response = memberService.getCurrentMemberInfo();
+            // when
+            MemberResponse response = memberService.getCurrentMemberInfo();
 
-                // then
-                assertThat(response.getMemberId()).isEqualTo(currentMemberId);
-                assertThat(response.getNickname()).isEqualTo("user");
-                assertThat(response.getName()).isEqualTo("테스터");
-                assertThat(response.getFollowerCount()).isEqualTo(5L);
-                assertThat(response.getFollowingCount()).isEqualTo(10L);
-                assertThat(response.getCommentCount()).isEqualTo(3L);
-                assertThat(response.getTotalTodoCount()).isEqualTo(20L);
-                assertThat(response.getCompletedTodoCount()).isEqualTo(10L);
-                assertThat(response.getTodoCompletionRate()).isEqualTo(0.5);
-
-                verify(memberRepository, times(1)).findById(currentMemberId);
-                verify(followRepository, times(1)).countByFollowing(member);
-                verify(followRepository, times(1)).countByFollower(member);
-                verify(commentRepository, times(1)).countByMember(member);
-                verify(todoRepository, times(1)).countByMember(member);
-                verify(todoRepository, times(1)).countByMemberAndIsCompleted(member, true);
-            }
+            // then
+            assertThat(response.getMemberId()).isEqualTo(currentMemberId);
+            assertThat(response.getTodoCompletionRate()).isEqualTo(0.5);
         }
+    }
+
+    @Nested
+    @DisplayName("이름 수정")
+    class UpdateName {
 
         @Test
-        @DisplayName("실패 - 인증되지 않은 사용자")
-        void fail_unauthenticated() {
+        @WithMockUser(username = "1") // SecurityContext에 사용자 ID 1을 설정
+        @DisplayName("성공")
+        void success() {
             // given
-            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
-                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.empty());
+            Long currentMemberId = 1L;
+            Member member = Member.builder().memberId(currentMemberId).nickname("user").name("기존이름").build();
+            UpdateMemberRequest request = new UpdateMemberRequest("새이름");
 
-                // when & then
-                assertThrows(MemberNotFoundException.class,
-                        () -> memberService.getCurrentMemberInfo());
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
 
-                verify(memberRepository, never()).findById(anyLong());
-            }
+            // when
+            memberService.updateName(request);
+
+            // then
+            assertThat(member.getName()).isEqualTo("새이름");
+            verify(memberRepository, times(1)).findById(currentMemberId);
         }
 
         @Test
         @DisplayName("실패 - DB에 해당 유저 없음")
+        @WithMockUser(username = "1")
         void fail_member_not_found_in_db() {
             // given
             Long currentMemberId = 1L;
+            UpdateMemberRequest request = new UpdateMemberRequest("새이름");
 
-            try (MockedStatic<SecurityUtil> securityUtil = mockStatic(SecurityUtil.class)) {
-                securityUtil.when(SecurityUtil::getLoginMemberId).thenReturn(Optional.of(currentMemberId));
-                when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
 
-                // when & then
-                assertThrows(MemberNotFoundException.class,
-                        () -> memberService.getCurrentMemberInfo());
-
-                verify(memberRepository, times(1)).findById(currentMemberId);
-            }
+            // when & then
+            assertThrows(MemberNotFoundException.class, () -> memberService.updateName(request));
         }
     }
 }

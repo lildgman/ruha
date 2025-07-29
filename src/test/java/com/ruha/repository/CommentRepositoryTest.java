@@ -38,13 +38,13 @@ class CommentRepositoryTest {
     @BeforeEach
     void setUp() {
         member1 = Member.builder()
-                .nickname("user1@example.com")
+                .nickname("user1")
                 .password("1234")
                 .name("user1")
                 .build();
 
         member2 = Member.builder()
-                .nickname("user2@example.com")
+                .nickname("user2")
                 .password("1234")
                 .name("user2")
                 .build();

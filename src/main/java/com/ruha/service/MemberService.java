@@ -1,9 +1,6 @@
 package com.ruha.service;
 
-import com.ruha.dto.member.CreateMemberRequest;
-import com.ruha.dto.member.LoginRequest;
-import com.ruha.dto.member.MemberResponse;
-import com.ruha.dto.member.TokenResponse;
+import com.ruha.dto.member.*;
 import com.ruha.entity.Member;
 import com.ruha.exception.member.DuplicateNicknameException;
 import com.ruha.exception.member.MemberNotFoundException;
@@ -77,6 +74,17 @@ public class MemberService {
         long completedTodoCount = todoRepository.countByMemberAndIsCompleted(member, true);
 
         return MemberResponse.of(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
+    }
+
+    @Transactional
+    public void updateName(UpdateMemberRequest request) {
+        Long memberId = SecurityUtil.getLoginMemberId()
+                .orElseThrow(MemberNotFoundException::new);
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(MemberNotFoundException::new);
+
+        member.updateName(request.getName());
     }
 
 

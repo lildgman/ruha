@@ -39,7 +39,7 @@ class TodoRepositoryTest {
     @BeforeEach
     void setUp() {
         member = Member.builder()
-                .nickname("test@example.com")
+                .nickname("testUser")
                 .password("1234")
                 .name("test")
                 .build();
