@@ -54,6 +54,10 @@ public class Member extends BaseTimeEntity {
         this.name = newName;
     }
 
+    public void updatePassword(String newPassword) {
+        this.password = newPassword;
+    }
+
     //== 연관관계 편의 메소드 ==//
     public void addTodo(Todo todo) {
         this.todos.add(todo);

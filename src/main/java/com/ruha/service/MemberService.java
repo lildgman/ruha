@@ -16,7 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+/**
+ * 회원 관련 비즈니스 로직을 처리하는 서비스 클래스입니다.
+ */
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -29,6 +31,13 @@ public class MemberService {
     private final CommentRepository commentRepository;
     private final TodoRepository todoRepository;
 
+    /**
+     * 새로운 회원을 생성합니다.
+     *
+     * @param request 회원 가입에 필요한 정보 (닉네임, 비밀번호, 이름)
+     * @return 생성된 회원의 정보
+     * @throws DuplicateNicknameException 닉네임이 중복될 경우 발생
+     */
     @Transactional
     public MemberResponse createMember(CreateMemberRequest request) {
 
@@ -48,6 +57,14 @@ public class MemberService {
 
     }
 
+    /**
+     * 로그인을 처리하고 JWT 토큰을 발급합니다.
+     *
+     * @param request 로그인에 필요한 정보 (닉네임, 비밀번호)
+     * @return 발급된 JWT 토큰
+     * @throws MemberNotFoundException  해당 닉네임의 회원을 찾을 수 없을 경우 발생
+     * @throws PasswordMismatchException 비밀번호가 일치하지 않을 경우 발생
+     */
     public TokenResponse login(LoginRequest request) {
         Member member = memberRepository.findByNickname(request.getNickname())
                 .orElseThrow(MemberNotFoundException::new);
@@ -60,6 +77,12 @@ public class MemberService {
         return new TokenResponse(token);
     }
 
+    /**
+     * 현재 로그인한 회원의 정보를 조회합니다.
+     *
+     * @return 현재 회원의 정보
+     * @throws MemberNotFoundException 회원을 찾을 수 없을 경우 발생
+     */
     public MemberResponse getCurrentMemberInfo() {
         Long memberId = SecurityUtil.getLoginMemberId()
                 .orElseThrow(MemberNotFoundException::new);
@@ -76,6 +99,12 @@ public class MemberService {
         return MemberResponse.of(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
     }
 
+    /**
+     * 현재 로그인한 회원의 이름을 수정합니다.
+     *
+     * @param request 변경할 새로운 이름
+     * @throws MemberNotFoundException 회원을 찾을 수 없을 경우 발생
+     */
     @Transactional
     public void updateName(UpdateMemberRequest request) {
         Long memberId = SecurityUtil.getLoginMemberId()
@@ -87,6 +116,25 @@ public class MemberService {
         member.updateName(request.getName());
     }
 
+    /**
+     * 현재 로그인한 회원의 비밀번호를 변경합니다.
+     *
+     * @param request 현재 비밀번호와 새로운 비밀번호
+     * @throws MemberNotFoundException   회원을 찾을 수 없을 경우 발생
+     * @throws PasswordMismatchException 현재 비밀번호가 일치하지 않을 경우 발생
+     */
+    @Transactional
+    public void updatePassword(PasswordChangeRequest request) {
+        Long memberId = SecurityUtil.getLoginMemberId()
+                .orElseThrow(MemberNotFoundException::new);
 
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(MemberNotFoundException::new);
 
+        if (!passwordEncoder.matches(request.getCurrentPassword(), member.getPassword())) {
+            throw new PasswordMismatchException();
+        }
+
+        member.updatePassword(passwordEncoder.encode(request.getNewPassword()));
+    }
 }

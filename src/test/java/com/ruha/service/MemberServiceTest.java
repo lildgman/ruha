@@ -1,13 +1,10 @@
 package com.ruha.service;
 
-import com.ruha.dto.member.CreateMemberRequest;
-import com.ruha.dto.member.LoginRequest;
-import com.ruha.dto.member.MemberResponse;
-import com.ruha.dto.member.TokenResponse;
-import com.ruha.dto.member.UpdateMemberRequest;
+import com.ruha.dto.member.*;
 import com.ruha.entity.Member;
 import com.ruha.exception.member.DuplicateNicknameException;
 import com.ruha.exception.member.MemberNotFoundException;
+import com.ruha.exception.member.PasswordMismatchException;
 import com.ruha.jwt.JwtProvider;
 import com.ruha.repository.CommentRepository;
 import com.ruha.repository.FollowRepository;
@@ -93,6 +90,7 @@ class MemberServiceTest {
     @Nested
     @DisplayName("로그인")
     class Login {
+
         @Test
         @DisplayName("성공")
         void success() {
@@ -109,6 +107,35 @@ class MemberServiceTest {
 
             // then
             assertThat(response.getAccessToken()).isEqualTo("test_token");
+        }
+
+        @Test
+        @DisplayName("실패 - 가입되지 않은 닉네임")
+        void fail_member_not_found() {
+
+            LoginRequest request = new LoginRequest("non_existent_user", "password1234");
+            when(memberRepository.findByNickname("non_existent_user")).thenReturn(Optional.empty());
+
+            assertThrows(MemberNotFoundException.class, () -> memberService.login(request));
+        }
+
+        @Test
+        @DisplayName("실패 - 비밀번호 불일치")
+        void fail_password_mismatch() {
+
+            LoginRequest request = new LoginRequest("user", "wrong_password");
+
+            Member member = Member.builder()
+                    .memberId(1L)
+                    .nickname("user")
+                    .password("encoded_password")
+                    .name("test")
+                    .build();
+
+            when(memberRepository.findByNickname("user")).thenReturn(Optional.of(member));
+            when(passwordEncoder.matches("wrong_password", "encoded_password")).thenReturn(false);
+
+            assertThrows(PasswordMismatchException.class, () -> memberService.login(request));
         }
     }
 
@@ -137,6 +164,17 @@ class MemberServiceTest {
             // then
             assertThat(response.getMemberId()).isEqualTo(currentMemberId);
             assertThat(response.getTodoCompletionRate()).isEqualTo(0.5);
+        }
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("실패 - DB에 존재하지 않는 회원")
+        void fail_member_not_found() {
+
+            Long currentMemberId = 1L;
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+
+            assertThrows(MemberNotFoundException.class, () -> memberService.getCurrentMemberInfo());
         }
     }
 
@@ -175,6 +213,72 @@ class MemberServiceTest {
 
             // when & then
             assertThrows(MemberNotFoundException.class, () -> memberService.updateName(request));
+        }
+    }
+
+    @Nested
+    @DisplayName("비밀번호 수정")
+    class UpdatePassword {
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("성공")
+        void success() {
+
+            // given
+            Long currentMemberId = 1L;
+            Member member = Member.builder()
+                    .memberId(currentMemberId)
+                    .password("encoded_current_password")
+                    .build();
+
+            PasswordChangeRequest request = new PasswordChangeRequest("current_password", "new_password");
+
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(passwordEncoder.matches("current_password", "encoded_current_password")).thenReturn(true);
+            when(passwordEncoder.encode("new_password")).thenReturn("encoded_new_password");
+
+            // when
+            memberService.updatePassword(request);
+
+            // then
+            assertThat(member.getPassword()).isEqualTo("encoded_new_password");
+            verify(passwordEncoder, times(1)).encode("new_password");
+
+        }
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("실패 - 현재 비밀번호 불일치")
+        void fail_password_mismatch() {
+
+            // given
+            Long currentMemberId = 1L;
+            Member member = Member.builder()
+                    .memberId(currentMemberId)
+                    .password("encoded_current_password")
+                    .build();
+            PasswordChangeRequest request = new PasswordChangeRequest("wrong_password", "new_password");
+
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(passwordEncoder.matches("wrong_password", "encoded_current_password")).thenReturn(false);
+
+            assertThrows(PasswordMismatchException.class, () -> memberService.updatePassword(request));
+            verify(passwordEncoder, never()).encode(anyString());
+        }
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("실패 - 존재하지 않은 사용자")
+        void fail_member_not_found() {
+
+            Long currentMemberId = 1L;
+            PasswordChangeRequest request = new PasswordChangeRequest("any_password", "new_password");
+
+            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+
+            assertThrows(MemberNotFoundException.class, () -> memberService.updatePassword(request));
+
         }
     }
 }
