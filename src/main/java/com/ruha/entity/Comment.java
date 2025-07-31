@@ -32,4 +32,8 @@ public class Comment extends BaseTimeEntity{
     public void updateTodo(Todo todo) {
         this.todo = todo;
     }
+
+    public void updateMember(Member member) {
+        this.member = member;
+    }
 }

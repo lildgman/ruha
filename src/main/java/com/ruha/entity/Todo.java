@@ -41,13 +41,11 @@ public class Todo extends BaseTimeEntity {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "todo_id")
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<TodoImage> todoImages = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @JoinColumn(name = "todo_id")
+    @OneToMany(mappedBy = "todo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
 
@@ -60,18 +58,19 @@ public class Todo extends BaseTimeEntity {
     //== 연관관계 편의 메소드 ==//
     public void addTodoImage(TodoImage todoImage) {
         this.todoImages.add(todoImage);
+        todoImage.updateTodo(this);
     }
 
     public void removeTodoImage(TodoImage todoImage) {
         this.todoImages.remove(todoImage);
     }
 
-    public void addTodoComment(Comment comment) {
+    public void addComment(Comment comment) {
         this.comments.add(comment);
         comment.updateTodo(this);
     }
 
-    public void removeTodoComment(Comment comment) {
+    public void removeComment(Comment comment) {
         this.comments.remove(comment);
         comment.updateTodo(null);
     }
@@ -82,5 +81,9 @@ public class Todo extends BaseTimeEntity {
 
     public void updateMember(Member member) {
         this.member = member;
+    }
+
+    public void updateCategory(Category category) {
+        this.category = category;
     }
 }

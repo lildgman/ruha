@@ -45,8 +45,17 @@ public class Member extends BaseTimeEntity {
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Follow> followings = new ArrayList<>();
+
+    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Follow> followers = new ArrayList<>();
+
     @PrePersist
     public void prePersist() {
+
         this.roleType = RoleType.NORMAL;
     }
 
@@ -66,7 +75,37 @@ public class Member extends BaseTimeEntity {
 
     public void removeTodo(Todo todo) {
         this.todos.remove(todo);
-        todo.updateMember(null);
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+        comment.updateMember(this);
+    }
+
+    public void removeComment(Comment comment) {
+        this.comments.remove(comment);
+    }
+
+    public void follow(Member target) {
+        Follow follow = Follow.builder()
+                .follower(this)
+                .following(target)
+                .build();
+
+        this.followings.add(follow);
+        target.followers.add(follow);
+    }
+
+    public void unfollow(Member target) {
+
+        this.followings.stream()
+                .filter(follow -> follow.getFollowing().equals(target))
+                .findFirst()
+                .ifPresent(follow -> {
+                            this.followings.remove(follow);
+                            target.followers.remove(follow);
+                });
+
     }
 
 }
