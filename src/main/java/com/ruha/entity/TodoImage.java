@@ -3,17 +3,17 @@ package com.ruha.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class TodoImage {
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class TodoImage extends BaseCreatedAtEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long todoImageId;
 
     @Column(nullable = false)
@@ -22,17 +22,10 @@ public class TodoImage {
     @Column(nullable = false)
     private String filePath;
 
-    @Column(nullable = false)
-    private LocalDateTime created;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "todo_id", nullable = false)
     private Todo todo;
-
-    @PrePersist
-    public void prePersist() {
-        this.created = LocalDateTime.now();
-    }
 
     public void updateTodo(Todo todo) {
         this.todo = todo;
