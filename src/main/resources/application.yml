@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/ruhadb
     username: root
-    password: roEhddl1!
+    password: 1234
   jpa:
     show-sql: true
     hibernate:

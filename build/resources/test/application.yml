@@ -10,12 +10,10 @@ spring:
       ddl-auto: create-drop
     properties:
      hibernate:
-      # show_sql: true
       format_sql: true
 
 logging.level:
   org.hibernate.SQL: debug
-  # org.hibernate.type: trace
 
 jwt:
   secret-key: c3ByaW5nYm9vdC1qd3QtdHV0b3JpYWwtc2VjcmV0LWtleS1mb3ItcnVoYS1wcm9qZWN0Cg==

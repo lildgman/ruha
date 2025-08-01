@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="이름 수정" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-08-01T13:19:46" hostname="ODGui-MacBookAir.local" time="0.013">
+  <properties/>
+  <testcase name="성공" classname="com.ruha.service.MemberServiceTest$UpdateName" time="0.005"/>
+  <testcase name="실패 - DB에 해당 유저 없음" classname="com.ruha.service.MemberServiceTest$UpdateName" time="0.006"/>
+  <system-out><![CDATA[2025-08-01T22:19:46.653+09:00  INFO 42413 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.service.MemberServiceTest$UpdateName]: UpdateName does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-01T22:19:46.654+09:00  INFO 42413 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.service.MemberServiceTest$UpdateName
+2025-08-01T22:19:46.661+09:00  INFO 42413 --- [    Test worker] p6spy                                    : #1754054386661 | took 0ms | rollback | connection 9| url jdbc:h2:mem:test
+
+;
+2025-08-01T22:19:46.669+09:00  INFO 42413 --- [    Test worker] p6spy                                    : #1754054386669 | took 0ms | rollback | connection 10| url jdbc:h2:mem:test
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

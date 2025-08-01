@@ -67,7 +67,7 @@ public class MemberService {
      * @throws PasswordMismatchException 비밀번호가 일치하지 않을 경우 발생
      */
     public TokenResponse login(LoginRequest request) {
-        Member member = memberRepository.findByNickname(request.getNickname())
+        Member member = memberRepository.findByNicknameAndIsDeletedFalse(request.getNickname())
                 .orElseThrow(MemberNotFoundException::new);
 
         validatePassword(request.getPassword(), member.getPassword());
@@ -124,6 +124,21 @@ public class MemberService {
     }
 
     /**
+     * 현재 로그인한 회원을 탈퇴 처리합니다. (소프트 삭제)
+     *
+     * @param request 탈퇴 확인을 위한 비밀번호
+     * @throws UnauthorizedException 인증되지 않은 경우 발생
+     * @throws MemberNotFoundException 회원을 찾을 수 없을 경우 발생
+     * @throws PasswordMismatchException 비밀번호가 일치하지 않을 경우 발생
+     */
+    @Transactional
+    public void deleteMember(DeleteMemberRequest request) {
+        Member member = getCurrentAuthenticatedMember();
+        validatePassword(request.getPassword(), member.getPassword());
+        member.delete();
+    }
+
+    /**
      * 현재 인증된 회원 정보를 조회합니다.
      *
      * @return 현재 로그인한 회원 엔티티
@@ -134,7 +149,7 @@ public class MemberService {
         Long memberId = SecurityUtil.getLoginMemberId()
                 .orElseThrow(UnauthorizedException::new);
 
-        return memberRepository.findById(memberId)
+        return memberRepository.findByMemberIdAndIsDeletedFalse(memberId)
                 .orElseThrow(MemberNotFoundException::new);
     }
 

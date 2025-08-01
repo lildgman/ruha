@@ -98,7 +98,7 @@ class MemberServiceTest {
             LoginRequest request = new LoginRequest("user", "password1234");
             Member member = Member.builder().memberId(1L).nickname("user").password("encoded_password").name("테스터").build();
 
-            when(memberRepository.findByNickname("user")).thenReturn(Optional.of(member));
+            when(memberRepository.findByNicknameAndIsDeletedFalse("user")).thenReturn(Optional.of(member));
             when(passwordEncoder.matches("password1234", "encoded_password")).thenReturn(true);
             when(jwtProvider.createToken(1L)).thenReturn("test_token");
 
@@ -114,7 +114,7 @@ class MemberServiceTest {
         void fail_member_not_found() {
 
             LoginRequest request = new LoginRequest("non_existent_user", "password1234");
-            when(memberRepository.findByNickname("non_existent_user")).thenReturn(Optional.empty());
+            when(memberRepository.findByNicknameAndIsDeletedFalse("non_existent_user")).thenReturn(Optional.empty());
 
             assertThrows(MemberNotFoundException.class, () -> memberService.login(request));
         }
@@ -132,7 +132,7 @@ class MemberServiceTest {
                     .name("test")
                     .build();
 
-            when(memberRepository.findByNickname("user")).thenReturn(Optional.of(member));
+            when(memberRepository.findByNicknameAndIsDeletedFalse("user")).thenReturn(Optional.of(member));
             when(passwordEncoder.matches("wrong_password", "encoded_password")).thenReturn(false);
 
             assertThrows(PasswordMismatchException.class, () -> memberService.login(request));
@@ -151,7 +151,7 @@ class MemberServiceTest {
             Long currentMemberId = 1L;
             Member member = Member.builder().memberId(currentMemberId).nickname("user").name("테스터").build();
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
             when(followRepository.countByFollowing(member)).thenReturn(5L);
             when(followRepository.countByFollower(member)).thenReturn(10L);
             when(commentRepository.countByMember(member)).thenReturn(3L);
@@ -172,7 +172,7 @@ class MemberServiceTest {
         void fail_member_not_found() {
 
             Long currentMemberId = 1L;
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.empty());
 
             assertThrows(MemberNotFoundException.class, () -> memberService.getCurrentMemberInfo());
         }
@@ -191,14 +191,14 @@ class MemberServiceTest {
             Member member = Member.builder().memberId(currentMemberId).nickname("user").name("기존이름").build();
             UpdateMemberRequest request = new UpdateMemberRequest("새이름");
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
 
             // when
             memberService.updateName(request);
 
             // then
             assertThat(member.getName()).isEqualTo("새이름");
-            verify(memberRepository, times(1)).findById(currentMemberId);
+            verify(memberRepository, times(1)).findByMemberIdAndIsDeletedFalse(currentMemberId);
         }
 
         @Test
@@ -209,7 +209,7 @@ class MemberServiceTest {
             Long currentMemberId = 1L;
             UpdateMemberRequest request = new UpdateMemberRequest("새이름");
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.empty());
 
             // when & then
             assertThrows(MemberNotFoundException.class, () -> memberService.updateName(request));
@@ -234,7 +234,7 @@ class MemberServiceTest {
 
             PasswordChangeRequest request = new PasswordChangeRequest("current_password", "new_password");
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
             when(passwordEncoder.matches("current_password", "encoded_current_password")).thenReturn(true);
             when(passwordEncoder.encode("new_password")).thenReturn("encoded_new_password");
 
@@ -260,7 +260,7 @@ class MemberServiceTest {
                     .build();
             PasswordChangeRequest request = new PasswordChangeRequest("wrong_password", "new_password");
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.of(member));
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
             when(passwordEncoder.matches("wrong_password", "encoded_current_password")).thenReturn(false);
 
             assertThrows(PasswordMismatchException.class, () -> memberService.updatePassword(request));
@@ -275,10 +275,80 @@ class MemberServiceTest {
             Long currentMemberId = 1L;
             PasswordChangeRequest request = new PasswordChangeRequest("any_password", "new_password");
 
-            when(memberRepository.findById(currentMemberId)).thenReturn(Optional.empty());
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.empty());
 
             assertThrows(MemberNotFoundException.class, () -> memberService.updatePassword(request));
 
+        }
+    }
+
+    @Nested
+    @DisplayName("회원 탈퇴")
+    class DeleteMember {
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("성공")
+        void success() {
+
+            // given
+            Long currentMemberId = 1L;
+            Member member = Member.builder()
+                    .memberId(currentMemberId)
+                    .nickname("user")
+                    .password("encoded_password")
+                    .name("테스터")
+                    .build();
+
+            DeleteMemberRequest request = new DeleteMemberRequest("password");
+
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
+            when(passwordEncoder.matches("password", "encoded_password")).thenReturn(true);
+
+            // when
+            memberService.deleteMember(request);
+
+            // then
+            assertThat(member.getIsDeleted()).isTrue();
+            assertThat(member.getDeletedAt()).isNotNull();
+        }
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("실패 - 비밀번호 불일치")
+        void fail_password_mismatch() {
+
+            // given
+            Long currentMemberId = 1L;
+            Member member = Member.builder()
+                    .memberId(currentMemberId)
+                    .nickname("user")
+                    .password("encoded_password")
+                    .name("테스터")
+                    .build();
+
+            DeleteMemberRequest request = new DeleteMemberRequest("wrong_password");
+
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
+            when(passwordEncoder.matches("wrong_password", "encoded_password")).thenReturn(false);
+
+            assertThrows(PasswordMismatchException.class, () -> memberService.deleteMember(request));
+            assertThat(member.getIsDeleted()).isFalse();
+
+        }
+
+        @Test
+        @WithMockUser(username = "1")
+        @DisplayName("실패 - 존재하지 않은 사용자")
+        void fail_member_not_found() {
+
+            // given
+            Long currentMemberId = 1L;
+            DeleteMemberRequest request = new DeleteMemberRequest("password");
+
+            when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.empty());
+
+            assertThrows(MemberNotFoundException.class, () -> memberService.deleteMember(request));
         }
     }
 }
