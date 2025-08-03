@@ -45,7 +45,8 @@ public class Member extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private RoleType roleType;
+    @Builder.Default
+    private RoleType roleType = RoleType.NORMAL;
 
     @Column(nullable = false)
     @Builder.Default
@@ -61,19 +62,13 @@ public class Member extends BaseTimeEntity {
     @Builder.Default
     private List<Comment> comments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "follower", fetch = FetchType.LAZY)
     @Builder.Default
     private List<Follow> followings = new ArrayList<>();
 
-    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "following", fetch = FetchType.LAZY)
     @Builder.Default
     private List<Follow> followers = new ArrayList<>();
-
-    @PrePersist
-    public void prePersist() {
-
-        this.roleType = RoleType.NORMAL;
-    }
 
     public void updateName(String newName) {
         this.name = newName;
@@ -125,53 +120,7 @@ public class Member extends BaseTimeEntity {
         }
     }
 
-    public void follow(Member target) {
 
-        if (target == null) {
-            throw new MemberNotFoundException();
-        } else if (target.equals(this)) {
-            throw new SelfFollowNotAllowedException();
-        }
-
-        boolean alreadyFollwoing = this.followings.stream()
-                .anyMatch(follow -> follow.getFollowing().equals(target));
-
-        if (alreadyFollwoing) {
-            throw new DuplicateFollowException();
-        }
-
-        Follow follow = Follow.builder()
-                .follower(this)
-                .following(target)
-                .build();
-
-        this.followings.add(follow);
-        target.addFollower(follow);
-
-    }
-
-    public void unfollow(Member target) {
-
-        this.followings.stream()
-                .filter(follow -> follow.getFollowing().equals(target))
-                .findFirst()
-                .ifPresent(follow -> {
-                            this.followings.remove(follow);
-                            target.removeFollower(follow);
-                });
-    }
-
-    protected void addFollower(Follow follow) {
-        if (follow != null) {
-            this.followers.add(follow);
-        }
-    }
-
-    protected void removeFollower(Follow follow) {
-        if (follow != null) {
-            this.followers.remove(follow);
-        }
-    }
 
 }
 

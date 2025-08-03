@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="언팔로우" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-08-03T12:29:55" hostname="ODGui-MacBookAir.local" time="0.017">
+  <properties/>
+  <testcase name="실패 - 존재하지 않는 대상 회원" classname="com.ruha.service.FollowServiceTest$UnfollowMember" time="0.005"/>
+  <testcase name="성공" classname="com.ruha.service.FollowServiceTest$UnfollowMember" time="0.01"/>
+  <system-out><![CDATA[2025-08-03T21:29:55.093+09:00  INFO 67221 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.service.FollowServiceTest$UnfollowMember]: UnfollowMember does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-08-03T21:29:55.094+09:00  INFO 67221 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.service.FollowServiceTest$UnfollowMember
+2025-08-03T21:29:55.102+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224195102 | took 0ms | rollback | connection 12| url jdbc:h2:mem:test
+
+;
+2025-08-03T21:29:55.113+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224195113 | took 0ms | rollback | connection 13| url jdbc:h2:mem:test
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

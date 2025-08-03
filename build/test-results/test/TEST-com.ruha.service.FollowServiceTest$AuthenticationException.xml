@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="인증 예외 처리" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-08-03T12:29:54" hostname="ODGui-MacBookAir.local" time="0.03">
+  <properties/>
+  <testcase name="실패 - 인증되지 않은 사용자" classname="com.ruha.service.FollowServiceTest$AuthenticationException" time="0.03"/>
+  <system-out><![CDATA[21:29:51.713 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.ruha.service.FollowServiceTest$AuthenticationException]: AuthenticationException does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:29:51.716 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.service.FollowServiceTest$AuthenticationException
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.9)
+
+2025-08-03T21:29:51.881+09:00  INFO 67221 --- [    Test worker] com.ruha.service.FollowServiceTest       : Starting FollowServiceTest using Java 17.0.8 with PID 67221 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
+2025-08-03T21:29:51.881+09:00  INFO 67221 --- [    Test worker] com.ruha.service.FollowServiceTest       : No active profile set, falling back to 1 default profile: "default"
+2025-08-03T21:29:52.261+09:00  INFO 67221 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-08-03T21:29:52.294+09:00  INFO 67221 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 30 ms. Found 6 JPA repository interfaces.
+2025-08-03T21:29:53.347+09:00  INFO 67221 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-08-03T21:29:53.386+09:00  INFO 67221 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-08-03T21:29:53.407+09:00  INFO 67221 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-08-03T21:29:53.474+09:00  INFO 67221 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-08-03T21:29:53.492+09:00  INFO 67221 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-08-03T21:29:53.600+09:00  INFO 67221 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:test user=SA
+2025-08-03T21:29:53.601+09:00  INFO 67221 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-08-03T21:29:53.617+09:00  WARN 67221 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-08-03T21:29:54.118+09:00  INFO 67221 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-08-03T21:29:54.126+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists category cascade 
+2025-08-03T21:29:54.128+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194128 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists category cascade 
+
+    drop table if exists category cascade ;
+2025-08-03T21:29:54.129+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists comment cascade 
+2025-08-03T21:29:54.129+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194129 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists comment cascade 
+
+    drop table if exists comment cascade ;
+2025-08-03T21:29:54.129+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists follow cascade 
+2025-08-03T21:29:54.129+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194129 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists follow cascade 
+
+    drop table if exists follow cascade ;
+2025-08-03T21:29:54.129+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists member cascade 
+2025-08-03T21:29:54.130+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194130 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists member cascade 
+
+    drop table if exists member cascade ;
+2025-08-03T21:29:54.130+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists todo cascade 
+2025-08-03T21:29:54.130+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194130 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists todo cascade 
+
+    drop table if exists todo cascade ;
+2025-08-03T21:29:54.130+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists todo_image cascade 
+2025-08-03T21:29:54.130+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194130 | took 0ms | statement | connection 1| url jdbc:h2:mem:test
+
+    drop table if exists todo_image cascade 
+
+    drop table if exists todo_image cascade ;
+2025-08-03T21:29:54.134+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+2025-08-03T21:29:54.137+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194137 | took 3ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    );
+2025-08-03T21:29:54.138+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    )
+2025-08-03T21:29:54.139+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194139 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    )
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    );
+2025-08-03T21:29:54.140+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    )
+2025-08-03T21:29:54.141+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194141 | took 1ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    )
+
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint,
+        following_id bigint,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    );
+2025-08-03T21:29:54.142+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+2025-08-03T21:29:54.148+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194148 | took 5ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    );
+2025-08-03T21:29:54.149+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        title varchar(255) not null,
+        primary key (todo_id)
+    )
+2025-08-03T21:29:54.150+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194150 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        title varchar(255) not null,
+        primary key (todo_id)
+    )
+
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        description varchar(255) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        title varchar(255) not null,
+        primary key (todo_id)
+    );
+2025-08-03T21:29:54.150+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    )
+2025-08-03T21:29:54.151+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194151 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    )
+
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    );
+2025-08-03T21:29:54.151+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_member_id 
+       on comment (member_id)
+2025-08-03T21:29:54.152+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194152 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_comment_member_id 
+       on comment (member_id)
+
+    create index idx_comment_member_id 
+       on comment (member_id);
+2025-08-03T21:29:54.152+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_todo_id 
+       on comment (todo_id)
+2025-08-03T21:29:54.153+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194153 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_comment_todo_id 
+       on comment (todo_id)
+
+    create index idx_comment_todo_id 
+       on comment (todo_id);
+2025-08-03T21:29:54.153+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_created_at 
+       on comment (created_at)
+2025-08-03T21:29:54.153+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194153 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_comment_created_at 
+       on comment (created_at)
+
+    create index idx_comment_created_at 
+       on comment (created_at);
+2025-08-03T21:29:54.153+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_follow_follower_id 
+       on follow (follower_id)
+2025-08-03T21:29:54.154+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194154 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_follow_follower_id 
+       on follow (follower_id)
+
+    create index idx_follow_follower_id 
+       on follow (follower_id);
+2025-08-03T21:29:54.154+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_follow_following_id 
+       on follow (following_id)
+2025-08-03T21:29:54.154+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194154 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_follow_following_id 
+       on follow (following_id)
+
+    create index idx_follow_following_id 
+       on follow (following_id);
+2025-08-03T21:29:54.155+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_follow_created_at 
+       on follow (created_at)
+2025-08-03T21:29:54.155+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194155 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_follow_created_at 
+       on follow (created_at)
+
+    create index idx_follow_created_at 
+       on follow (created_at);
+2025-08-03T21:29:54.156+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_member_nickname 
+       on member (nickname)
+2025-08-03T21:29:54.156+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194156 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_member_nickname 
+       on member (nickname)
+
+    create index idx_member_nickname 
+       on member (nickname);
+2025-08-03T21:29:54.156+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_member_created_at 
+       on member (created_at)
+2025-08-03T21:29:54.158+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194158 | took 1ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_member_created_at 
+       on member (created_at)
+
+    create index idx_member_created_at 
+       on member (created_at);
+2025-08-03T21:29:54.158+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_member_id 
+       on todo (member_id)
+2025-08-03T21:29:54.158+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194158 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_todo_member_id 
+       on todo (member_id)
+
+    create index idx_todo_member_id 
+       on todo (member_id);
+2025-08-03T21:29:54.158+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_category_id 
+       on todo (category_id)
+2025-08-03T21:29:54.159+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194159 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_todo_category_id 
+       on todo (category_id)
+
+    create index idx_todo_category_id 
+       on todo (category_id);
+2025-08-03T21:29:54.159+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_completed 
+       on todo (is_completed)
+2025-08-03T21:29:54.159+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194159 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_todo_completed 
+       on todo (is_completed)
+
+    create index idx_todo_completed 
+       on todo (is_completed);
+2025-08-03T21:29:54.159+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_public 
+       on todo (is_public)
+2025-08-03T21:29:54.159+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194159 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_todo_public 
+       on todo (is_public)
+
+    create index idx_todo_public 
+       on todo (is_public);
+2025-08-03T21:29:54.159+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_created_at 
+       on todo (created_at)
+2025-08-03T21:29:54.160+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194160 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    create index idx_todo_created_at 
+       on todo (created_at)
+
+    create index idx_todo_created_at 
+       on todo (created_at);
+2025-08-03T21:29:54.160+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+2025-08-03T21:29:54.164+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194164 | took 4ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member;
+2025-08-03T21:29:54.164+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+2025-08-03T21:29:54.165+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194165 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo;
+2025-08-03T21:29:54.165+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+2025-08-03T21:29:54.166+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194166 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member;
+2025-08-03T21:29:54.166+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+2025-08-03T21:29:54.167+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194167 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member;
+2025-08-03T21:29:54.167+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+2025-08-03T21:29:54.168+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194168 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category;
+2025-08-03T21:29:54.168+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+2025-08-03T21:29:54.169+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194169 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member;
+2025-08-03T21:29:54.170+09:00 DEBUG 67221 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+2025-08-03T21:29:54.171+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194171 | took 0ms | statement | connection 2| url jdbc:h2:mem:test
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo;
+2025-08-03T21:29:54.173+09:00  INFO 67221 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-08-03T21:29:54.411+09:00  WARN 67221 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-08-03T21:29:54.425+09:00  WARN 67221 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: fc30c748-b5d1-4ce1-ae40-20247fa3fe0d
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-08-03T21:29:54.677+09:00  INFO 67221 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@11bac6d7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@48ebcce5, org.springframework.security.web.context.SecurityContextHolderFilter@792b0cad, org.springframework.security.web.header.HeaderWriterFilter@69173bb7, org.springframework.security.web.authentication.logout.LogoutFilter@14d5b2ac, com.ruha.jwt.JwtAuthenticationFilter@43945480, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1d5e0621, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2b8106fa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4c29138a, org.springframework.security.web.session.SessionManagementFilter@7fec354, org.springframework.security.web.access.ExceptionTranslationFilter@eaa901a, org.springframework.security.web.access.intercept.AuthorizationFilter@18482805]
+2025-08-03T21:29:54.912+09:00  INFO 67221 --- [    Test worker] com.ruha.service.FollowServiceTest       : Started FollowServiceTest in 3.17 seconds (process running for 3.771)
+2025-08-03T21:29:54.951+09:00  INFO 67221 --- [    Test worker] p6spy                                    : #1754224194951 | took 0ms | rollback | connection 3| url jdbc:h2:mem:test
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,6 +1,5 @@
 package com.ruha.service;
 
-import com.ruha.dto.follow.FollowCountResponse;
 import com.ruha.dto.follow.FollowResponse;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
@@ -41,8 +40,23 @@ public class FollowService {
         Member currentMember = getCurrentAuthenticatedMember();
         Member targetMember = getMemberById(targetMemberId);
         
-        // Member 엔티티의 비즈니스 메서드 활용
-        currentMember.follow(targetMember);
+        // 자기 자신 팔로우 검증
+        if (targetMember.equals(currentMember)) {
+            throw new SelfFollowNotAllowedException();
+        }
+        
+        // 중복 팔로우 검증 (DB 기반)
+        if (followRepository.existsByFollowerAndFollowing(currentMember, targetMember)) {
+            throw new DuplicateFollowException();
+        }
+        
+        // Follow 엔티티 생성 및 저장
+        Follow follow = Follow.builder()
+                .follower(currentMember)
+                .following(targetMember)
+                .build();
+        
+        followRepository.save(follow);
     }
 
     /**
@@ -57,8 +71,11 @@ public class FollowService {
         Member currentMember = getCurrentAuthenticatedMember();
         Member targetMember = getMemberById(targetMemberId);
         
-        // Member 엔티티의 비즈니스 메서드 활용
-        currentMember.unfollow(targetMember);
+        // 팔로우 관계 조회 및 삭제
+        Follow follow = followRepository.findByFollowerAndFollowing(currentMember, targetMember)
+                .orElseThrow(FollowNotFoundException::new);
+        
+        followRepository.delete(follow);
     }
 
     /**
@@ -130,21 +147,6 @@ public class FollowService {
         return followers.stream()
                 .map(FollowResponse::of)
                 .collect(Collectors.toList());
-    }
-
-    /**
-     * 팔로잉/팔로워 수 조회
-     *
-     * @param memberId 조회할 회원 ID
-     * @return 팔로잉 수와 팔로워 수
-     */
-    public FollowCountResponse getFollowCount(Long memberId) {
-        Member member = getMemberById(memberId);
-        
-        long followingCount = followRepository.countByFollower(member);
-        long followerCount = followRepository.countByFollowing(member);
-        
-        return new FollowCountResponse(followingCount, followerCount);
     }
 
     /**
