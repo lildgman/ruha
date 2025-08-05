@@ -3,7 +3,6 @@ package com.ruha.service;
 import com.ruha.dto.follow.FollowResponse;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
-import com.ruha.exception.auth.UnauthorizedException;
 import com.ruha.exception.follow.DuplicateFollowException;
 import com.ruha.exception.follow.SelfFollowNotAllowedException;
 import com.ruha.exception.member.MemberNotFoundException;

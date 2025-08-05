@@ -8,11 +8,14 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class CreateTodoRequest {
+public class CreateTodoWithImagesRequest {
 
     @NotBlank(message = "제목은 필수 입력 값입니다.")
     @Size(max = 50, message = "제목은 50자 이하로 입력해주세요.")
@@ -31,4 +34,13 @@ public class CreateTodoRequest {
     @NotNull(message = "카테고리 ID는 필수 입력 값입니다.")
     private Long categoryId;
 
+    // 이미지 파일들 (선택사항)
+    private List<MultipartFile> images;
+
+    /**
+     * 기본 Todo 정보만 CreateTodoRequest로 변환
+     */
+    public CreateTodoRequest toCreateTodoRequest() {
+        return new CreateTodoRequest(title, description, importance, isPublic, categoryId);
+    }
 }

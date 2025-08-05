@@ -1,6 +1,7 @@
 package com.ruha.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -26,10 +27,12 @@ public class Todo extends BaseTimeEntity {
     @EqualsAndHashCode.Include
     private Long todoId;
 
-    @Column(nullable = false)
+    @Size(max = 50)
+    @Column(nullable = false, length = 50)
     private String title;
 
-    @Column(nullable = false)
+    @Size(max = 500)
+    @Column(nullable = false, length = 500)
     private String description;
 
     @Column(nullable = false)

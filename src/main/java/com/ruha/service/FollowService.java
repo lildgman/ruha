@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -99,10 +100,13 @@ public class FollowService {
     public List<FollowResponse> getFollowings() {
         Member currentMember = getCurrentAuthenticatedMember();
         List<Follow> followings = followRepository.findByFollower(currentMember);
-        
-        return followings.stream()
-                .map(FollowResponse::of)
-                .collect(Collectors.toList());
+
+        List<FollowResponse> list = new ArrayList<>();
+        for (Follow following : followings) {
+            FollowResponse followResponse = FollowResponse.of(following);
+            list.add(followResponse);
+        }
+        return list;
     }
 
     /**
