@@ -25,7 +25,7 @@ public class MemberResponse {
     private final double todoCompletionRate;
 
 
-    public static MemberResponse of(Member member, long followerCount, long followingCount, long commentCount, long totalTodoCount, long completedTodoCount) {
+    public static MemberResponse from(Member member, long followerCount, long followingCount, long commentCount, long totalTodoCount, long completedTodoCount) {
         double todoCompletionRate = (totalTodoCount == 0) ? 0 : (double) completedTodoCount / totalTodoCount;
         return MemberResponse.builder()
                 .memberId(member.getMemberId())

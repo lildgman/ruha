@@ -19,7 +19,7 @@ public class MemberSummaryResponse {
     private final LocalDateTime createdAt;
     private final boolean isFollowing;
 
-    public static MemberSummaryResponse of(Member member, boolean isFollowing) {
+    public static MemberSummaryResponse from(Member member, boolean isFollowing) {
 
         return MemberSummaryResponse.builder()
                 .memberId(member.getMemberId())
@@ -30,9 +30,9 @@ public class MemberSummaryResponse {
                 .build();
     }
 
-    public static MemberSummaryResponse of(Member member) {
+    public static MemberSummaryResponse from(Member member) {
 
-        return of(member, false);
+        return from(member, false);
     }
 
 

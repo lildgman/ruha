@@ -54,7 +54,7 @@ public class MemberService {
 
         Member savedMember = memberRepository.save(member);
 
-        return MemberResponse.of(savedMember, 0, 0, 0, 0, 0);
+        return MemberResponse.from(savedMember, 0, 0, 0, 0, 0);
 
     }
 
@@ -92,7 +92,7 @@ public class MemberService {
         long totalTodoCount = todoRepository.countByMember(member);
         long completedTodoCount = todoRepository.countByMemberAndIsCompleted(member, true);
 
-        return MemberResponse.of(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
+        return MemberResponse.from(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
     }
 
     /**

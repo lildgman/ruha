@@ -22,7 +22,7 @@ public class FollowResponse {
     private final String followingName;
     private final LocalDateTime createdAt;
 
-    public static FollowResponse of(Follow follow) {
+    public static FollowResponse from(Follow follow) {
         return FollowResponse.builder()
                 .followId(follow.getFollowId())
                 .followerId(follow.getFollower().getMemberId())

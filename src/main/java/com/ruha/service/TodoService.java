@@ -44,14 +44,14 @@ public class TodoService {
      */
     @Transactional
     public CreateTodoResponse createTodo(CreateTodoRequest request, List<MultipartFile> images) {
-        // 1. 현재 인증된 회원 조회
+        // jwt 인증 회원 조회
         Member member = getCurrentAuthenticatedMember();
         
-        // 2. 카테고리 존재 여부 확인
+        // 카테고리 조회
         Category category = categoryRepository.findById(request.getCategoryId())
                 .orElseThrow(CategoryNotFoundException::new);
         
-        // 3. 투두 엔티티 생성
+        // 투두 엔티티 생성
         Todo todo = Todo.builder()
                 .title(request.getTitle())
                 .description(request.getDescription())
@@ -61,14 +61,14 @@ public class TodoService {
                 .category(category)
                 .build();
         
-        // 4. 연관관계 설정
+        // 연관관계 설정
         member.addTodo(todo);
         category.addTodo(todo);
         
-        // 5. 투두 저장
+        // 투두 저장
         Todo savedTodo = todoRepository.save(todo);
         
-        // 6. 이미지 처리 (있을 때만)
+        // 이미지가 존재한다면
         List<TodoImage> todoImages = processImages(images, savedTodo);
         
         // 7. 응답 DTO 생성
@@ -79,7 +79,7 @@ public class TodoService {
      * 이미지 파일들을 처리하고 TodoImage 엔티티를 생성합니다.
      *
      * @param images 업로드된 이미지 파일들
-     * @param savedTodo 저장된 Todo 엔티티
+     * @param savedTodo 저장된 투두 엔티티
      * @return 생성된 TodoImage 엔티티 리스트
      */
     private List<TodoImage> processImages(List<MultipartFile> images, Todo savedTodo) {
@@ -106,7 +106,8 @@ public class TodoService {
                         .filePath(savedFilePath)
                         .todo(savedTodo)
                         .build();
-                
+
+                // 연관관계 설정
                 savedTodo.addTodoImage(todoImage);
                 todoImages.add(todoImage);
             }

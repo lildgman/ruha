@@ -31,13 +31,14 @@ public class FollowService {
      * 팔로우 하기
      *
      * @param targetMemberId 팔로우할 회원 ID
+     * @return 생성된 팔로우 정보
      * @throws UnauthorizedException 인증되지 않은 경우 발생
      * @throws MemberNotFoundException 대상 회원을 찾을 수 없는 경우 발생
      * @throws SelfFollowNotAllowedException 자기 자신을 팔로우하려는 경우 발생
      * @throws DuplicateFollowException 이미 팔로우한 회원인 경우 발생
      */
     @Transactional
-    public void follow(Long targetMemberId) {
+    public FollowResponse follow(Long targetMemberId) {
         Member currentMember = getCurrentAuthenticatedMember();
         Member targetMember = getMemberById(targetMemberId);
         
@@ -57,7 +58,9 @@ public class FollowService {
                 .following(targetMember)
                 .build();
         
-        followRepository.save(follow);
+        Follow savedFollow = followRepository.save(follow);
+        
+        return FollowResponse.from(savedFollow);
     }
 
     /**
@@ -103,7 +106,7 @@ public class FollowService {
 
         List<FollowResponse> list = new ArrayList<>();
         for (Follow following : followings) {
-            FollowResponse followResponse = FollowResponse.of(following);
+            FollowResponse followResponse = FollowResponse.from(following);
             list.add(followResponse);
         }
         return list;
@@ -119,7 +122,7 @@ public class FollowService {
         List<Follow> followers = followRepository.findByFollowing(currentMember);
         
         return followers.stream()
-                .map(FollowResponse::of)
+                .map(FollowResponse::from)
                 .collect(Collectors.toList());
     }
 
@@ -134,7 +137,7 @@ public class FollowService {
         List<Follow> followings = followRepository.findByFollower(member);
         
         return followings.stream()
-                .map(FollowResponse::of)
+                .map(FollowResponse::from)
                 .collect(Collectors.toList());
     }
 
@@ -149,7 +152,7 @@ public class FollowService {
         List<Follow> followers = followRepository.findByFollowing(member);
         
         return followers.stream()
-                .map(FollowResponse::of)
+                .map(FollowResponse::from)
                 .collect(Collectors.toList());
     }
 

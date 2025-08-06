@@ -28,7 +28,7 @@ public class FileService {
      * @throws FileSaveException 파일 저장 실패 시
      */
     public String saveFile(MultipartFile file, String subPath) {
-        // 1. 원본 파일명에서 확장자 추출
+        // 확장자 추출
         String originalFileName = file.getOriginalFilename();
         if (originalFileName == null || originalFileName.isEmpty()) {
             throw new InvalidFileNameException();
@@ -40,14 +40,14 @@ public class FileService {
             extension = originalFileName.substring(lastDotIndex);
         }
 
-        // 2. 고유한 파일명 생성
+        // 파일명 생성
         String fileName = UUID.randomUUID().toString() + extension;
 
-        // 3. 저장 경로 생성
+        // 저장 경로 생성
         String fullPath = uploadBasePath + subPath + "/";
         File directory = new File(fullPath);
 
-        // 4. 디렉토리가 없으면 생성
+        // 디렉토리가 없으면 생성
         if (!directory.exists()) {
             boolean created = directory.mkdirs();
             if (!created) {
