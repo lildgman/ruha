@@ -92,12 +92,7 @@ public class TodoService {
         
         for (MultipartFile image : images) {
             if (!image.isEmpty()) {
-                // 이미지 파일인지 확인
-                if (!fileService.isImageFile(image.getOriginalFilename())) {
-                    throw new InvalidFileTypeException();
-                }
-                
-                // 파일 저장
+                // 파일 저장 (FileService에서 이미지 파일 검증 수행)
                 String savedFilePath = fileService.saveFile(image, "todos/" + savedTodo.getTodoId());
                 
                 // TodoImage 엔티티 생성

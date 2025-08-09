@@ -2,6 +2,7 @@ package com.ruha.service;
 
 import com.ruha.exception.file.FileSaveException;
 import com.ruha.exception.file.InvalidFileNameException;
+import com.ruha.exception.file.InvalidFileTypeException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,21 +20,28 @@ public class FileService {
     private String uploadBasePath;
 
     /**
-     * 파일을 프로젝트 내 지정된 경로에 저장합니다.
+     * 이미지 파일을 프로젝트 내 지정된 경로에 저장합니다.
      *
      * @param file 저장할 파일
      * @param subPath 하위 경로 (예: "todos/1")
      * @return 저장된 파일의 웹 접근 경로
      * @throws InvalidFileNameException 파일명이 유효하지 않은 경우
+     * @throws InvalidFileTypeException 이미지 파일이 아닌 경우
      * @throws FileSaveException 파일 저장 실패 시
      */
     public String saveFile(MultipartFile file, String subPath) {
-        // 확장자 추출
+        // 파일명 검증
         String originalFileName = file.getOriginalFilename();
         if (originalFileName == null || originalFileName.isEmpty()) {
             throw new InvalidFileNameException();
         }
+        
+        // 이미지 파일 검증
+        if (!isImageFile(originalFileName)) {
+            throw new InvalidFileTypeException();
+        }
 
+        // 확장자 추출
         String extension = "";
         int lastDotIndex = originalFileName.lastIndexOf(".");
         if (lastDotIndex > 0) {
@@ -106,7 +114,7 @@ public class FileService {
      * @param fileName 파일명
      * @return 이미지 여부
      */
-    public boolean isImageFile(String fileName) {
+    private boolean isImageFile(String fileName) {
         if (fileName == null || fileName.isEmpty()) {
             return false;
         }
