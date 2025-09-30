@@ -22,7 +22,7 @@ logging.level:
   org.hibernate.SQL: debug
 
 jwt:
-  secret-key: VmFsdWVCdWdHZXR0ZXJzQW5kU2V0dGVycw==
+  secret-key: VmFsdWVCdWdHZXR0ZXJzQW5kU2V0dGVyc1ZhbHVlQnVnR2V0dGVyc0FuZFNldHRlcnM=
   expiration-time: 3600000
 
 file:

@@ -9,11 +9,6 @@ import java.time.LocalDateTime;
 @Table(
     uniqueConstraints = {
         @UniqueConstraint(name = "UniqueFollowerAndFollowing", columnNames = {"follower_id", "following_id"})
-    },
-    indexes = {
-        @Index(name = "idx_follow_follower_id", columnList = "follower_id"),
-        @Index(name = "idx_follow_following_id", columnList = "following_id"),
-        @Index(name = "idx_follow_created_at", columnList = "createdAt")
     }
 )
 @Getter
@@ -29,11 +24,11 @@ public class Follow extends BaseCreatedAtEntity {
     private Long followId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "follower_id")
+    @JoinColumn(name = "follower_id", nullable = false)
     private Member follower;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "following_id")
+    @JoinColumn(name = "following_id", nullable = false)
     private Member following;
 
 }

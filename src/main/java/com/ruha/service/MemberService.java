@@ -103,9 +103,11 @@ public class MemberService {
      * @throws MemberNotFoundException 회원을 찾을 수 없을 경우 발생
      */
     @Transactional
-    public void updateName(UpdateMemberRequest request) {
+    public MemberResponse updateName(UpdateMemberRequest request) {
         Member member = getCurrentAuthenticatedMember();
         member.updateName(request.getName());
+
+        return getCurrentMemberInfo();
     }
 
     /**
@@ -117,10 +119,12 @@ public class MemberService {
      * @throws PasswordMismatchException 현재 비밀번호가 일치하지 않을 경우 발생
      */
     @Transactional
-    public void updatePassword(PasswordChangeRequest request) {
+    public MemberResponse updatePassword(PasswordChangeRequest request) {
         Member member = getCurrentAuthenticatedMember();
         validatePassword(request.getCurrentPassword(), member.getPassword());
         member.updatePassword(passwordEncoder.encode(request.getNewPassword()));
+
+        return getCurrentMemberInfo();
     }
 
     /**

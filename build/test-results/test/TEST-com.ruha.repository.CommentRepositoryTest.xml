@@ -1,0 +1,2148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ruha.repository.CommentRepositoryTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2025-09-30T02:03:48" hostname="ODGui-MacBookAir.local" time="0.425">
+  <properties/>
+  <testcase name="특정 TODO의 댓글 목록 조회" classname="com.ruha.repository.CommentRepositoryTest" time="0.085"/>
+  <testcase name="댓글이 없는 Todo의 댓글 목록은 빈 리스트" classname="com.ruha.repository.CommentRepositoryTest" time="0.01"/>
+  <testcase name="특정 Member가 작성한 댓글 목록 조회" classname="com.ruha.repository.CommentRepositoryTest" time="0.014"/>
+  <testcase name="댓글이 없는 회원의 댓글 수는 0" classname="com.ruha.repository.CommentRepositoryTest" time="0.012"/>
+  <testcase name="댓글 저장 시 생성시간, 수정시간 설정" classname="com.ruha.repository.CommentRepositoryTest" time="0.009"/>
+  <testcase name="탈퇴한 회원의 댓글도 삭제" classname="com.ruha.repository.CommentRepositoryTest" time="0.015"/>
+  <testcase name="댓글 삭제" classname="com.ruha.repository.CommentRepositoryTest" time="0.007"/>
+  <testcase name="댓글 수정" classname="com.ruha.repository.CommentRepositoryTest" time="0.014"/>
+  <testcase name="댓글 저장" classname="com.ruha.repository.CommentRepositoryTest" time="0.007"/>
+  <testcase name="댓글 조회" classname="com.ruha.repository.CommentRepositoryTest" time="0.008"/>
+  <testcase name="특정 회원이 작성한 댓글 수 조회" classname="com.ruha.repository.CommentRepositoryTest" time="0.012"/>
+  <testcase name="댓글 수정 시 수정시간 업데이트" classname="com.ruha.repository.CommentRepositoryTest" time="0.11"/>
+  <testcase name="댓글 목록이 생성시간 순으로 정렬" classname="com.ruha.repository.CommentRepositoryTest" time="0.116"/>
+  <system-out><![CDATA[2025-09-30T11:03:48.570+09:00  INFO 27599 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.repository.CommentRepositoryTest]: CommentRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-30T11:03:48.586+09:00  INFO 27599 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.CommentRepositoryTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.9)
+
+2025-09-30T11:03:48.598+09:00  INFO 27599 --- [    Test worker] c.ruha.repository.CommentRepositoryTest  : Starting CommentRepositoryTest using Java 17.0.13 with PID 27599 (started by odgman in /Users/odgman/Desktop/workspace/ruha)
+2025-09-30T11:03:48.598+09:00  INFO 27599 --- [    Test worker] c.ruha.repository.CommentRepositoryTest  : No active profile set, falling back to 1 default profile: "default"
+2025-09-30T11:03:48.644+09:00  INFO 27599 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-30T11:03:48.654+09:00  INFO 27599 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 6 JPA repository interfaces.
+2025-09-30T11:03:48.660+09:00  INFO 27599 --- [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2025-09-30T11:03:48.675+09:00  INFO 27599 --- [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-09-30T11:03:48.680+09:00  INFO 27599 --- [    Test worker] c.g.g.b.j.d.p6spy.P6SpyConfiguration     : P6Spy modulelist is overridden, some p6spy configuration features will not be applied
+2025-09-30T11:03:48.688+09:00  INFO 27599 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-30T11:03:48.689+09:00  INFO 27599 --- [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-30T11:03:48.691+09:00  INFO 27599 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-30T11:03:48.692+09:00  WARN 27599 --- [    Test worker] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-30T11:03:48.751+09:00  INFO 27599 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-30T11:03:48.751+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists category cascade 
+Hibernate: 
+    drop table if exists category cascade 
+2025-09-30T11:03:48.752+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828752 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists category cascade 
+
+    drop table if exists category cascade ;
+2025-09-30T11:03:48.752+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists comment cascade 
+Hibernate: 
+    drop table if exists comment cascade 
+2025-09-30T11:03:48.752+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828752 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists comment cascade 
+
+    drop table if exists comment cascade ;
+2025-09-30T11:03:48.752+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists follow cascade 
+Hibernate: 
+    drop table if exists follow cascade 
+2025-09-30T11:03:48.752+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828752 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists follow cascade 
+
+    drop table if exists follow cascade ;
+2025-09-30T11:03:48.752+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists member cascade 
+Hibernate: 
+    drop table if exists member cascade 
+2025-09-30T11:03:48.752+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828752 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists member cascade 
+
+    drop table if exists member cascade ;
+2025-09-30T11:03:48.752+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists todo cascade 
+Hibernate: 
+    drop table if exists todo cascade 
+2025-09-30T11:03:48.752+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828752 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists todo cascade 
+
+    drop table if exists todo cascade ;
+2025-09-30T11:03:48.752+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    drop table if exists todo_image cascade 
+Hibernate: 
+    drop table if exists todo_image cascade 
+2025-09-30T11:03:48.753+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828753 | took 0ms | statement | connection 6| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    drop table if exists todo_image cascade 
+
+    drop table if exists todo_image cascade ;
+2025-09-30T11:03:48.753+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+Hibernate: 
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+2025-09-30T11:03:48.753+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828753 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    )
+
+    create table category (
+        category_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        name varchar(255) not null,
+        primary key (category_id)
+    );
+2025-09-30T11:03:48.754+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    )
+Hibernate: 
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    )
+2025-09-30T11:03:48.754+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828754 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    )
+
+    create table comment (
+        comment_id bigint generated by default as identity,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint not null,
+        updated_at timestamp(6),
+        content varchar(255) not null,
+        primary key (comment_id)
+    );
+2025-09-30T11:03:48.754+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint not null,
+        following_id bigint not null,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    )
+Hibernate: 
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint not null,
+        following_id bigint not null,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    )
+2025-09-30T11:03:48.755+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828755 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint not null,
+        following_id bigint not null,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    )
+
+    create table follow (
+        created_at timestamp(6) not null,
+        follow_id bigint generated by default as identity,
+        follower_id bigint not null,
+        following_id bigint not null,
+        primary key (follow_id),
+        constraint UniqueFollowerAndFollowing unique (follower_id, following_id)
+    );
+2025-09-30T11:03:48.755+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+Hibernate: 
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+2025-09-30T11:03:48.756+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828756 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    )
+
+    create table member (
+        is_deleted boolean not null,
+        created_at timestamp(6) not null,
+        deleted_at timestamp(6),
+        member_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        name varchar(12) not null,
+        nickname varchar(15) not null unique,
+        password varchar(255) not null,
+        role_type varchar(255) not null check (role_type in ('ADMIN','NORMAL')),
+        primary key (member_id)
+    );
+2025-09-30T11:03:48.756+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        title varchar(50) not null,
+        description varchar(500) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        primary key (todo_id)
+    )
+Hibernate: 
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        title varchar(50) not null,
+        description varchar(500) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        primary key (todo_id)
+    )
+2025-09-30T11:03:48.757+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828757 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        title varchar(50) not null,
+        description varchar(500) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        primary key (todo_id)
+    )
+
+    create table todo (
+        is_completed boolean not null,
+        is_public boolean not null,
+        category_id bigint not null,
+        created_at timestamp(6) not null,
+        member_id bigint not null,
+        todo_id bigint generated by default as identity,
+        updated_at timestamp(6),
+        title varchar(50) not null,
+        description varchar(500) not null,
+        importance varchar(255) not null check (importance in ('HIGH','MIDDLE','LOW')),
+        primary key (todo_id)
+    );
+2025-09-30T11:03:48.757+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    )
+Hibernate: 
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    )
+2025-09-30T11:03:48.757+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828757 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    )
+
+    create table todo_image (
+        created_at timestamp(6) not null,
+        todo_id bigint not null,
+        todo_image_id bigint generated by default as identity,
+        file_name varchar(255) not null,
+        file_path varchar(255) not null,
+        primary key (todo_image_id)
+    );
+2025-09-30T11:03:48.757+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_member_id 
+       on comment (member_id)
+Hibernate: 
+    create index idx_comment_member_id 
+       on comment (member_id)
+2025-09-30T11:03:48.758+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828758 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_comment_member_id 
+       on comment (member_id)
+
+    create index idx_comment_member_id 
+       on comment (member_id);
+2025-09-30T11:03:48.758+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_todo_id 
+       on comment (todo_id)
+Hibernate: 
+    create index idx_comment_todo_id 
+       on comment (todo_id)
+2025-09-30T11:03:48.758+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828758 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_comment_todo_id 
+       on comment (todo_id)
+
+    create index idx_comment_todo_id 
+       on comment (todo_id);
+2025-09-30T11:03:48.758+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_comment_created_at 
+       on comment (created_at)
+Hibernate: 
+    create index idx_comment_created_at 
+       on comment (created_at)
+2025-09-30T11:03:48.758+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828758 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_comment_created_at 
+       on comment (created_at)
+
+    create index idx_comment_created_at 
+       on comment (created_at);
+2025-09-30T11:03:48.758+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_member_nickname 
+       on member (nickname)
+Hibernate: 
+    create index idx_member_nickname 
+       on member (nickname)
+2025-09-30T11:03:48.758+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828758 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_member_nickname 
+       on member (nickname)
+
+    create index idx_member_nickname 
+       on member (nickname);
+2025-09-30T11:03:48.758+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_member_created_at 
+       on member (created_at)
+Hibernate: 
+    create index idx_member_created_at 
+       on member (created_at)
+2025-09-30T11:03:48.759+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828759 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_member_created_at 
+       on member (created_at)
+
+    create index idx_member_created_at 
+       on member (created_at);
+2025-09-30T11:03:48.759+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_member_id 
+       on todo (member_id)
+Hibernate: 
+    create index idx_todo_member_id 
+       on todo (member_id)
+2025-09-30T11:03:48.759+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828759 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_todo_member_id 
+       on todo (member_id)
+
+    create index idx_todo_member_id 
+       on todo (member_id);
+2025-09-30T11:03:48.759+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_category_id 
+       on todo (category_id)
+Hibernate: 
+    create index idx_todo_category_id 
+       on todo (category_id)
+2025-09-30T11:03:48.759+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828759 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_todo_category_id 
+       on todo (category_id)
+
+    create index idx_todo_category_id 
+       on todo (category_id);
+2025-09-30T11:03:48.759+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_completed 
+       on todo (is_completed)
+Hibernate: 
+    create index idx_todo_completed 
+       on todo (is_completed)
+2025-09-30T11:03:48.759+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828759 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_todo_completed 
+       on todo (is_completed)
+
+    create index idx_todo_completed 
+       on todo (is_completed);
+2025-09-30T11:03:48.759+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_public 
+       on todo (is_public)
+Hibernate: 
+    create index idx_todo_public 
+       on todo (is_public)
+2025-09-30T11:03:48.760+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828760 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_todo_public 
+       on todo (is_public)
+
+    create index idx_todo_public 
+       on todo (is_public);
+2025-09-30T11:03:48.760+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    create index idx_todo_created_at 
+       on todo (created_at)
+Hibernate: 
+    create index idx_todo_created_at 
+       on todo (created_at)
+2025-09-30T11:03:48.760+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828760 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    create index idx_todo_created_at 
+       on todo (created_at)
+
+    create index idx_todo_created_at 
+       on todo (created_at);
+2025-09-30T11:03:48.760+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+2025-09-30T11:03:48.760+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828760 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists comment 
+       add constraint FKmrrrpi513ssu63i2783jyiv9m 
+       foreign key (member_id) 
+       references member;
+2025-09-30T11:03:48.761+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+Hibernate: 
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+2025-09-30T11:03:48.761+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828761 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists comment 
+       add constraint FKj60kiatr37jebhtjaju6d5nv2 
+       foreign key (todo_id) 
+       references todo;
+2025-09-30T11:03:48.761+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+Hibernate: 
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+2025-09-30T11:03:48.762+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828762 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKtps7gpodlrhxlji90u6r3mlng 
+       foreign key (follower_id) 
+       references member;
+2025-09-30T11:03:48.762+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+Hibernate: 
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+2025-09-30T11:03:48.762+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828762 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member
+
+    alter table if exists follow 
+       add constraint FKkcoemc64xrm83cdmhyaphcuiu 
+       foreign key (following_id) 
+       references member;
+2025-09-30T11:03:48.762+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+Hibernate: 
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+2025-09-30T11:03:48.763+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828763 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category
+
+    alter table if exists todo 
+       add constraint FKeh6uro943emclp6kr1d4wysmo 
+       foreign key (category_id) 
+       references category;
+2025-09-30T11:03:48.763+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+Hibernate: 
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+2025-09-30T11:03:48.763+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828763 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member
+
+    alter table if exists todo 
+       add constraint FK67o67f2ave0yd2pb137aoh603 
+       foreign key (member_id) 
+       references member;
+2025-09-30T11:03:48.764+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+Hibernate: 
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+2025-09-30T11:03:48.764+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828764 | took 0ms | statement | connection 7| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo
+
+    alter table if exists todo_image 
+       add constraint FKrarut5y7u4cr9swx1u0d4cfjd 
+       foreign key (todo_id) 
+       references todo;
+2025-09-30T11:03:48.764+09:00  INFO 27599 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-30T11:03:48.810+09:00  INFO 27599 --- [    Test worker] c.ruha.repository.CommentRepositoryTest  : Started CommentRepositoryTest in 0.223 seconds (process running for 3.545)
+2025-09-30T11:03:48.837+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.839+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828839 | took 1ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.826+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.826+0900',default);
+2025-09-30T11:03:48.840+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.841+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828841 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.840+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.840+0900',default);
+2025-09-30T11:03:48.843+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.843+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828843 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.842+0900','일상',default);
+2025-09-30T11:03:48.846+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.847+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828847 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (1,'2025-09-30T11:03:48.846+0900','테스트 코드 작성하기','HIGH',false,true,1,'오늘의 할 일','2025-09-30T11:03:48.846+0900',default);
+2025-09-30T11:03:48.849+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.850+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828850 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('댓글 1','2025-09-30T11:03:48.849+0900',1,1,'2025-09-30T11:03:48.849+0900',default);
+2025-09-30T11:03:48.851+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.851+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828851 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('댓글 2','2025-09-30T11:03:48.850+0900',2,1,'2025-09-30T11:03:48.850+0900',default);
+2025-09-30T11:03:48.870+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+Hibernate: 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+2025-09-30T11:03:48.871+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828871 | took 0ms | statement | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=?
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=1;
+2025-09-30T11:03:48.897+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828897 | took 0ms | rollback | connection 8| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.900+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.900+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828900 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.899+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.899+0900',default);
+2025-09-30T11:03:48.901+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.902+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828902 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.901+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.901+0900',default);
+2025-09-30T11:03:48.902+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.903+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828903 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.902+0900','일상',default);
+2025-09-30T11:03:48.903+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.903+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828903 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (2,'2025-09-30T11:03:48.903+0900','테스트 코드 작성하기','HIGH',false,true,3,'오늘의 할 일','2025-09-30T11:03:48.903+0900',default);
+2025-09-30T11:03:48.904+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.904+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828904 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.904+0900','카테고리',default);
+2025-09-30T11:03:48.905+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.905+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828905 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (3,'2025-09-30T11:03:48.905+0900','테스트','HIGH',false,true,3,'댓글 없는 투두','2025-09-30T11:03:48.905+0900',default);
+2025-09-30T11:03:48.906+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+Hibernate: 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+2025-09-30T11:03:48.907+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828907 | took 0ms | statement | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=?
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=3;
+2025-09-30T11:03:48.908+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828908 | took 0ms | rollback | connection 9| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.910+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.912+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828912 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.910+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.910+0900',default);
+2025-09-30T11:03:48.913+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.914+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828914 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.913+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.913+0900',default);
+2025-09-30T11:03:48.914+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.914+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828914 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.914+0900','일상',default);
+2025-09-30T11:03:48.915+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.916+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828916 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (4,'2025-09-30T11:03:48.915+0900','테스트 코드 작성하기','HIGH',false,true,5,'오늘의 할 일','2025-09-30T11:03:48.915+0900',default);
+2025-09-30T11:03:48.917+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.917+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828917 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('멤버1의 첫 댓글','2025-09-30T11:03:48.917+0900',5,4,'2025-09-30T11:03:48.917+0900',default);
+2025-09-30T11:03:48.918+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.918+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828918 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('멤버2의 유일한 댓글','2025-09-30T11:03:48.917+0900',6,4,'2025-09-30T11:03:48.917+0900',default);
+2025-09-30T11:03:48.918+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.919+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828919 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('멤버1의 두 번째 댓글','2025-09-30T11:03:48.918+0900',5,4,'2025-09-30T11:03:48.918+0900',default);
+2025-09-30T11:03:48.920+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+Hibernate: 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+2025-09-30T11:03:48.921+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828921 | took 0ms | statement | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.member_id=?
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.member_id=5;
+2025-09-30T11:03:48.922+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828922 | took 0ms | rollback | connection 10| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.924+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.925+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828925 | took 0ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.924+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.924+0900',default);
+2025-09-30T11:03:48.926+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.926+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828926 | took 0ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.926+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.926+0900',default);
+2025-09-30T11:03:48.926+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.927+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828927 | took 0ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.926+0900','일상',default);
+2025-09-30T11:03:48.927+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.928+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828928 | took 0ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (5,'2025-09-30T11:03:48.927+0900','테스트 코드 작성하기','HIGH',false,true,7,'오늘의 할 일','2025-09-30T11:03:48.927+0900',default);
+2025-09-30T11:03:48.928+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.929+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828929 | took 0ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.928+0900',NULL,false,'회원','nocomment','1234','NORMAL','2025-09-30T11:03:48.928+0900',default);
+2025-09-30T11:03:48.931+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        count(c1_0.comment_id) 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+Hibernate: 
+    select
+        count(c1_0.comment_id) 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+2025-09-30T11:03:48.932+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828932 | took 1ms | statement | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select count(c1_0.comment_id) from comment c1_0 where c1_0.member_id=?
+select count(c1_0.comment_id) from comment c1_0 where c1_0.member_id=9;
+2025-09-30T11:03:48.934+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828934 | took 0ms | rollback | connection 11| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.937+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.937+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828937 | took 0ms | statement | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.936+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.936+0900',default);
+2025-09-30T11:03:48.938+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.938+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828938 | took 0ms | statement | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.938+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.938+0900',default);
+2025-09-30T11:03:48.939+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.939+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828939 | took 0ms | statement | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.938+0900','일상',default);
+2025-09-30T11:03:48.939+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.940+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828940 | took 0ms | statement | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (6,'2025-09-30T11:03:48.939+0900','테스트 코드 작성하기','HIGH',false,true,10,'오늘의 할 일','2025-09-30T11:03:48.939+0900',default);
+2025-09-30T11:03:48.940+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.941+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828941 | took 0ms | statement | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('테스트','2025-09-30T11:03:48.940+0900',10,6,'2025-09-30T11:03:48.940+0900',default);
+2025-09-30T11:03:48.944+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828944 | took 0ms | rollback | connection 12| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.946+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.947+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828947 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.946+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.946+0900',default);
+2025-09-30T11:03:48.947+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.948+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828948 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.947+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.947+0900',default);
+2025-09-30T11:03:48.948+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.949+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828949 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.948+0900','일상',default);
+2025-09-30T11:03:48.949+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.949+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828949 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (7,'2025-09-30T11:03:48.949+0900','테스트 코드 작성하기','HIGH',false,true,12,'오늘의 할 일','2025-09-30T11:03:48.949+0900',default);
+2025-09-30T11:03:48.950+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.950+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828950 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.950+0900',NULL,false,'삭제테스트','deletetest','1234','NORMAL','2025-09-30T11:03:48.950+0900',default);
+2025-09-30T11:03:48.951+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.951+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828951 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.951+0900','삭제테스트카테고리',default);
+2025-09-30T11:03:48.952+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.952+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828952 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (8,'2025-09-30T11:03:48.951+0900','테스트','LOW',false,false,14,'삭제테스트 투두','2025-09-30T11:03:48.951+0900',default);
+2025-09-30T11:03:48.953+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.953+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828953 | took 0ms | statement | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('삭제될 댓글','2025-09-30T11:03:48.952+0900',14,8,'2025-09-30T11:03:48.952+0900',default);
+2025-09-30T11:03:48.959+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828959 | took 0ms | rollback | connection 13| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.961+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.961+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828961 | took 0ms | statement | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.961+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.961+0900',default);
+2025-09-30T11:03:48.962+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.963+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828963 | took 0ms | statement | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.962+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.962+0900',default);
+2025-09-30T11:03:48.963+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.963+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828963 | took 0ms | statement | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.963+0900','일상',default);
+2025-09-30T11:03:48.963+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.964+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828964 | took 0ms | statement | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (9,'2025-09-30T11:03:48.963+0900','테스트 코드 작성하기','HIGH',false,true,15,'오늘의 할 일','2025-09-30T11:03:48.963+0900',default);
+2025-09-30T11:03:48.964+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.965+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828965 | took 0ms | statement | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('삭제될 댓글','2025-09-30T11:03:48.964+0900',15,9,'2025-09-30T11:03:48.964+0900',default);
+2025-09-30T11:03:48.966+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828966 | took 0ms | rollback | connection 14| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.969+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.969+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828969 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.968+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.968+0900',default);
+2025-09-30T11:03:48.970+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.971+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828971 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.970+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.970+0900',default);
+2025-09-30T11:03:48.971+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.971+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828971 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.971+0900','일상',default);
+2025-09-30T11:03:48.972+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.972+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828972 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (10,'2025-09-30T11:03:48.971+0900','테스트 코드 작성하기','HIGH',false,true,17,'오늘의 할 일','2025-09-30T11:03:48.971+0900',default);
+2025-09-30T11:03:48.972+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.973+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828973 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('수정 전 댓글','2025-09-30T11:03:48.972+0900',17,10,'2025-09-30T11:03:48.972+0900',default);
+2025-09-30T11:03:48.977+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        comment 
+    set
+        content=?,
+        member_id=?,
+        todo_id=?,
+        updated_at=? 
+    where
+        comment_id=?
+Hibernate: 
+    update
+        comment 
+    set
+        content=?,
+        member_id=?,
+        todo_id=?,
+        updated_at=? 
+    where
+        comment_id=?
+2025-09-30T11:03:48.978+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828978 | took 0ms | statement | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+update comment set content=?,member_id=?,todo_id=?,updated_at=? where comment_id=?
+update comment set content='수정된 댓글입니다.',member_id=17,todo_id=10,updated_at='2025-09-30T11:03:48.974+0900' where comment_id=9;
+2025-09-30T11:03:48.981+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828981 | took 0ms | rollback | connection 15| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.983+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.984+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828984 | took 0ms | statement | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.983+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.983+0900',default);
+2025-09-30T11:03:48.984+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.985+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828985 | took 0ms | statement | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.984+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.984+0900',default);
+2025-09-30T11:03:48.985+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.985+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828985 | took 0ms | statement | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.985+0900','일상',default);
+2025-09-30T11:03:48.986+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.986+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828986 | took 0ms | statement | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (11,'2025-09-30T11:03:48.986+0900','테스트 코드 작성하기','HIGH',false,true,19,'오늘의 할 일','2025-09-30T11:03:48.986+0900',default);
+2025-09-30T11:03:48.987+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.987+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828987 | took 0ms | statement | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('첫 번째 댓글입니다.','2025-09-30T11:03:48.986+0900',19,11,'2025-09-30T11:03:48.986+0900',default);
+2025-09-30T11:03:48.988+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828988 | took 0ms | rollback | connection 16| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.990+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.990+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828990 | took 0ms | statement | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.989+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.989+0900',default);
+2025-09-30T11:03:48.991+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.991+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828991 | took 0ms | statement | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.991+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:48.991+0900',default);
+2025-09-30T11:03:48.991+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:48.992+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828992 | took 0ms | statement | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:48.991+0900','일상',default);
+2025-09-30T11:03:48.992+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.992+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828992 | took 0ms | statement | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (12,'2025-09-30T11:03:48.992+0900','테스트 코드 작성하기','HIGH',false,true,21,'오늘의 할 일','2025-09-30T11:03:48.992+0900',default);
+2025-09-30T11:03:48.993+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.995+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828995 | took 2ms | statement | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('댓글 조회 테스트','2025-09-30T11:03:48.993+0900',21,12,'2025-09-30T11:03:48.993+0900',default);
+2025-09-30T11:03:48.996+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828996 | took 0ms | rollback | connection 17| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:48.998+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:48.999+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197828999 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:48.998+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:48.998+0900',default);
+2025-09-30T11:03:49.003+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.004+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829004 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.003+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:49.003+0900',default);
+2025-09-30T11:03:49.004+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:49.004+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829004 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:49.004+0900','일상',default);
+2025-09-30T11:03:49.004+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.005+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829005 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (13,'2025-09-30T11:03:49.004+0900','테스트 코드 작성하기','HIGH',false,true,23,'오늘의 할 일','2025-09-30T11:03:49.004+0900',default);
+2025-09-30T11:03:49.005+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.006+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829006 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('회원1 댓글1','2025-09-30T11:03:49.005+0900',23,13,'2025-09-30T11:03:49.005+0900',default);
+2025-09-30T11:03:49.006+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.006+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829006 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('회원1 댓글2','2025-09-30T11:03:49.006+0900',23,13,'2025-09-30T11:03:49.006+0900',default);
+2025-09-30T11:03:49.007+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.007+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829007 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('회원1 댓글3','2025-09-30T11:03:49.007+0900',23,13,'2025-09-30T11:03:49.007+0900',default);
+2025-09-30T11:03:49.008+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        count(c1_0.comment_id) 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+Hibernate: 
+    select
+        count(c1_0.comment_id) 
+    from
+        comment c1_0 
+    where
+        c1_0.member_id=?
+2025-09-30T11:03:49.008+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829008 | took 0ms | statement | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select count(c1_0.comment_id) from comment c1_0 where c1_0.member_id=?
+select count(c1_0.comment_id) from comment c1_0 where c1_0.member_id=23;
+2025-09-30T11:03:49.009+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829009 | took 0ms | rollback | connection 18| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.011+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.012+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829012 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.011+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:49.011+0900',default);
+2025-09-30T11:03:49.012+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.013+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829013 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.012+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:49.012+0900',default);
+2025-09-30T11:03:49.013+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:49.013+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829013 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:49.013+0900','일상',default);
+2025-09-30T11:03:49.014+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.014+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829014 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (14,'2025-09-30T11:03:49.014+0900','테스트 코드 작성하기','HIGH',false,true,25,'오늘의 할 일','2025-09-30T11:03:49.014+0900',default);
+2025-09-30T11:03:49.015+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.015+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829015 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('before','2025-09-30T11:03:49.014+0900',25,14,'2025-09-30T11:03:49.014+0900',default);
+2025-09-30T11:03:49.117+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    update
+        comment 
+    set
+        content=?,
+        member_id=?,
+        todo_id=?,
+        updated_at=? 
+    where
+        comment_id=?
+Hibernate: 
+    update
+        comment 
+    set
+        content=?,
+        member_id=?,
+        todo_id=?,
+        updated_at=? 
+    where
+        comment_id=?
+2025-09-30T11:03:49.118+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829118 | took 0ms | statement | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+update comment set content=?,member_id=?,todo_id=?,updated_at=? where comment_id=?
+update comment set content='after',member_id=25,todo_id=14,updated_at='2025-09-30T11:03:49.117+0900' where comment_id=15;
+2025-09-30T11:03:49.121+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829121 | took 0ms | rollback | connection 19| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.123+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.123+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829123 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.123+0900',NULL,false,'user1','user1','1234','NORMAL','2025-09-30T11:03:49.123+0900',default);
+2025-09-30T11:03:49.124+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.124+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829124 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.124+0900',NULL,false,'user2','user2','1234','NORMAL','2025-09-30T11:03:49.124+0900',default);
+2025-09-30T11:03:49.125+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+Hibernate: 
+    insert 
+    into
+        category
+        (created_at, name, category_id) 
+    values
+        (?, ?, default)
+2025-09-30T11:03:49.125+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829125 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into category (created_at,name,category_id) values (?,?,default)
+insert into category (created_at,name,category_id) values ('2025-09-30T11:03:49.124+0900','일상',default);
+2025-09-30T11:03:49.125+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        todo
+        (category_id, created_at, description, importance, is_completed, is_public, member_id, title, updated_at, todo_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.125+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829125 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (?,?,?,?,?,?,?,?,?,default)
+insert into todo (category_id,created_at,description,importance,is_completed,is_public,member_id,title,updated_at,todo_id) values (15,'2025-09-30T11:03:49.125+0900','테스트 코드 작성하기','HIGH',false,true,27,'오늘의 할 일','2025-09-30T11:03:49.125+0900',default);
+2025-09-30T11:03:49.126+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.126+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829126 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('1','2025-09-30T11:03:49.126+0900',27,15,'2025-09-30T11:03:49.126+0900',default);
+2025-09-30T11:03:49.182+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.182+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829182 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('2','2025-09-30T11:03:49.181+0900',27,15,'2025-09-30T11:03:49.181+0900',default);
+2025-09-30T11:03:49.234+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        comment
+        (content, created_at, member_id, todo_id, updated_at, comment_id) 
+    values
+        (?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.235+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829235 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values (?,?,?,?,?,default)
+insert into comment (content,created_at,member_id,todo_id,updated_at,comment_id) values ('3','2025-09-30T11:03:49.234+0900',27,15,'2025-09-30T11:03:49.234+0900',default);
+2025-09-30T11:03:49.236+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+Hibernate: 
+    select
+        c1_0.comment_id,
+        c1_0.content,
+        c1_0.created_at,
+        c1_0.member_id,
+        c1_0.todo_id,
+        c1_0.updated_at 
+    from
+        comment c1_0 
+    where
+        c1_0.todo_id=?
+2025-09-30T11:03:49.236+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829236 | took 0ms | statement | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=?
+select c1_0.comment_id,c1_0.content,c1_0.created_at,c1_0.member_id,c1_0.todo_id,c1_0.updated_at from comment c1_0 where c1_0.todo_id=15;
+2025-09-30T11:03:49.237+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829237 | took 0ms | rollback | connection 20| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

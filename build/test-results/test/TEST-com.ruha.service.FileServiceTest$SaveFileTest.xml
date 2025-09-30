@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="이미지 파일 저장 테스트" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-09-30T02:03:49" hostname="ODGui-MacBookAir.local" time="0.014">
+  <properties/>
+  <testcase name="png 이미지 파일 저장 성공" classname="com.ruha.service.FileServiceTest$SaveFileTest" time="0.003"/>
+  <testcase name="파일명이 빈 문자열일 경우 예외 발생" classname="com.ruha.service.FileServiceTest$SaveFileTest" time="0.004"/>
+  <testcase name="jpg 이미지 파일 저장 성공" classname="com.ruha.service.FileServiceTest$SaveFileTest" time="0.003"/>
+  <testcase name="파일명이 null일 경우 예외 발생" classname="com.ruha.service.FileServiceTest$SaveFileTest" time="0.002"/>
+  <testcase name="이미지 파일이 아닌 경우예외 발생" classname="com.ruha.service.FileServiceTest$SaveFileTest" time="0.002"/>
+  <system-out><![CDATA[2025-09-30T11:03:49.481+09:00  INFO 27599 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.service.FileServiceTest$SaveFileTest]: SaveFileTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-30T11:03:49.482+09:00  INFO 27599 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.service.FileServiceTest$SaveFileTest
+2025-09-30T11:03:49.485+09:00  INFO 27599 --- [    Test worker] com.ruha.service.FileService             : 디렉토리가 생성되었습니다: /var/folders/24/25sqrc4x1yv2vpr5v5zwzgsc0000gn/T/junit17555057244294064629/todos/1/
+2025-09-30T11:03:49.485+09:00  INFO 27599 --- [    Test worker] com.ruha.service.FileService             : 파일이 저장되었습니다: /var/folders/24/25sqrc4x1yv2vpr5v5zwzgsc0000gn/T/junit17555057244294064629/todos/1/e1f11df6-b2cc-42ed-bd9a-dd3525687e11.png
+2025-09-30T11:03:49.492+09:00  INFO 27599 --- [    Test worker] com.ruha.service.FileService             : 디렉토리가 생성되었습니다: /var/folders/24/25sqrc4x1yv2vpr5v5zwzgsc0000gn/T/junit14256760812404141839/todos/1/
+2025-09-30T11:03:49.492+09:00  INFO 27599 --- [    Test worker] com.ruha.service.FileService             : 파일이 저장되었습니다: /var/folders/24/25sqrc4x1yv2vpr5v5zwzgsc0000gn/T/junit14256760812404141839/todos/1/d78c140d-dde5-409e-ad1d-9b0112f85599.jpg
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ruha.repository.FollowRepositoryTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-09-30T02:03:49" hostname="ODGui-MacBookAir.local" time="0.086">
+  <properties/>
+  <testcase name="팔로워 목록 조회" classname="com.ruha.repository.FollowRepositoryTest" time="0.014"/>
+  <testcase name="팔로우 조회 - 실패, 존재하지 않는 관계" classname="com.ruha.repository.FollowRepositoryTest" time="0.007"/>
+  <testcase name="팔로잉 목록 조회" classname="com.ruha.repository.FollowRepositoryTest" time="0.008"/>
+  <testcase name="팔로우 조회 - 성공" classname="com.ruha.repository.FollowRepositoryTest" time="0.016"/>
+  <testcase name="팔로우 - 성공" classname="com.ruha.repository.FollowRepositoryTest" time="0.007"/>
+  <testcase name="팔로워 목록 조회 - 결과 없음" classname="com.ruha.repository.FollowRepositoryTest" time="0.008"/>
+  <testcase name="팔로잉 목록 조회 - 결과 없음" classname="com.ruha.repository.FollowRepositoryTest" time="0.006"/>
+  <testcase name="언팔로우 - 성공" classname="com.ruha.repository.FollowRepositoryTest" time="0.009"/>
+  <testcase name="팔로우 조회 - 실패, 존재하지 않는 회원" classname="com.ruha.repository.FollowRepositoryTest" time="0.005"/>
+  <system-out><![CDATA[2025-09-30T11:03:49.238+09:00  INFO 27599 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.repository.FollowRepositoryTest]: FollowRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-09-30T11:03:49.242+09:00  INFO 27599 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.repository.FollowRepositoryTest
+2025-09-30T11:03:49.245+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.245+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829245 | took 0ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.245+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.245+0900',default);
+2025-09-30T11:03:49.246+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.247+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829247 | took 0ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.246+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.246+0900',default);
+2025-09-30T11:03:49.249+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.249+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829249 | took 0ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.248+0900',NULL,false,'test4','test4','1234','NORMAL','2025-09-30T11:03:49.248+0900',default);
+2025-09-30T11:03:49.251+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.253+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829253 | took 1ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.250+0900',29,30,default);
+2025-09-30T11:03:49.253+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.253+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829253 | took 0ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.253+0900',31,30,default);
+2025-09-30T11:03:49.255+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.following_id=?
+2025-09-30T11:03:49.255+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829255 | took 0ms | statement | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.following_id=30;
+2025-09-30T11:03:49.257+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829257 | took 0ms | rollback | connection 21| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.260+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.260+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829260 | took 0ms | statement | connection 22| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.259+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.259+0900',default);
+2025-09-30T11:03:49.261+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.261+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829261 | took 0ms | statement | connection 22| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.260+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.260+0900',default);
+2025-09-30T11:03:49.263+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+2025-09-30T11:03:49.263+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829263 | took 0ms | statement | connection 22| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=32 and f1_0.following_id=33;
+2025-09-30T11:03:49.265+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829265 | took 0ms | rollback | connection 22| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.267+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.268+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829268 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.267+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.267+0900',default);
+2025-09-30T11:03:49.268+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.269+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829269 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.268+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.268+0900',default);
+2025-09-30T11:03:49.269+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.270+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829270 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.269+0900',NULL,false,'test3','test3','1234','NORMAL','2025-09-30T11:03:49.269+0900',default);
+2025-09-30T11:03:49.270+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.270+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829270 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.270+0900',34,35,default);
+2025-09-30T11:03:49.270+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.271+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829271 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.270+0900',34,36,default);
+2025-09-30T11:03:49.272+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=?
+2025-09-30T11:03:49.272+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829272 | took 0ms | statement | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=34;
+2025-09-30T11:03:49.273+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829273 | took 0ms | rollback | connection 23| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.285+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.285+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829285 | took 0ms | statement | connection 24| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.284+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.284+0900',default);
+2025-09-30T11:03:49.286+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.287+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829287 | took 0ms | statement | connection 24| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.286+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.286+0900',default);
+2025-09-30T11:03:49.287+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.288+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829288 | took 0ms | statement | connection 24| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.287+0900',37,38,default);
+2025-09-30T11:03:49.289+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+2025-09-30T11:03:49.289+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829289 | took 0ms | statement | connection 24| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=37 and f1_0.following_id=38;
+2025-09-30T11:03:49.291+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829291 | took 0ms | rollback | connection 24| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.293+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.293+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829293 | took 0ms | statement | connection 25| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.293+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.293+0900',default);
+2025-09-30T11:03:49.294+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.295+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829295 | took 0ms | statement | connection 25| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.294+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.294+0900',default);
+2025-09-30T11:03:49.296+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.297+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829297 | took 0ms | statement | connection 25| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.296+0900',39,40,default);
+2025-09-30T11:03:49.298+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829298 | took 0ms | rollback | connection 25| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.301+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.301+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829301 | took 0ms | statement | connection 26| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.300+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.300+0900',default);
+2025-09-30T11:03:49.304+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.304+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829304 | took 0ms | statement | connection 26| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.303+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.303+0900',default);
+2025-09-30T11:03:49.305+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.following_id=?
+2025-09-30T11:03:49.306+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829306 | took 0ms | statement | connection 26| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.following_id=42;
+2025-09-30T11:03:49.308+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829308 | took 0ms | rollback | connection 26| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.310+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.311+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829311 | took 0ms | statement | connection 27| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.310+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.310+0900',default);
+2025-09-30T11:03:49.311+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.312+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829312 | took 0ms | statement | connection 27| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.311+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.311+0900',default);
+2025-09-30T11:03:49.313+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=?
+2025-09-30T11:03:49.313+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829313 | took 0ms | statement | connection 27| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=43;
+2025-09-30T11:03:49.314+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829314 | took 0ms | rollback | connection 27| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.316+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.317+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829317 | took 0ms | statement | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.316+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.316+0900',default);
+2025-09-30T11:03:49.317+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.318+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829318 | took 0ms | statement | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.317+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.317+0900',default);
+2025-09-30T11:03:49.318+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        follow
+        (created_at, follower_id, following_id, follow_id) 
+    values
+        (?, ?, ?, default)
+2025-09-30T11:03:49.319+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829319 | took 0ms | statement | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into follow (created_at,follower_id,following_id,follow_id) values (?,?,?,default)
+insert into follow (created_at,follower_id,following_id,follow_id) values ('2025-09-30T11:03:49.318+0900',45,46,default);
+2025-09-30T11:03:49.321+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    delete 
+    from
+        follow 
+    where
+        follow_id=?
+Hibernate: 
+    delete 
+    from
+        follow 
+    where
+        follow_id=?
+2025-09-30T11:03:49.321+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829321 | took 0ms | statement | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+delete from follow where follow_id=?
+delete from follow where follow_id=7;
+2025-09-30T11:03:49.322+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+2025-09-30T11:03:49.323+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829323 | took 0ms | statement | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=45 and f1_0.following_id=46;
+2025-09-30T11:03:49.324+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829324 | took 0ms | rollback | connection 28| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+2025-09-30T11:03:49.326+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.326+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829326 | took 0ms | statement | connection 29| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.326+0900',NULL,false,'test1','test1','1234','NORMAL','2025-09-30T11:03:49.326+0900',default);
+2025-09-30T11:03:49.327+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+Hibernate: 
+    insert 
+    into
+        member
+        (created_at, deleted_at, is_deleted, name, nickname, password, role_type, updated_at, member_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-09-30T11:03:49.327+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829327 | took 0ms | statement | connection 29| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values (?,?,?,?,?,?,?,?,default)
+insert into member (created_at,deleted_at,is_deleted,name,nickname,password,role_type,updated_at,member_id) values ('2025-09-30T11:03:49.327+0900',NULL,false,'test2','test2','1234','NORMAL','2025-09-30T11:03:49.327+0900',default);
+2025-09-30T11:03:49.328+09:00 DEBUG 27599 --- [    Test worker] org.hibernate.SQL                        : 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+Hibernate: 
+    select
+        f1_0.follow_id,
+        f1_0.created_at,
+        f1_0.follower_id,
+        f1_0.following_id 
+    from
+        follow f1_0 
+    where
+        f1_0.follower_id=? 
+        and f1_0.following_id=?
+2025-09-30T11:03:49.329+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829329 | took 0ms | statement | connection 29| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=? and f1_0.following_id=?
+select f1_0.follow_id,f1_0.created_at,f1_0.follower_id,f1_0.following_id from follow f1_0 where f1_0.follower_id=47 and f1_0.following_id=999;
+2025-09-30T11:03:49.330+09:00  INFO 27599 --- [    Test worker] p6spy                                    : #1759197829330 | took 0ms | rollback | connection 29| url jdbc:h2:mem:3402b627-79dd-490b-9ba5-06e13836bd6d
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

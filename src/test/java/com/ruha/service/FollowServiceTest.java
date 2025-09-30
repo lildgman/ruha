@@ -62,17 +62,30 @@ class FollowServiceTest {
                     .name("팔로잉")
                     .build();
 
+            Follow savedFollow = Follow.builder()
+                    .followId(1L)
+                    .follower(currentMember)
+                    .following(targetMember)
+                    .build();
+
             when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId))
                     .thenReturn(Optional.of(currentMember));
             when(memberRepository.findByMemberIdAndIsDeletedFalse(targetMemberId))
                     .thenReturn(Optional.of(targetMember));
             when(followRepository.existsByFollowerAndFollowing(currentMember, targetMember))
                     .thenReturn(false);
+            when(followRepository.save(any(Follow.class)))
+                    .thenReturn(savedFollow);
 
             // when
-            followService.follow(targetMemberId);
+            FollowResponse result = followService.follow(targetMemberId);
 
             // then
+            assertThat(result).isNotNull();
+            assertThat(result.getFollowId()).isEqualTo(1L);
+            assertThat(result.getFollowerNickname()).isEqualTo("follower");
+            assertThat(result.getFollowingNickname()).isEqualTo("following");
+
             verify(memberRepository, times(1)).findByMemberIdAndIsDeletedFalse(currentMemberId);
             verify(memberRepository, times(1)).findByMemberIdAndIsDeletedFalse(targetMemberId);
             verify(followRepository, times(1)).existsByFollowerAndFollowing(currentMember, targetMember);
