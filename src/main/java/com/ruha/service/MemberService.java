@@ -17,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * 회원 관련 비즈니스 로직을 처리하는 서비스 클래스입니다.
  */
@@ -143,6 +145,43 @@ public class MemberService {
     }
 
     /**
+     * 특정 회원의 정보를 조회합니다.
+     * 로그인한 경우 팔로우 여부를 포함하고, 비로그인한 경우 팔로우 여부는 null 입니다.
+     *
+     * @param memberId 조회할 회원의 ID
+     * @return 회원 상세 정보
+     * @throws MemberNotFoundException 회원을 찾을 수 없는 경우 발생
+     */
+    public MemberDetailResponse getMemberInfo(Long memberId) {
+
+        Member targetMember = memberRepository.findByMemberIdAndIsDeletedFalse(memberId)
+                .orElseThrow(MemberNotFoundException::new);
+
+        long followerCount = followRepository.countByFollowing(targetMember);
+        long followingCount = followRepository.countByFollower(targetMember);
+        long commentCount = commentRepository.countByMember(targetMember);
+        long totalTodoCount = todoRepository.countByMember(targetMember);
+        long completedTodoCount = todoRepository.countByMemberAndIsCompleted(targetMember, true);
+
+        // 로그인 확인
+        Optional<Long> currentMemberId = SecurityUtil.getLoginMemberId();
+
+        // 비로그인 시
+        if (currentMemberId.isEmpty()) {
+            return MemberDetailResponse.from(targetMember, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
+        }
+
+        // 로그인한 사용자
+        Member currentMember = memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId.get())
+                .orElseThrow(MemberNotFoundException::new);
+
+        boolean isFollowing = followRepository.existsByFollowerAndFollowing(currentMember, targetMember);
+
+        return MemberDetailResponse.from(targetMember, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount, isFollowing);
+
+    }
+
+    /**
      * 현재 인증된 회원 정보를 조회합니다.
      *
      * @return 현재 로그인한 회원 엔티티
@@ -169,5 +208,7 @@ public class MemberService {
             throw new PasswordMismatchException();
         }
     }
+
+
 
 }

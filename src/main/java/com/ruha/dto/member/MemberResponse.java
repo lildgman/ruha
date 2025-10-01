@@ -36,7 +36,6 @@ public class MemberResponse {
                 .followingCount(followingCount)
                 .commentCount(commentCount)
                 .totalTodoCount(totalTodoCount)
-                .completedTodoCount(completedTodoCount)
                 .todoCompletionRate(todoCompletionRate)
                 .build();
     }
