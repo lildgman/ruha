@@ -1,20 +1,22 @@
 spring:
+  profiles:
+    include: secret
   datasource:
-    url: jdbc:mysql://localhost:3306/ruhadb
-    username: root
-    password: 1234
+    url:  ${DB_URL:jdbc:mysql://localhost:3306/ruhadb}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${DDL_AUTO:update}
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
   servlet:
     multipart:
-      max-file-size: 10MB
-      max-request-size: 50MB
+      max-file-size: ${MAX_FILE_SIZE:5MB}
+      max-request-size: ${MAX_REQUEST_SIZE:20MB}
       enabled: true
 
 
@@ -22,9 +24,9 @@ logging.level:
   org.hibernate.SQL: debug
 
 jwt:
-  secret-key: VmFsdWVCdWdHZXR0ZXJzQW5kU2V0dGVyc1ZhbHVlQnVnR2V0dGVyc0FuZFNldHRlcnM=
-  expiration-time: 3600000
+  secret-key: ${JWT_SECRET_KEY}
+  expiration-time:  ${JWT_EXPIRATION_TIME:3600000}
 
 file:
   upload:
-    path: uploads/
+    path: ${FILE_UPLOAD_PATH:uploads/}

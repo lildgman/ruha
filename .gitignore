@@ -193,3 +193,16 @@ Temporary Items
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,java,visualstudiocode,intellij
+
+### Custom ###
+# 민감정보 설정 파일
+application-secret.yml
+*-secret.yml
+
+# 환경변수 파일
+.env
+.env.local
+.env.*.local
+
+# 업로드된 파일
+uploads/
