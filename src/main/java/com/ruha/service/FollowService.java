@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -95,36 +94,6 @@ public class FollowService {
         return followRepository.existsByFollowerAndFollowing(currentMember, targetMember);
     }
 
-    /**
-     * 내 팔로잉 목록 조회
-     *
-     * @return 팔로잉 중인 회원들의 목록
-     */
-    public List<FollowResponse> getFollowings() {
-        Member currentMember = getCurrentAuthenticatedMember();
-        List<Follow> followings = followRepository.findByFollower(currentMember);
-
-        List<FollowResponse> list = new ArrayList<>();
-        for (Follow following : followings) {
-            FollowResponse followResponse = FollowResponse.from(following);
-            list.add(followResponse);
-        }
-        return list;
-    }
-
-    /**
-     * 내 팔로워 목록 조회
-     *
-     * @return 나를 팔로우하는 회원들의 목록
-     */
-    public List<FollowResponse> getFollowers() {
-        Member currentMember = getCurrentAuthenticatedMember();
-        List<Follow> followers = followRepository.findByFollowing(currentMember);
-        
-        return followers.stream()
-                .map(FollowResponse::from)
-                .collect(Collectors.toList());
-    }
 
     /**
      * 특정 회원의 팔로잉 목록 조회

@@ -12,6 +12,8 @@ import com.ruha.repository.FollowRepository;
 import com.ruha.repository.MemberRepository;
 import com.ruha.repository.TodoRepository;
 import com.ruha.util.SecurityUtil;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -87,14 +89,11 @@ public class MemberService {
      */
     public MemberResponse getCurrentMemberInfo() {
         Member member = getCurrentAuthenticatedMember();
+        MemberStatistics stats = getMemberStatistics(member);
 
-        long followerCount = followRepository.countByFollowing(member);
-        long followingCount = followRepository.countByFollower(member);
-        long commentCount = commentRepository.countByMember(member);
-        long totalTodoCount = todoRepository.countByMember(member);
-        long completedTodoCount = todoRepository.countByMemberAndIsCompleted(member, true);
-
-        return MemberResponse.from(member, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
+        return MemberResponse.from(member,
+            stats.followerCount, stats.followingCount,
+            stats.commentCount, stats.totalTodoCount, stats.completedTodoCount);
     }
 
     /**
@@ -157,18 +156,16 @@ public class MemberService {
         Member targetMember = memberRepository.findByMemberIdAndIsDeletedFalse(memberId)
                 .orElseThrow(MemberNotFoundException::new);
 
-        long followerCount = followRepository.countByFollowing(targetMember);
-        long followingCount = followRepository.countByFollower(targetMember);
-        long commentCount = commentRepository.countByMember(targetMember);
-        long totalTodoCount = todoRepository.countByMember(targetMember);
-        long completedTodoCount = todoRepository.countByMemberAndIsCompleted(targetMember, true);
+        MemberStatistics stats = getMemberStatistics(targetMember);
 
         // 로그인 확인
         Optional<Long> currentMemberId = SecurityUtil.getLoginMemberId();
 
         // 비로그인 시
         if (currentMemberId.isEmpty()) {
-            return MemberDetailResponse.from(targetMember, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount);
+            return MemberDetailResponse.from(targetMember,
+                stats.followerCount, stats.followingCount,
+                stats.commentCount, stats.totalTodoCount, stats.completedTodoCount);
         }
 
         // 로그인한 사용자
@@ -177,7 +174,9 @@ public class MemberService {
 
         boolean isFollowing = followRepository.existsByFollowerAndFollowing(currentMember, targetMember);
 
-        return MemberDetailResponse.from(targetMember, followerCount, followingCount, commentCount, totalTodoCount, completedTodoCount, isFollowing);
+        return MemberDetailResponse.from(targetMember,
+            stats.followerCount, stats.followingCount,
+            stats.commentCount, stats.totalTodoCount, stats.completedTodoCount, isFollowing);
 
     }
 
@@ -209,6 +208,33 @@ public class MemberService {
         }
     }
 
+    /**
+     * 회원의 통계 정보를 조회합니다.
+     *
+     * @param member 통계를 조회할 회원
+     * @return 회원의 통계 정보 (팔로워, 팔로잉, 댓글, 할일 수)
+     */
+    private MemberStatistics getMemberStatistics(Member member) {
+        return new MemberStatistics(
+            followRepository.countByFollowing(member),
+            followRepository.countByFollower(member),
+            commentRepository.countByMember(member),
+            todoRepository.countByMember(member),
+            todoRepository.countByMemberAndIsCompleted(member, true)
+        );
+    }
 
+    /**
+     * 회원 통계 정보를 담는 내부 클래스입니다.
+     */
+    @Getter
+    @AllArgsConstructor
+    private static class MemberStatistics {
+        private final long followerCount;
+        private final long followingCount;
+        private final long commentCount;
+        private final long totalTodoCount;
+        private final long completedTodoCount;
+    }
 
 }

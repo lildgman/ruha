@@ -192,13 +192,18 @@ class MemberServiceTest {
             UpdateMemberRequest request = new UpdateMemberRequest("새이름");
 
             when(memberRepository.findByMemberIdAndIsDeletedFalse(currentMemberId)).thenReturn(Optional.of(member));
+            when(followRepository.countByFollowing(member)).thenReturn(0L);
+            when(followRepository.countByFollower(member)).thenReturn(0L);
+            when(commentRepository.countByMember(member)).thenReturn(0L);
+            when(todoRepository.countByMember(member)).thenReturn(0L);
+            when(todoRepository.countByMemberAndIsCompleted(member, true)).thenReturn(0L);
 
             // when
             memberService.updateName(request);
 
             // then
             assertThat(member.getName()).isEqualTo("새이름");
-            verify(memberRepository, times(1)).findByMemberIdAndIsDeletedFalse(currentMemberId);
+            verify(memberRepository, times(2)).findByMemberIdAndIsDeletedFalse(currentMemberId); // getCurrentAuthenticatedMember + getCurrentMemberInfo
         }
 
         @Test
