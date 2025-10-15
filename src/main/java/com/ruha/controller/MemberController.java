@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 회원 관련 API를 처리하는 컨트롤러입니다.
+ * 회원 관련 API를 처리하는 컨트롤러
  */
 @RestController
 @RequestMapping("/api/members")
@@ -19,7 +19,7 @@ public class MemberController {
     private final MemberService memberService;
 
     /**
-     * 새로운 회원을 가입시킵니다.
+     * 회원가입
      *
      * @param request 회원 가입에 필요한 정보 (닉네임, 비밀번호, 이름)
      * @return 생성된 회원의 정보
@@ -34,7 +34,7 @@ public class MemberController {
     }
 
     /**
-     * 회원 로그인을 처리합니다.
+     * 로그인
      *
      * @param request 로그인 정보 (닉네임, 비밀번호)
      * @return JWT 액세스 토큰
@@ -47,7 +47,7 @@ public class MemberController {
     }
 
     /**
-     * 현재 로그인한 회원의 정보를 조회합니다.
+     * 현재 로그인한 회원 정보 조회
      *
      * @return 로그인한 회원의 정보
      */
@@ -58,7 +58,7 @@ public class MemberController {
     }
 
     /**
-     * 현재 로그인한 회원의 이름을 변경합니다.
+     * 현재 로그인한 회원의 이름 변경
      *
      * @param request 변경할 이름 정보
      * @return 업데이트된 회원 정보
@@ -71,7 +71,7 @@ public class MemberController {
     }
 
     /**
-     * 현재 로그인한 회원의 비밀번호를 변경합니다.
+     * 현재 로그인한 회원의 비밀번호 변경
      *
      * @param request 현재 비밀번호 및 새 비밀번호
      * @return 업데이트된 회원 정보
@@ -84,7 +84,7 @@ public class MemberController {
     }
 
     /**
-     * 현재 로그인한 회원을 탈퇴시킵니다.
+     * 현재 로그인한 회원 탈퇴 처리
      *
      * @param request 비밀번호 확인 정보
      * @return 204 No Content
