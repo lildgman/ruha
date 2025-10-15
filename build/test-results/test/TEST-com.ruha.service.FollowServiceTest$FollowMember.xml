@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="팔로우" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-10-15T05:50:00" hostname="ODGui-MacBookAir.local" time="0.035">
+  <properties/>
+  <testcase name="실패 - 이미 팔로우한 회원" classname="com.ruha.service.FollowServiceTest$FollowMember" time="0.007"/>
+  <testcase name="성공" classname="com.ruha.service.FollowServiceTest$FollowMember" time="0.009"/>
+  <testcase name="실패 - 자기 자신 팔로우" classname="com.ruha.service.FollowServiceTest$FollowMember" time="0.008"/>
+  <testcase name="실패 - 존재하지 않는 대상 회원" classname="com.ruha.service.FollowServiceTest$FollowMember" time="0.006"/>
+  <system-out><![CDATA[2025-10-15T14:50:00.035+09:00  INFO 74709 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ruha.service.FollowServiceTest$FollowMember]: FollowMember does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-10-15T14:50:00.036+09:00  INFO 74709 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ruha.RuhaApplication for test class com.ruha.service.FollowServiceTest$FollowMember
+2025-10-15T14:50:00.055+09:00  INFO 74709 --- [    Test worker] p6spy                                    : #1760507400055 | took 0ms | rollback | connection 13| url jdbc:h2:mem:test
+
+;
+2025-10-15T14:50:00.064+09:00  INFO 74709 --- [    Test worker] p6spy                                    : #1760507400064 | took 0ms | rollback | connection 14| url jdbc:h2:mem:test
+
+;
+2025-10-15T14:50:00.075+09:00  INFO 74709 --- [    Test worker] p6spy                                    : #1760507400075 | took 0ms | rollback | connection 15| url jdbc:h2:mem:test
+
+;
+2025-10-15T14:50:00.083+09:00  INFO 74709 --- [    Test worker] p6spy                                    : #1760507400083 | took 0ms | rollback | connection 16| url jdbc:h2:mem:test
+
+;
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
