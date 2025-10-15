@@ -1,6 +1,6 @@
 package com.ruha.service;
 
-import com.ruha.dto.follow.FollowResponse;
+import com.ruha.dto.follow.response.FollowResponse;
 import com.ruha.entity.Follow;
 import com.ruha.entity.Member;
 import com.ruha.exception.auth.UnauthorizedException;

@@ -1,14 +1,13 @@
 package com.ruha.service;
 
-import com.ruha.dto.Todo.CreateTodoRequest;
-import com.ruha.dto.Todo.CreateTodoResponse;
+import com.ruha.dto.Todo.request.CreateTodoRequest;
+import com.ruha.dto.Todo.response.CreateTodoResponse;
 import com.ruha.entity.Category;
 import com.ruha.entity.Member;
 import com.ruha.entity.Todo;
 import com.ruha.entity.TodoImage;
 import com.ruha.exception.auth.UnauthorizedException;
 import com.ruha.exception.category.CategoryNotFoundException;
-import com.ruha.exception.file.InvalidFileTypeException;
 import com.ruha.exception.member.MemberNotFoundException;
 import com.ruha.repository.CategoryRepository;
 import com.ruha.repository.MemberRepository;

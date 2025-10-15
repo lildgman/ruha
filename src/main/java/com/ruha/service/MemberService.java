@@ -1,6 +1,9 @@
 package com.ruha.service;
 
-import com.ruha.dto.member.*;
+import com.ruha.dto.member.request.*;
+import com.ruha.dto.member.response.MemberDetailResponse;
+import com.ruha.dto.member.response.MemberResponse;
+import com.ruha.dto.member.response.TokenResponse;
 import com.ruha.entity.Member;
 import com.ruha.exception.auth.UnauthorizedException;
 import com.ruha.exception.member.DuplicateNicknameException;

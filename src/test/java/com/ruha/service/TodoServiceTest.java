@@ -1,7 +1,7 @@
 package com.ruha.service;
 
-import com.ruha.dto.Todo.CreateTodoRequest;
-import com.ruha.dto.Todo.CreateTodoResponse;
+import com.ruha.dto.Todo.request.CreateTodoRequest;
+import com.ruha.dto.Todo.response.CreateTodoResponse;
 import com.ruha.entity.*;
 import com.ruha.exception.auth.UnauthorizedException;
 import com.ruha.exception.category.CategoryNotFoundException;
@@ -10,7 +10,6 @@ import com.ruha.repository.MemberRepository;
 import com.ruha.repository.TodoImageRepository;
 import com.ruha.repository.TodoRepository;
 import com.ruha.util.SecurityUtil;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

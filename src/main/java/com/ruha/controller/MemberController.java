@@ -1,6 +1,9 @@
 package com.ruha.controller;
 
-import com.ruha.dto.member.*;
+import com.ruha.dto.member.request.*;
+import com.ruha.dto.member.response.MemberDetailResponse;
+import com.ruha.dto.member.response.MemberResponse;
+import com.ruha.dto.member.response.TokenResponse;
 import com.ruha.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

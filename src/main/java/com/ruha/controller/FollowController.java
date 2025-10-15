@@ -1,8 +1,8 @@
 package com.ruha.controller;
 
-import com.ruha.dto.follow.FollowListResponse;
-import com.ruha.dto.follow.FollowResponse;
-import com.ruha.dto.follow.FollowStatusResponse;
+import com.ruha.dto.follow.response.FollowListResponse;
+import com.ruha.dto.follow.response.FollowResponse;
+import com.ruha.dto.follow.response.FollowStatusResponse;
 import com.ruha.service.FollowService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
